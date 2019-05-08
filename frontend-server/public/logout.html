@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Destroyer2</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="./stylesheets/style.css" />
+        <link rel="stylesheet" href="./stylesheets/loader.css" />
+    </head>
+
+    <body>
+        <header class="hero">
+            <h1>Destroyer2</h1>
+        </header>
+        <main class="main">
+            <p id="loading">Logging out...</p>
+            <a href="./index.html">Home</a>
+        </main>
+        <footer class="footer">
+            <p>
+                <a href="./index.html">Home</a> |
+                <a href="./about.html">About</a>
+            </p>
+            <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
+        </footer>
+        <script type="module">
+            import { logout, deleteRoom } from "./javascripts/apiActions.js";
+
+            import {
+                loader as loaderComponent,
+                snackbar
+            } from "./javascripts/components.js";
+            import { initShipsLoader } from "./javascripts/loader.js";
+            import { showSnackbar } from "./javascripts/overlay.js";
+
+            let loading = document.getElementById("loading");
+
+            loading.insertAdjacentHTML(
+                "afterend",
+                snackbar({ type: "error" }) + snackbar({ type: "success" })
+            );
+
+            loading.insertAdjacentHTML(
+                "afterend",
+                loaderComponent({ ships: 3, id: "loader", classes: "center" })
+            );
+
+            let loader = document.getElementById("loader");
+
+            initShipsLoader(loader);
+
+            function displayMsg(msg) {
+                loading.innerText = msg;
+            }
+
+            if (localStorage.user) {
+                let rooms = [];
+                if (localStorage.rooms) rooms = JSON.parse(localStorage.rooms);
+                let user = JSON.parse(localStorage.user);
+
+                Promise.all(rooms.map(room => deleteRoom(user, room)))
+                    .catch(err => showSnackbar("#error", err.message))
+                    .then(() => logout(user))
+                    .then(msg => {
+                        localStorage.removeItem("user");
+                        localStorage.removeItem("rooms");
+                        return msg;
+                    })
+                    .then(msg => showSnackbar("#success", msg))
+                    .catch(err => showSnackbar("#error", err.message))
+                    .then(() => (document.location.href = "/index.html"));
+            } else {
+                showSnackbar("#error", "no user logged in").then(
+                    () => (document.location.href = "/index.html")
+                );
+            }
+        </script>
+    </body>
+</html>

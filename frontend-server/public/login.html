@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Destroyer2</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="./stylesheets/style.css" />
+    </head>
+
+    <body>
+        <header class="hero">
+            <h1>Login</h1>
+        </header>
+        <main class="main">
+            <p class="alert warning">Dont forget to log out before leaving!</p>
+            <label for="userName">Choose your username</label>
+            <p>
+                <input
+                    type="text"
+                    id="userName"
+                    placeholder="Username..."
+                    class="input input--full"
+                    maxlength="20"
+                    autofocus
+                />
+            </p>
+            <button class="cta-link btn" id="login">Login</button>
+        </main>
+        <footer class="footer">
+            <p>
+                <a href="./index.html">Home</a> |
+                <a href="./about.html">About</a>
+            </p>
+            <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
+        </footer>
+        <script type="module">
+            import { login as loginAction } from "./javascripts/apiActions.js";
+            import { snackbar } from "./javascripts/components.js";
+            import { showSnackbar } from "./javascripts/overlay.js";
+            import { login as loginIcon } from "./javascripts/icons.js";
+
+            let userName = document.getElementById("userName"),
+                loginBtn = document.getElementById("login");
+            // fancy setTimeout wrapper
+            let wait = ms => new Promise(res => setTimeout(res, ms));
+
+            userName.insertAdjacentHTML(
+                "afterend",
+                snackbar({ type: "error" })
+            );
+
+            loginBtn.insertAdjacentHTML("beforeend", loginIcon);
+
+            // Helper
+            function displayError(err) {
+                userName.classList.add("error", "shake");
+                wait(1000)
+                    .then(() => userName.classList.remove("error", "shake"))
+                    .then(() => userName.focus());
+                showSnackbar("#error", err, 3500);
+            }
+
+            // Main
+            function login() {
+                if (!userName.validity.valid || userName.value === "") {
+                    return displayError(
+                        "Username is required and may only be 20 characters long"
+                    );
+                }
+
+                return loginAction(userName.value)
+                    .then(resp => {
+                        // Save user info
+                        localStorage.user = JSON.stringify({
+                            userId: resp.userId,
+                            userName: resp.userName
+                        });
+                        // Redirect
+                        document.location.href = "/rooms.html";
+                    })
+                    .catch(err => showSnackbar("#error", err.message, 3500));
+            }
+
+            // EventListeners
+            loginBtn.addEventListener("click", login);
+            userName.addEventListener("keydown", ({ key }) => {
+                if (key === "Enter") login();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+.loader,
+.loader::after {
+    --loader-size: 320px;
+    --bg-color: #333;
+    --fg-color: green;
+    --sweep-color: #33995d;
+    --sweep-border-color: rgba(51, 153, 93, 0.3);
+    --ship-size: 10px;
+}
+
+.loader {
+    overflow: hidden;
+    position: relative;
+    width: var(--loader-size);
+    height: var(--loader-size);
+    border-radius: 50%;
+    background: 
+        /* Circles */ repeating-radial-gradient(
+            transparent,
+            transparent 20%,
+            var(--fg-color) 20%,
+            var(--fg-color) calc(20% + 2px)
+        ),
+        /* Horizontal Line */
+            linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0) calc(50% - 1px),
+                var(--fg-color) calc(50% - 1px),
+                var(--fg-color) calc(50% + 1px),
+                rgba(0, 0, 0, 0) calc(50% + 1px)
+            ),
+        /* Vertical Line */
+            linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0) calc(50% - 1px),
+                var(--fg-color) calc(50% - 1px),
+                var(--fg-color) calc(50% + 1px),
+                rgba(0, 0, 0, 0) calc(50% + 1px)
+            ),
+        /* Black background */ radial-gradient(var(--bg-color), var(--bg-color));
+    background-size: var(--loader-size) var(--loader-size);
+}
+
+.loader.center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.loader::after {
+    content: "";
+    display: block;
+    border-right: solid 1px var(--sweep-border-color);
+    width: calc(var(--loader-size) / 2);
+    height: calc(var(--loader-size) / 2);
+    border-radius: 100% 0 0 0;
+    transform-origin: 100% 100%;
+    background: linear-gradient(52deg, transparent 56%, var(--sweep-color));
+    animation: sweep 5s infinite linear;
+}
+
+.loader.ships .loader__ship {
+    content: "";
+    display: block;
+    width: var(--ship-size);
+    height: var(--ship-size);
+    border-radius: 50%;
+    background-color: #ddd;
+    position: absolute;
+    animation: blink 1.3s infinite linear;
+}
+/* Random position with js */
+
+@keyframes sweep {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.4;
+        transform: scale(0.95);
+    }
+}

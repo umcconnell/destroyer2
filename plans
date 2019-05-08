@@ -1,0 +1,10 @@
+TODO: add advanced logging with write-out
+      to file instead of
+      logger.error() @./helpers/logger.js
+      with winston
+      https://www.npmjs.com/package/winston
+
+TODO: add client side ping
+
+TODO: Add chat widget message-square
+      or message-circle @feathericons     [low]

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Destroyer2</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="./stylesheets/style.css" />
+        <link rel="stylesheet" href="./stylesheets/checkbox.css" />
+    </head>
+
+    <body>
+        <header class="hero">
+            <h1>Create Room</h1>
+        </header>
+        <main class="main">
+            <label for="roomName">Choose your room name:</label>
+            <p>
+                <input
+                    type="text"
+                    id="roomName"
+                    placeholder="Room name..."
+                    class="input input--full"
+                    maxlength="20"
+                    autofocus
+                />
+            </p>
+            <p style="text-align: left">
+                <label
+                    class="material-checkbox checkbox-container"
+                    tabindex="0"
+                >
+                    <input type="checkbox" id="secret" />
+                    <span class="checkbox" aria-hidden="true"></span>Private
+                </label>
+            </p>
+            <button class="cta-link btn" id="create">Create</button>
+        </main>
+        <footer class="footer">
+            <p>
+                <a href="./index.html">Home</a> |
+                <a href="./about.html">About</a> |
+                <a href="./rooms.html">Rooms</a>
+                <span id="loggedIn" hidden>
+                    | <a href="./logout.html">Logout</a>
+                </span>
+            </p>
+            <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
+        </footer>
+        <script type="module">
+            import { newRoom } from "./javascripts/apiActions.js";
+
+            import { snackbar } from "./javascripts/components.js";
+            import { showSnackbar } from "./javascripts/overlay.js";
+
+            let roomName = document.getElementById("roomName"),
+                createBtn = document.getElementById("create"),
+                secretChb = document.getElementById("secret"),
+                loggedIn = document.getElementById("loggedIn");
+
+            // fancy setTimeout wrapper
+            let wait = ms => new Promise(res => setTimeout(res, ms));
+            let user = JSON.parse(localStorage.user);
+
+            if (localStorage.user) loggedIn.hidden = false;
+
+            createBtn.insertAdjacentHTML(
+                "afterend",
+                snackbar({ type: "error" })
+            );
+
+            secretChb.parentElement.addEventListener("keypress", function(evt) {
+                if (evt.key === "Enter" || evt.key === " ") {
+                    secretChb.checked = !secretChb.checked;
+                }
+            });
+
+            // Helper
+            function displayError(err) {
+                roomName.classList.add("error", "shake");
+                wait(1000)
+                    .then(() => roomName.classList.remove("error", "shake"))
+                    .then(() => roomName.focus());
+                showSnackbar("#error", err, 3500);
+            }
+
+            // Main
+            function createRoom() {
+                if (!roomName.validity.valid || roomName.value === "") {
+                    return displayError(
+                        "Room name is required and may only be 20 characters long"
+                    );
+                }
+
+                return newRoom(user, roomName.value, secretChb.checked)
+                    .then(resp => {
+                        // Save room info
+                        if (localStorage.rooms) {
+                            localStorage.rooms = JSON.stringify(
+                                JSON.parse(localStorage.rooms).concat([
+                                    resp.roomId
+                                ])
+                            );
+                        } else {
+                            localStorage.rooms = JSON.stringify([resp.roomId]);
+                        }
+
+                        let roomURL = `${window.location.origin}/game.html?r=${
+                            resp.roomId
+                        }`;
+                        createBtn.disabled = true;
+
+                        if (secretChb.checked) {
+                            createBtn.insertAdjacentHTML(
+                                "beforebegin",
+                                `<p>
+                                    Use this URL to join the room and invite friends:<br>
+                                    <a href="${roomURL}">${roomURL}</a>
+                                </p>`
+                            );
+                        } else {
+                            document.location.href = roomURL;
+                        }
+                    })
+                    .catch(displayError);
+            }
+
+            // EventListeners
+            createBtn.addEventListener("click", createRoom);
+            roomName.addEventListener("keydown", ({ key }) => {
+                if (key === "Enter") createRoom();
+            });
+        </script>
+    </body>
+</html>

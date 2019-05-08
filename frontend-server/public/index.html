@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Destroyer2</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="./stylesheets/style.css" />
+    </head>
+
+    <body>
+        <header class="hero">
+            <h1>Destroyer2</h1>
+        </header>
+        <main class="main">
+            <img src="./images/battleship.svg" alt="Destroyer2 logo" />
+            <p>The ultimate multiplayer Battleship game.</p>
+            <a
+                href="./login.html"
+                class="cta-link btn inherit-color"
+                id="startlink"
+                >Start <span class="cta-link__icon">&rarr;</span></a
+            >
+        </main>
+        <footer class="footer">
+            <p>
+                <a href="./about.html">About</a>
+                <span id="loggedIn" hidden>
+                    | <a href="./logout.html">Logout</a>
+                </span>
+            </p>
+            <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
+        </footer>
+        <script>
+            let startlink = document.getElementById("startlink"),
+                loggedIn = document.getElementById("loggedIn");
+
+            // Direct user to openrooms directly if logged in
+            if (localStorage.user) {
+                startlink.href = "./rooms.html";
+                loggedIn.removeAttribute("hidden");
+            }
+        </script>
+    </body>
+</html>

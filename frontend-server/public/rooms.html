@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Destroyer2</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="./stylesheets/style.css" />
+        <style>
+            #openrooms > * {
+                margin: 1em 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="hero">
+            <h1>Rooms</h1>
+        </header>
+        <main class="main narrow">
+            <a href="./createroom.html" class="cta-link btn main-color">
+                <strong>+ New Room</strong>
+            </a>
+            <div id="openrooms"></div>
+        </main>
+        <footer class="footer">
+            <p>
+                <a href="./index.html">Home</a> |
+                <a href="./about.html">About</a>
+                <span id="loggedIn" hidden>
+                    | <a href="./logout.html">Logout</a>
+                </span>
+            </p>
+            <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
+        </footer>
+
+        <script type="module">
+            import { openRooms, deleteRoom } from "./javascripts/apiActions.js";
+            import {
+                snackbar,
+                roomCard,
+                noRooms
+            } from "./javascripts/components.js";
+            import { showSnackbar } from "./javascripts/overlay.js";
+
+            let openrooms = document.getElementById("openrooms"),
+                loggedIn = document.getElementById("loggedIn");
+            let lastmodifiedUser;
+            let myRooms = localStorage.rooms
+                ? JSON.parse(localStorage.rooms)
+                : [];
+
+            if (localStorage.user) loggedIn.hidden = false;
+
+            let wait = ms => new Promise(res => setTimeout(res, ms));
+
+            // Init snackbars
+            openrooms.insertAdjacentHTML(
+                "afterend",
+                snackbar({ type: "error" }) + snackbar({ type: "success" })
+            );
+
+            let roomsList = rooms => {
+                return rooms
+                    .map(room =>
+                        roomCard({
+                            room,
+                            myRoom: myRooms.includes(room.id)
+                        })
+                    )
+                    .join("");
+            };
+
+            function displayRooms(rooms) {
+                if (rooms.length >= 1) openrooms.innerHTML = roomsList(rooms);
+                else if (rooms.length === 0) openrooms.innerHTML = noRooms();
+
+                trackRooms();
+            }
+
+            function trackRooms() {
+                return [
+                    ...document.querySelectorAll(".room-card > button")
+                ].forEach(btn => {
+                    btn.addEventListener("click", removeRoom);
+                });
+            }
+
+            function getOpenRooms(cached) {
+                openRooms(cached ? lastmodifiedUser : false)
+                    .then(({ rooms, lastmodified }) => {
+                        lastmodifiedUser = lastmodified;
+                        displayRooms(rooms);
+                    })
+                    .catch(err => showSnackbar("#error", err.message));
+            }
+
+            function removeRoom(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                let roomId = this.dataset.roomId;
+
+                deleteRoom(JSON.parse(localStorage.user), roomId)
+                    .then(() => {
+                        let newRooms = myRooms.filter(id => id !== roomId);
+                        localStorage.rooms = JSON.stringify(newRooms);
+                        myRooms = newRooms;
+                    })
+                    .then(() => getOpenRooms(true))
+                    .then(() =>
+                        showSnackbar("#success", "Successfully deleted room")
+                    )
+                    .catch(err => showSnackbar("#error", err.message));
+            }
+
+            // Initial fetch
+            getOpenRooms();
+
+            setInterval(() => getOpenRooms(true), 10000);
+        </script>
+    </body>
+</html>
