@@ -4,7 +4,8 @@ const logger = require("../helpers/logger");
 bluebird.promisifyAll(redis);
 
 let client = redis.createClient({
-    password: process.env.DB_PASS
+    password: process.env.DB_PASS,
+    url: process.env.REDIS_URL
 });
 
 // TODO: remove in production
