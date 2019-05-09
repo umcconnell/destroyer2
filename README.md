@@ -26,11 +26,13 @@ And install npm dependencies
 npm install
 ```
 
-Finally, start the redis server
+Finally, start the redis server.
+You may optionally specify a redis configuration file as argument to `redis-server`
 
 ```
 cd ./db/
-redis-server ./redis.conf
+redis-server
+# or redis-server ./redis.conf
 ```
 
 And start the webserver
