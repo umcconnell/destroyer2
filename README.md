@@ -77,7 +77,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 Ulysse McConnell - [umcconnell](https://github.com/umcconnell/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/umcconnell/destroyer2/contributors) who participated in this project.
 
 ## License
 
