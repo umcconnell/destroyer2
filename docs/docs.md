@@ -543,6 +543,28 @@ Indicates a player was hit.
     }
     ```
 
+### Sunk
+
+Indicates a player's ship was sunk.
+
+-   **Type:** <br>
+    `hit`
+-   **Message:** <br>
+    `<JSON string: object>` (see [fire object](#fire-object))
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "sunk",
+        "msg": "{
+            \"you\": false,
+            \"coords\": \"C4\"
+        }"
+    }
+    ```
+
 ### Fire object
 
 Some events (hit, sunk, miss) use a hit object to transmit information about a user's shot/fire
