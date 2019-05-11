@@ -376,6 +376,14 @@ Logs a user out
 
 ## Game Events
 
+All events are emitted over the websocket connection as JSON strings in the following form:
+```json
+{
+    "type": "<String>",
+    "msg": "<(JSON )String>"
+}
+```
+
 ## Customizing
 
 By adding a `.env` file and a redis configuration file (`redis.conf`) in the `db/` folder, you can customize your setup.
