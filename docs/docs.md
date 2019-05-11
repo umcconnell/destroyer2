@@ -4,6 +4,11 @@
 
 -   [Architecture](#architecture)
 -   [API](#api)
+    - [Open Rooms](#open-rooms)
+    - [Login](#login)
+    - [New Room](#new-room)
+    - [Delete Room](#delete-room)
+    - [Logout](#logout)
 -   [Game Events](#game-events)
 -   [Customizing](#customizing)
 
