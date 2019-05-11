@@ -377,12 +377,34 @@ Logs a user out
 ## Game Events
 
 All events are emitted over the websocket connection as JSON strings in the following form:
+
 ```json
 {
     "type": "<String>",
     "msg": "<(JSON )String>"
 }
 ```
+
+Following events are emitted:
+
+### Error
+
+Generic error event
+
+-   **Type:** <br>
+    `error`
+-   **Message:** <br>
+    `<String>`
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "error",
+        "msg": "internal server error"
+    }
+    ```
 
 ## Customizing
 
@@ -395,3 +417,7 @@ You can use following values in the `.env` file:
 -   `DB_PASS` - The redis database password
 
 **Note:** When using a password you must add it to the `.env` file **and** to the redis configuration file
+
+```
+
+```
