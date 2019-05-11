@@ -16,20 +16,20 @@ A step by step series of examples that tell you how to get a development env run
 
 Clone the git repository
 
-```
+```bash
 git clone https://github.com/umcconnell/destroyer2.git
 ```
 
 And install npm dependencies
 
-```
+```bash
 npm install
 ```
 
 Finally, start the redis server.
 You may optionally specify a redis configuration file as argument to `redis-server`
 
-```
+```bash
 cd ./db/
 redis-server
 # or redis-server ./redis.conf
@@ -37,7 +37,7 @@ redis-server
 
 And start the webserver
 
-```
+```bash
 npm run debug
 ```
 
