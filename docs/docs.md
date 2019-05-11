@@ -73,6 +73,51 @@ User-Server-Interaction flowchart
 
 ## API
 
+Following endpoints are exposed:
+
+### Open rooms
+
+Returns json data about open / available rooms
+
+-   **URL**
+
+    /api/openrooms
+
+-   **Method:**
+
+    `GET`
+
+-   **URL Params**
+
+    None
+
+-   **Data Params**
+
+    `if-modified-since=[UTC String]` <br>
+    (see: mdn.io/If-Modified-Since)
+
+-   **Success Response:**
+
+    -   **Code:** 200 <br>
+        **Content:** `[{id: <UUID>, name: <String>, owner: <String>}]`
+
+-   **Error Response:**
+
+    -   **Code:** 500 <br>
+        **Content:** `{ error : "Internal Server Error" }`
+
+-   **Sample Call:**
+
+    ```javascript
+    fetch("/api/openrooms", {
+        headers: {
+            Accept: "application/json"
+        }
+    }).then(
+        console.log
+    );
+    ```
+
 ## Game Events
 
 ## Customizing
