@@ -4,11 +4,11 @@
 
 -   [Architecture](#architecture)
 -   [API](#api)
-    - [Open Rooms](#open-rooms)
-    - [Login](#login)
-    - [New Room](#new-room)
-    - [Delete Room](#delete-room)
-    - [Logout](#logout)
+    -   [Open Rooms](#open-rooms)
+    -   [Login](#login)
+    -   [New Room](#new-room)
+    -   [Delete Room](#delete-room)
+    -   [Logout](#logout)
 -   [Game Events](#game-events)
 -   [Customizing](#customizing)
 
@@ -77,6 +77,16 @@ User-Server-Interaction flowchart
 ```
 
 ## API
+
+A quick overview of the available API endpoints:
+
+| HTTP Method | URL             | Description                         | Parameters                                  |
+| ----------- | --------------- | ----------------------------------- | ------------------------------------------- |
+| GET         | /api/openrooms  | Get an array of open rooms          | none                                        |
+| POST        | /api/login      | Logs a user in and generates a uuid | userName                                    |
+| POST        | /api/newroom    | Creates a new (private) room        | userId, userName, roomName, [private=false] |
+| DELETE      | /api/deleteroom | Deletes a room and kicks players    | userId, userName, roomName                  |
+| DELETE      | /api/logout     | Logs a user out                     | userId                                      |
 
 Following endpoints are exposed:
 
