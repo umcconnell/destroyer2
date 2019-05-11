@@ -302,6 +302,63 @@ Deletes a room and kicks players if players in room
     });
     ```
 
+### Logout
+
+Logs out a user
+
+-   **URL**
+
+    /api/logout
+
+-   **Method:**
+
+    `DELETE`
+
+-   **URL Params**
+
+    None
+
+-   **Data Params**
+
+    **Required:**
+
+    `userId=<UUID>`
+
+-   **Success Response:**
+
+    -   **Code:** 200 <br>
+        **Content:** `{ message: "successfully deleted user" }`
+
+-   **Error Response:**
+
+    -   **Code:** 400 <br>
+        **Content:** `{ error : <Validation error message> }`
+
+    OR
+
+    -   **Code:** 404 <br>
+        **Content:** `{ error: "user doesn't exist" }`
+
+    OR
+
+    -   **Code:** 500 <br>
+        **Content** `{error: "Internal Server Error"}`
+
+-   **Sample Call:**
+
+    ```javascript
+    fetch("/api/logout", {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: USERID
+        }).then(console.log)
+    });
+    ```
+
 ## Game Events
 
 ## Customizing
