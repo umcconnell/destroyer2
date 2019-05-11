@@ -236,6 +236,72 @@ Creates a new room and returns a uuid for the room
     });
     ```
 
+### Delete Room
+
+Deletes a room and kicks players if players in room
+
+-   **URL**
+
+    /api/deleteroom
+
+-   **Method:**
+
+    `DELETE`
+
+-   **URL Params**
+
+    None
+
+-   **Data Params**
+
+    **Required:**
+
+    -   `userId=<UUID>`
+    -   `userName=<String>`
+    -   `roomId=<UUID>`
+
+-   **Success Response:**
+
+    -   **Code:** 200 <br>
+        **Content:** `{ message: "successfully deleted room" }`
+
+-   **Error Response:**
+
+    -   **Code:** 400 <br>
+        **Content:** `{ error : <Validation error message> }`
+
+    OR
+
+    -   **Code:** 403 <br>
+        **Content:** `{ error: "you are not the owner of this room" }`
+
+    OR
+
+    -   **Code:** 404 <br>
+        **Content:** `{ error: "room doesn't exist" }`
+
+    OR
+
+    -   **Code:** 500 <br>
+        **Content** `{error: "Internal Server Error"}`
+
+-   **Sample Call:**
+
+    ```javascript
+    fetch("/api/deleteroom", {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: USERID,
+            userName: USERNAME,
+            roomId: ROOMID
+        }).then(console.log)
+    });
+    ```
+
 ## Game Events
 
 ## Customizing
