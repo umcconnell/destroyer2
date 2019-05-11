@@ -309,7 +309,7 @@ Deletes a room and kicks players if players in room
 
 ### Logout
 
-Logs out a user
+Logs a user out
 
 -   **URL**
 
