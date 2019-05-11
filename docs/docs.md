@@ -543,6 +543,15 @@ Indicates a player was hit.
     }
     ```
 
+### Fire object
+
+Some events (hit, sunk, miss) use a hit object to transmit information about a user's shot/fire
+
+It has following properties:
+
+-   `you`: <Boolean> - Indicates whether one of your ships was hit/sunk/missed (true if enemy fired, false if you fired)
+-   `coords`: <Coordinates [A-J][1-10]> - Represents the coordinates of the shot
+
 ## Customizing
 
 By adding a `.env` file and a redis configuration file (`redis.conf`) in the `db/` folder, you can customize your setup.
