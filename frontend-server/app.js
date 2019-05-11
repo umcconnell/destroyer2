@@ -32,7 +32,7 @@ app.use(function(err, req, res, next) {
 
     console.error(err);
 
-    let errStatus = err.status || process.env.HTTP_SERVER_ERROR;
+    let errStatus = err.status || process.env.HTTP_SERVER_ERROR || 500;
 
     return res.status(errStatus).json({ error: "Internal Server Error" });
 });
