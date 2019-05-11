@@ -113,10 +113,62 @@ Returns json data about open / available rooms
         headers: {
             Accept: "application/json"
         }
-    }).then(
-        console.log
-    );
+    }).then(console.log);
     ```
+
+### Login
+
+Logs a user in and returns a uuid
+
+-   **URL**
+
+    /api/login
+
+-   **Method:**
+
+    `POST`
+
+-   **URL Params**
+
+    None
+
+-   **Data Params**
+
+    **Required:**
+
+    `userName=<String maxlength 20>`
+
+-   **Success Response:**
+
+    -   **Code:** 200 <br />
+        **Content:** `{ userId : <UUID>, userName : <String> }`
+
+-   **Error Response:**
+
+    -   **Code:** 400 <br />
+        **Content:** `{ error : <Validation error message> }`
+
+    OR
+
+    -   **Code:** 500 <br />
+        **Content:** `{ error : "Internal Server Error" }`
+
+-   **Sample Call:**
+
+    ```javascript
+    fetch("/api/login", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userName: USERNAME
+        }).then(console.log)
+    });
+    ```
+
+-   **Notes**: As HTML special characters (& < > " ' /) are escaped, this causes a username with less or equal than 20 characters and one or more special characters to be potentially longer than 20 characters, causing a validation error.
 
 ## Game Events
 
