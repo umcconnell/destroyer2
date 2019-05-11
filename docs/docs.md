@@ -140,17 +140,17 @@ Logs a user in and returns a uuid
 
 -   **Success Response:**
 
-    -   **Code:** 200 <br />
+    -   **Code:** 200 <br>
         **Content:** `{ userId : <UUID>, userName : <String> }`
 
 -   **Error Response:**
 
-    -   **Code:** 400 <br />
+    -   **Code:** 400 <br>
         **Content:** `{ error : <Validation error message> }`
 
     OR
 
-    -   **Code:** 500 <br />
+    -   **Code:** 500 <br>
         **Content:** `{ error : "Internal Server Error" }`
 
 -   **Sample Call:**
@@ -169,6 +169,72 @@ Logs a user in and returns a uuid
     ```
 
 -   **Notes**: As HTML special characters (& < > " ' /) are escaped, this causes a username with less or equal than 20 characters and one or more special characters to be potentially longer than 20 characters, causing a validation error.
+
+### New Room
+
+Creates a new room and returns a uuid for the room
+
+-   **URL**
+
+    /api/newroom
+
+-   **Method:**
+
+    `POST`
+
+-   **URL Params**
+
+    None
+
+-   **Data Params**
+
+    **Required:**
+
+    -   `userId=<UUID>`
+    -   `userName=<String>`
+    -   `roomName=<String maxlength 20>`
+
+    **Optional**
+
+    -   `secret=<Boolean default:false>`
+
+-   **Success Response:**
+
+    -   **Code:** 200 <br>
+        **Content:** `{ roomId: <UUID> }`
+
+-   **Error Response:**
+
+    -   **Code:** 400 <br>
+        **Content:** `{ error : <Validation error message> }`
+
+    OR
+
+    -   **Code:** 403 <br>
+        **Content:** `{ error : "unauthorized" }`
+
+    OR
+
+    -   **Code:** 500 <br>
+        **Content:** `{error: "Internal Server Error"}`
+
+-   **Sample Call:**
+
+    ```javascript
+    fetch("/api/newroom", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: USERID,
+            userName: USERNAME,
+            roomName: ROOMNAME
+            // secret: true
+        }).then(console.log)
+    });
+    ```
 
 ## Game Events
 
