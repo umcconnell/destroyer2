@@ -575,7 +575,7 @@ Indicates a player's ship was missed.
     `<JSON string: object>` (see [fire object](#fire-object))
 -   **Emitted By:** <br>
     `server`
-- **Sample Message:** <br>
+-   **Sample Message:**
 
     ```json
     {
@@ -584,6 +584,25 @@ Indicates a player's ship was missed.
             \"you\": true,
             \"coords\": \"C4\"
         }"
+    }
+    ```
+
+### Game Over
+
+Indicates a game is over. Resets the room state (ship placement) but players are kept in the room. The UI should invite the user to reload/restart the game.
+
+-   **Type:** <br>
+    `gameOver`
+-   **Message:** <br>
+    `<String>`
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "gameOver",
+        "msg": "You win"
     }
     ```
 
