@@ -422,6 +422,31 @@ Generic error event
     }
     ```
 
+### Place
+
+Place a user's game field/sea
+
+-   **Type:** <br>
+    `place`
+-   **Message:** <br>
+    `<Game Field String>` (see: [Field Representation](#field-representation)
+-   **Emitted By:**)<br>
+    `user`
+-   **Success Response** <br>
+    TODO: Add links
+    -   placed
+    -   ready
+-   **Error Response:** <br>
+    -   [error](#error)
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "place",
+        "msg": "000A000000000A000D00000A000D00000A000D00000A00000000000000000000000CCC0000000000BBBB00000000000000EE"
+    }
+    ```
+
 ## Customizing
 
 By adding a `.env` file and a redis configuration file (`redis.conf`) in the `db/` folder, you can customize your setup.
@@ -433,7 +458,3 @@ You can use following values in the `.env` file:
 -   `DB_PASS` - The redis database password
 
 **Note:** When using a password you must add it to the `.env` file **and** to the redis configuration file
-
-```
-
-```
