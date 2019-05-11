@@ -59,7 +59,7 @@
                 let user = JSON.parse(localStorage.user);
 
                 Promise.all(rooms.map(room => deleteRoom(user, room)))
-                    .catch(err => showSnackbar("#error", err.message))
+                    .catch(err => showSnackbar("#error", err))
                     .then(() => logout(user))
                     .then(msg => {
                         localStorage.removeItem("user");
@@ -67,7 +67,7 @@
                         return msg;
                     })
                     .then(msg => showSnackbar("#success", msg))
-                    .catch(err => showSnackbar("#error", err.message))
+                    .catch(err => showSnackbar("#error", err))
                     .then(() => (document.location.href = "/index.html"));
             } else {
                 showSnackbar("#error", "no user logged in").then(

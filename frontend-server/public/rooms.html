@@ -91,7 +91,7 @@
                         lastmodifiedUser = lastmodified;
                         displayRooms(rooms);
                     })
-                    .catch(err => showSnackbar("#error", err.message));
+                    .catch(err => showSnackbar("#error", err));
             }
 
             function removeRoom(e) {
@@ -109,7 +109,7 @@
                     .then(() =>
                         showSnackbar("#success", "Successfully deleted room")
                     )
-                    .catch(err => showSnackbar("#error", err.message));
+                    .catch(err => showSnackbar("#error", err));
             }
 
             // Initial fetch
