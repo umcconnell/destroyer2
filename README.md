@@ -2,6 +2,20 @@
 
 A realtime multiplayer battleship game
 
+## Table of Contents
+
+-   [Getting Started](#getting-started)
+    -   [Prerequisites](#prerequisites)
+    -   [Installing](#installing)
+    -   [Customizing](#customizing)
+-   [Deployment](#deployment)
+-   [Built With](#built-with)
+-   [Contributing](#contributing)
+-   [Versioning](#versioning)
+-   [Authors](#authors)
+-   [License](#license)
+-   [Acknowledgments](#acknowledgments)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
