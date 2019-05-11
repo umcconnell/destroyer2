@@ -606,6 +606,25 @@ Indicates a game is over. Resets the room state (ship placement) but players are
     }
     ```
 
+### Kick
+
+Indicates the owner closed the room and the user(s) shoud be redirected back home.
+
+-   **Type:** <br>
+    `kick`
+-   **Message:** <br>
+    `<String>`
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "kick",
+        "msg": "owner closed room"
+    }
+    ```
+
 ### Fire object
 
 Some events (hit, sunk, miss) use a hit object to transmit information about a user's shot/fire
