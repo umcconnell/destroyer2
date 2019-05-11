@@ -48,9 +48,10 @@ Navigate to http://localhost:8080 to get started!
 You can customize the project by adding a `.env` file in the root of the project and a redis configuration file in the `db/` folder. Make sure to specify the redis configuration file when starting the redis server
 
 You can use following values in the `.env` file:
-* `PORT` - The port to serve the project on
-* `HTTP_SERVER_ERROR` - The error code to print out when encountering a server error
-* `DB_PASS` - The redis database password
+
+-   `PORT` - The port to serve the project on
+-   `HTTP_SERVER_ERROR` - The error code to print out when encountering a server error
+-   `DB_PASS` - The redis database password
 
 **Note:** When using a password you must add it to the `.env` file **and** to the redis configuration file
 
@@ -89,4 +90,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 -   [redis](https://redis.io/) - The database
 -   [node_redis](https://github.com/NodeRedis/node_redis) - The redis client for node
 -   [ws](https://github.com/websockets/ws) - The WebSocket server
+-   [feather](https://github.com/feathericons/feather) - The icons
+-   [Warship icon by zidney on the NounProject (resized, minified and changed line thickness)](https://thenounproject.com/term/warship/1597472/) - The logo
 -   Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth) for the README and CONTRIBUTING template
