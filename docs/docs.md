@@ -489,6 +489,38 @@ Indicates that the room is ready and the client should show the game interface
     }
     ```
 
+### Fire
+
+Fire at enemy's game field. Off-turn fires are ignored
+
+-   **Type:** <br>
+    `ready`
+-   **Message:** <br>
+    <String field coordinates: [A-J][1-10]>
+-   **Emitted By:** <br>
+    `user`
+-   **Success Response:**
+    TODO: add links
+
+    -   hit with you = false
+
+    OR
+
+    -   sunk with you = false
+
+    OR
+
+    -   miss with you = false
+
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "fire",
+        "msg": "C4"
+    }
+    ```
+
 ## Customizing
 
 By adding a `.env` file and a redis configuration file (`redis.conf`) in the `db/` folder, you can customize your setup.
