@@ -5,6 +5,7 @@
 -   [Architecture](#architecture)
 -   [API](#api)
 -   [Game Events](#game-events)
+-   [Customizing](#customizing)
 
 ## Architecture
 
@@ -73,3 +74,15 @@ User-Server-Interaction flowchart
 ## API
 
 ## Game Events
+
+## Customizing
+
+By adding a `.env` file and a redis configuration file, you can customize your setup.
+
+You can use following values in the `.env` file:
+
+-   `PORT` - The port to serve the project on
+-   `HTTP_SERVER_ERROR` - The error code to print out when encountering a server error
+-   `DB_PASS` - The redis database password
+
+**Note:** When using a password you must add it to the `.env` file **and** to the redis configuration file
