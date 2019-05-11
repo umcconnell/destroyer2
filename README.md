@@ -9,6 +9,7 @@ A realtime multiplayer battleship game
     -   [Installing](#installing)
     -   [Customizing](#customizing)
 -   [Deployment](#deployment)
+-   [Docs](#docs)
 -   [Built With](#built-with)
 -   [Contributing](#contributing)
 -   [Versioning](#versioning)
@@ -66,6 +67,10 @@ See the [docs](/docs/docs.md#customizing) for more information.
 ## Deployment
 
 Change the database password in the [.env ](.env) file and in the [redis.conf](db/redis.conf) file. (see also: [docs#customizing](/docs/docs.md#customizing))
+
+## Docs
+
+See the [docs](docs/docs.md) for more information about the system architecture, API endpoints, game events and customization.
 
 ## Built With
 
