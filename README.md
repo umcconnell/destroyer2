@@ -61,17 +61,11 @@ Navigate to http://localhost:8080 to get started!
 
 You can customize the project by adding a `.env` file in the root of the project and a redis configuration file in the `db/` folder. Make sure to specify the redis configuration file when starting the redis server
 
-You can use following values in the `.env` file:
-
--   `PORT` - The port to serve the project on
--   `HTTP_SERVER_ERROR` - The error code to print out when encountering a server error
--   `DB_PASS` - The redis database password
-
-**Note:** When using a password you must add it to the `.env` file **and** to the redis configuration file
+See the [docs](/docs/docs.md#customizing) for more information.
 
 ## Deployment
 
-Change the database password in the [.env ](.env) file and in the [redis.conf](db/redis.conf) file. (see also: Customizing)
+Change the database password in the [.env ](.env) file and in the [redis.conf](db/redis.conf) file. (see also: [docs#customizing](/docs/docs.md#customizing))
 
 ## Built With
 
