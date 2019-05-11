@@ -77,7 +77,7 @@ User-Server-Interaction flowchart
 
 ## Customizing
 
-By adding a `.env` file and a redis configuration file, you can customize your setup.
+By adding a `.env` file and a redis configuration file (`redis.conf`) in the `db/` folder, you can customize your setup.
 
 You can use following values in the `.env` file:
 
