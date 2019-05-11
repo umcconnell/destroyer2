@@ -491,7 +491,7 @@ Indicates that the room is ready and the client should show the game interface
 
 ### Fire
 
-Fire at enemy's game field. Off-turn fires are ignored
+Fire at enemy's game field. Off-turn fires are ignored.
 
 -   **Type:** <br>
     `ready`
@@ -518,6 +518,28 @@ Fire at enemy's game field. Off-turn fires are ignored
     {
         "type": "fire",
         "msg": "C4"
+    }
+    ```
+
+### Hit
+
+Indicates a player was hit.
+
+-   **Type:** <br>
+    `hit`
+-   **Message:** <br>
+    `<JSON string: object>` (see [fire object](#fire-object))
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "hit",
+        "msg": "{
+            \"you\": true,
+            \"coords\": \"C4\"
+        }"
     }
     ```
 
