@@ -433,9 +433,13 @@ Place a user's game field/sea
 -   **Emitted By:**)<br>
     `user`
 -   **Success Response** <br>
-    TODO: Add links
-    -   placed
-    -   ready
+
+    -   [placed](#placed)
+
+    OR
+
+    -   [ready](#ready)
+
 -   **Error Response:** <br>
     -   [error](#error)
 -   **Sample Message:**
@@ -444,6 +448,44 @@ Place a user's game field/sea
     {
         "type": "place",
         "msg": "000A000000000A000D00000A000D00000A000D00000A00000000000000000000000CCC0000000000BBBB00000000000000EE"
+    }
+    ```
+
+### Placed
+
+Indicates user has successfully placed his ships
+
+-   **Type:** <br>
+    `placed`
+-   **Message:** <br>
+    `<String>`
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "placed",
+        "msg": "successfully placed ships"
+    }
+    ```
+
+### Ready
+
+Indicates that the room is ready and the client should show the game interface
+
+-   **Type:** <br>
+    `ready`
+-   **Message:** <br>
+    <String>
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "ready",
+        "msg": "opponent placed his ships"
     }
     ```
 
