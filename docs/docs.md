@@ -92,6 +92,8 @@ Different field/sea states are represented in the following way:
 -   `D` - Submarine (size: 3)
 -   `E` - Destroyer (size: 2)
 
+A game field is valid if all the ships are placed horizontally or vertically. Ships may only be in one row or one column and may not have blanks/gaps.
+
 ## API
 
 A quick overview of the available API endpoints:
