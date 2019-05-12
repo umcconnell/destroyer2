@@ -205,10 +205,10 @@ Logs a user in and returns a uuid.
     });
     ```
 
--   **Notes**: As HTML special characters (& < > " ' /) are escaped, this causes
-    a username with less or equal than 20 characters and one or more special
-    characters to be potentially longer than 20 characters, causing a validation
-    error.
+-   **Notes**: As HTML special characters (`& < > " ' /`) are escaped, this
+    causes a username with less or equal than 20 characters and one or more
+    special characters to be potentially longer than 20 characters, causing a
+    validation error.
 
 ### New Room
 
@@ -487,7 +487,7 @@ Indicates that the room is ready and the client should show the game interface.
 -   **Type:** <br>
     `ready`
 -   **Message:** <br>
-    <String>
+    `<String>`
 -   **Emitted By:** <br>
     `server`
 -   **Sample Message:**
@@ -525,7 +525,7 @@ Fire at enemy's game field. Off-turn fires are ignored.
 -   **Type:** <br>
     `ready`
 -   **Message:** <br>
-    <String field coordinates: [A-J][1-10]>
+    `<String field coordinates: [A-J][1-10]>`
 -   **Emitted By:** <br>
     `user`
 -   **Success Response:**
@@ -663,9 +663,9 @@ user's shot/fire.
 
 It has following properties:
 
--   `you`: <Boolean> - Indicates whether one of your ships was hit/sunk/missed
+-   `you`: `<Boolean>` - Indicates whether one of your ships was hit/sunk/missed
     (true if enemy fired, false if you fired)
--   `coords`: <Coordinates [A-J][1-10]> - Represents the coordinates of the shot
+-   `coords`: `<Coordinates [A-J][1-10]>` - Represents the coordinates of the shot
 
 ## Customizing
 
