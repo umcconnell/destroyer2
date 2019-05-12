@@ -46,7 +46,7 @@ Server architecture:
           |                      |
 +---------+----------+-----------+---------+
 |                    |                     |
-|   frontend-server  |    game server      |
+|   frontend-server  |    game-server      |
 |                    |                     |
 |   - API            |    - Rooms          |
 |   - Serve Files    |    - Game Events    |
@@ -96,12 +96,12 @@ User-Server-Interaction flowchart:
 
 ## Field Representation
 
-The battleship sea/field is represented as a string with the length 100 (10x10).
+The battleship "sea"/field is represented as a string with the length 100 (10x10).
 The first ten letters/numbers correspond to the first row (A-row).
 So for example the letter/number at index 24 (starting at 0) corresponds to C5
 (0-9 A-row, 10-19 B-row, 20-29 C-row).
 
-Different field/sea states are represented in the following way:
+Different field/"sea" states are represented in the following way:
 
 -   `0` - Empty field
 -   `1` - Hit field
@@ -122,16 +122,16 @@ A quick overview of the available API endpoints:
 | HTTP Method | URL             | Description                         | Parameters                                  |
 | ----------- | --------------- | ----------------------------------- | ------------------------------------------- |
 | GET         | /api/openrooms  | Get an array of open rooms          | none                                        |
-| POST        | /api/login      | Logs a user in and generates a uuid | userName                                    |
-| POST        | /api/newroom    | Creates a new (private) room        | userId, userName, roomName, [private=false] |
-| DELETE      | /api/deleteroom | Deletes a room and kicks players    | userId, userName, roomName                  |
-| DELETE      | /api/logout     | Logs a user out                     | userId                                      |
+| POST        | /api/login      | Log a user in and generates a uuid  | userName                                    |
+| POST        | /api/newroom    | Create a new (private) room         | userId, userName, roomName, [private=false] |
+| DELETE      | /api/deleteroom | Delete a room and kick out players  | userId, userName, roomName                  |
+| DELETE      | /api/logout     | Log a user out                      | userId                                      |
 
 Following endpoints are exposed:
 
 ### Open rooms
 
-Returns json data about open / available rooms.
+Return json data about open / available rooms.
 
 -   **URL**
 
@@ -172,7 +172,7 @@ Returns json data about open / available rooms.
 
 ### Login
 
-Logs a user in and returns a uuid.
+Log a user in and return a uuid.
 
 -   **URL**
 
@@ -223,13 +223,13 @@ Logs a user in and returns a uuid.
     ```
 
 -   **Notes**: As HTML special characters (`& < > " ' /`) are escaped, this
-    causes a username with less or equal than 20 characters and one or more
-    special characters to be potentially longer than 20 characters, causing a
-    validation error.
+    causes a username with 20 characters or less and one or more special
+    characters to be potentially longer than 20 characters, causing a validation
+    error.
 
 ### New Room
 
-Creates a new room and returns a uuid for the room.
+Create a new room and return a uuid for the room.
 
 -   **URL**
 
@@ -295,7 +295,7 @@ Creates a new room and returns a uuid for the room.
 
 ### Delete Room
 
-Deletes a room and kicks players if players in room.
+Delete a room and kick out any players still in the room.
 
 -   **URL**
 
@@ -361,7 +361,7 @@ Deletes a room and kicks players if players in room.
 
 ### Logout
 
-Logs a user out.
+Log a user out.
 
 -   **URL**
 
@@ -439,14 +439,14 @@ A quick overview of the available game events:
 | `placed`        | server     | Successfully placed ships     | `<String>`                                       |
 | `alreadyPlaced` | server     | Ship placement already known  | `<Game Field String[;Game Field String]>`        |
 | `count`         | server     | Unsunk ships                  | `<JSON string: {me: <Number>, enemy: <Number>}>` |
-| `ready`         | server     | Players ready to play         | `<String>`                                       |
+| `ready`         | server     | All players ready to play     | `<String>`                                       |
 | `turn`          | server     | Player's turn                 | `<Boolean>`                                      |
 | `fire`          | user       | Player's shot                 | `<Coordinate [A-J][1-10]>`                       |
 | `hit`           | server     | Player's ship was hit         | `<Fire object>`                                  |
 | `sunk`          | server     | Player's ships was hit & sunk | `<Fire object>`                                  |
 | `miss`          | server     | Player's ship was missed      | `<Fire object>`                                  |
 | `gameOver`      | server     | Game over                     | `<String>`                                       |
-| `kick`          | server     | Player was kicked             | `<String>`                                       |
+| `kick`          | server     | Player was kicked out         | `<String>`                                       |
 | `reset`         | server     | Room was reset                | `<String>`                                       |
 
 Following events are emitted:
@@ -510,7 +510,7 @@ Notifies a user another player has left the room.
 
 ### Place
 
-Place a user's game field/sea.
+Place a user's game field/"sea".
 
 -   **Type:** <br>
     `place`
@@ -595,10 +595,10 @@ of the [sunk](#sunk) events recieved and to display a counter per player.
 -   **Type:** <br>
     `count`
 -   **Message:** <br>
-    `<JSON string: object>`
+    `<JSON string: {me: <Number>, enemy: <Number>}>`
 
     The message JSON object has the properties `me` and `enemy` indicating how
-    many ships the users have left respectively.
+    many ships the users have remaining respectively.
 
 -   **Emitted By:** <br>
     `server`
@@ -654,7 +654,7 @@ Indicates whether it is a player's turn.
 
 ### Fire
 
-Fire at enemy's game field. Off-turn fires are ignored.
+Fire at enemy's game field. Out-of-turn fires are ignored.
 
 -   **Type:** <br>
     `ready`
