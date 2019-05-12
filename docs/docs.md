@@ -431,7 +431,7 @@ Place a user's game field/sea
 -   **Type:** <br>
     `place`
 -   **Message:** <br>
-    `<Game Field String>` (see: [Field Representation](#field-representation)
+    `<Game Field String>` (see: [Field Representation](#field-representation))
 -   **Emitted By:**)<br>
     `user`
 -   **Success Response** <br>
