@@ -686,7 +686,7 @@ Indicates a player was hit.
 
 ### Sunk
 
-Indicates a player's ship was sunk.
+Indicates a player's ship was hit and sunk.
 
 -   **Type:** <br>
     `hit`
