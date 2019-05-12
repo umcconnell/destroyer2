@@ -451,6 +451,25 @@ Notifies a user another player has (re)joined the room.
     }
     ```
 
+### Leave
+
+Notifies a user another player has left the room.
+
+-   **Type:** <br>
+    `leave`
+-   **Message:** <br>
+    `<String>`
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "leave",
+        "msg": "a player left"
+    }
+    ```
+
 ### Place
 
 Place a user's game field/sea.
