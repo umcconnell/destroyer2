@@ -547,6 +547,35 @@ display the game interface.
     }
     ```
 
+### Count
+
+Indicates how many ships the user and the opponent have left respectively.
+Sent if two players had placed their ships (and possibly already played), one or
+two left, and a player rejoined. Otherwise the UI is expected to keep count
+of the [sunk](#sunk) events recieved and to display a counter per player.
+
+-   **Type:** <br>
+    `count`
+-   **Message:** <br>
+    `<JSON string: object>`
+
+    The message JSON object has the properties `me` and `enemy` indicating how
+    many ships the users have left respectively.
+
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:** <br>
+
+    ```json
+    {
+        "type": "count",
+        "msg": "{
+            \"me\": 4,
+            \"enemy\": 3
+        }"
+    }
+    ```
+
 ### Ready
 
 Indicates that the room is ready and the client should show the game interface.
