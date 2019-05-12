@@ -15,7 +15,7 @@
 
 ## Architecture
 
-Server architecture
+Server architecture:
 
 ```
                +-----------+
@@ -39,7 +39,7 @@ Server architecture
 
 ```
 
-User-Server-Interaction flowchart
+User-Server-Interaction flowchart:
 
 ```
    USERS                                             SERVER
@@ -79,7 +79,10 @@ User-Server-Interaction flowchart
 
 ## Field Representation
 
-The battleship sea/field is represented as a string with the length 100 (10x10). The first ten letters/numbers correspond to the first row (A-row). So for example the letter/number at index 24 (starting at 0) corresponds to C5 (0-9 A-row, 10-19 B-row, 20-29 C-row).
+The battleship sea/field is represented as a string with the length 100 (10x10).
+The first ten letters/numbers correspond to the first row (A-row).
+So for example the letter/number at index 24 (starting at 0) corresponds to C5
+(0-9 A-row, 10-19 B-row, 20-29 C-row).
 
 Different field/sea states are represented in the following way:
 
@@ -92,7 +95,8 @@ Different field/sea states are represented in the following way:
 -   `D` - Submarine (size: 3)
 -   `E` - Destroyer (size: 2)
 
-A game field is valid if all the ships are placed horizontally or vertically. Ships may only be in one row or one column and may not have blanks/gaps.
+A game field is valid if all the ships are placed horizontally or vertically.
+Ships may only be in one row or one column and may not have blanks/gaps.
 
 ## API
 
@@ -110,7 +114,7 @@ Following endpoints are exposed:
 
 ### Open rooms
 
-Returns json data about open / available rooms
+Returns json data about open / available rooms.
 
 -   **URL**
 
@@ -151,7 +155,7 @@ Returns json data about open / available rooms
 
 ### Login
 
-Logs a user in and returns a uuid
+Logs a user in and returns a uuid.
 
 -   **URL**
 
@@ -201,11 +205,14 @@ Logs a user in and returns a uuid
     });
     ```
 
--   **Notes**: As HTML special characters (& < > " ' /) are escaped, this causes a username with less or equal than 20 characters and one or more special characters to be potentially longer than 20 characters, causing a validation error.
+-   **Notes**: As HTML special characters (& < > " ' /) are escaped, this causes
+    a username with less or equal than 20 characters and one or more special
+    characters to be potentially longer than 20 characters, causing a validation
+    error.
 
 ### New Room
 
-Creates a new room and returns a uuid for the room
+Creates a new room and returns a uuid for the room.
 
 -   **URL**
 
@@ -271,7 +278,7 @@ Creates a new room and returns a uuid for the room
 
 ### Delete Room
 
-Deletes a room and kicks players if players in room
+Deletes a room and kicks players if players in room.
 
 -   **URL**
 
@@ -337,7 +344,7 @@ Deletes a room and kicks players if players in room
 
 ### Logout
 
-Logs a user out
+Logs a user out.
 
 -   **URL**
 
@@ -394,7 +401,8 @@ Logs a user out
 
 ## Game Events
 
-All events are emitted over the websocket connection as JSON strings in the following form:
+All events are emitted over the websocket connection as JSON strings in the
+following form:
 
 ```json
 {
@@ -407,7 +415,7 @@ Following events are emitted:
 
 ### Error
 
-Generic error event
+Generic error event.
 
 -   **Type:** <br>
     `error`
@@ -426,7 +434,7 @@ Generic error event
 
 ### Place
 
-Place a user's game field/sea
+Place a user's game field/sea.
 
 -   **Type:** <br>
     `place`
@@ -455,7 +463,7 @@ Place a user's game field/sea
 
 ### Placed
 
-Indicates user has successfully placed his ships
+Indicates user has successfully placed his ships.
 
 -   **Type:** <br>
     `placed`
@@ -474,7 +482,7 @@ Indicates user has successfully placed his ships
 
 ### Ready
 
-Indicates that the room is ready and the client should show the game interface
+Indicates that the room is ready and the client should show the game interface.
 
 -   **Type:** <br>
     `ready`
@@ -591,7 +599,8 @@ Indicates a player's ship was missed.
 
 ### Game Over
 
-Indicates a game is over. Resets the room state (ship placement) but players are kept in the room. The UI should invite the user to reload/restart the game.
+Indicates a game is over. Resets the room state (ship placement) but players
+are kept in the room. The UI should invite the user to reload/restart the game.
 
 -   **Type:** <br>
     `gameOver`
@@ -610,7 +619,8 @@ Indicates a game is over. Resets the room state (ship placement) but players are
 
 ### Kick
 
-Indicates the owner closed the room and the user(s) shoud be redirected back home.
+Indicates the owner closed the room and the user(s) shoud be redirected back
+home.
 
 -   **Type:** <br>
     `kick`
@@ -629,21 +639,26 @@ Indicates the owner closed the room and the user(s) shoud be redirected back hom
 
 ### Fire object
 
-Some events (hit, sunk, miss) use a hit object to transmit information about a user's shot/fire
+Some events (hit, sunk, miss) use a hit object to transmit information about a
+user's shot/fire.
 
 It has following properties:
 
--   `you`: <Boolean> - Indicates whether one of your ships was hit/sunk/missed (true if enemy fired, false if you fired)
+-   `you`: <Boolean> - Indicates whether one of your ships was hit/sunk/missed
+    (true if enemy fired, false if you fired)
 -   `coords`: <Coordinates [A-J][1-10]> - Represents the coordinates of the shot
 
 ## Customizing
 
-By adding a `.env` file and a redis configuration file (`redis.conf`) in the `db/` folder, you can customize your setup.
+By adding a `.env` file and a redis configuration file (`redis.conf`) in the
+`db/` folder, you can customize your setup.
 
 You can use following values in the `.env` file:
 
 -   `PORT` - The port to serve the project on
--   `HTTP_SERVER_ERROR` - The error code to print out when encountering a server error
+-   `HTTP_SERVER_ERROR` - The error code to print out when encountering a
+    server error
 -   `DB_PASS` - The redis database password
 
-**Note:** When using a password you must add it to the `.env` file **and** to the redis configuration file
+**Note:** When using a password you must add it to the `.env` file **and** to
+the redis configuration file.
