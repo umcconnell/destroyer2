@@ -428,6 +428,27 @@ following form:
 }
 ```
 
+A quick overview of the available game events:
+
+| Type            | Emitted By | Description                   | Message                                          |
+|-----------------|------------|-------------------------------|--------------------------------------------------|
+| `error`         | server     | Generic error event           | `<String>`                                       |
+| `join`          | server     | Player (re)joined             | `<String>`                                       |
+| `leave`         | server     | Player left                   | `<String>`                                       |
+| `place`         | user       | Place ships                   | `<Game Field String>`                            |
+| `placed`        | server     | Successfully placed ships     | `<String>`                                       |
+| `alreadyPlaced` | server     | Ship placement already known  | `<Game Field String[;Game Field String]>`        |
+| `count`         | server     | Unsunk ships                  | `<JSON string: {me: <Number>, enemy: <Number>}>` |
+| `ready`         | server     | Players ready to play         | `<String>`                                       |
+| `turn`          | server     | Player's turn                 | `<Boolean>`                                      |
+| `fire`          | user       | Player's shot                 | `<Coordinate [A-J][1-10]>`                       |
+| `hit`           | server     | Player's ship was hit         | `<Fire object>`                                  |
+| `sunk`          | server     | Player's ships was hit & sunk | `<Fire object>`                                  |
+| `miss`          | server     | Player's ship was missed      | `<Fire object>`                                  |
+| `gameOver`      | server     | Game over                     | `<String>`                                       |
+| `kick`          | server     | Player was kicked             | `<String>`                                       |
+| `reset`         | server     | Room was reset                | `<String>`                                       |
+
 Following events are emitted:
 
 ### Error
