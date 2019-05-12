@@ -518,6 +518,35 @@ Indicates user has successfully placed his ships.
     }
     ```
 
+### Already Placed
+
+Indicates the user has already placed his ships. Emitted when at least one
+player had placed their ships (and possibly already played), one or two had left
+and a player rejoined. The UI should hide the ship-placement interface and
+display the game interface.
+
+-   **Type:** <br>
+    `alreadyPlaced`
+-   **Message:** <br>
+    `<Game Field String[;Game Field String]>`
+    (see: [Field Representation](#field-representation))
+
+    The first game field string is the user's game field. If the opponent has
+    already placed his ships, the second game field string represents the
+    opponent's game field. The opponent's game field string is seperated by a
+    `;` from the player's game field string.
+
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:** <br>
+
+    ```json
+    {
+        "type": "alreadyPlaced",
+        "msg": "02012000000001000D000001000D000001000D00000100000000000000000020000CCC0000000000BBBB00000000000000EE;1111000000020000000000000000000000200000000000000000000000000020000000000000000000000002000000000000
+    }
+    ```
+
 ### Ready
 
 Indicates that the room is ready and the client should show the game interface.
