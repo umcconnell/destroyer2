@@ -499,6 +499,25 @@ Indicates that the room is ready and the client should show the game interface.
     }
     ```
 
+### Turn
+
+Indicates whether it is a player's turn.
+
+-   **Type:** <br>
+    `turn`
+-   **Message:** <br>
+    `<Boolean>`
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "turn",
+        "msg": true
+    }
+    ```
+
 ### Fire
 
 Fire at enemy's game field. Off-turn fires are ignored.
