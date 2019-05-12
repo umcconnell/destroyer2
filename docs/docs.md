@@ -432,6 +432,25 @@ Generic error event.
     }
     ```
 
+### Join
+
+Notifies a user another player has (re)joined the room.
+
+-   **Type:** <br>
+    `join`
+-   **Message:** <br>
+    `<String>`
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "join",
+        "msg": "a new player joined"
+    }
+    ```
+
 ### Place
 
 Place a user's game field/sea.
