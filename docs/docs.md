@@ -693,6 +693,27 @@ home.
     }
     ```
 
+### Reset
+
+Emitted when two players were playing, one player left and a different player
+joined (only emitted to waiting player). The UI should notify the waiting user
+and reload the page.
+
+-   **Type:** <br>
+    `kick`
+-   **Message:** <br>
+    `<String>`
+-   **Emitted By:** <br>
+    `server`
+-   **Sample Message:**
+
+    ```json
+    {
+        "type": "reset",
+        "msg": "a different player joined"
+    }
+    ```
+
 ### Fire object
 
 Some events (hit, sunk, miss) use a hit object to transmit information about a
