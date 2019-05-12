@@ -567,17 +567,16 @@ Fire at enemy's game field. Off-turn fires are ignored.
 -   **Emitted By:** <br>
     `user`
 -   **Success Response:**
-    TODO: add links
 
-    -   hit with you = false
-
-    OR
-
-    -   sunk with you = false
+    -   [hit](#hit) with you = false
 
     OR
 
-    -   miss with you = false
+    -   [sunk](#sunk) with you = false
+
+    OR
+
+    -   [miss](#miss) with you = false
 
 -   **Sample Message:**
 
