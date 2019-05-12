@@ -5,7 +5,7 @@
  */
 
 var app = require("../frontend-server/app");
-var debug = require("debug")("battleship2:server");
+var debug = require("debug")("destroyer2:server");
 var http = require("http");
 
 /**

@@ -1,10 +1,10 @@
 {
-  "name": "battleship2",
+  "name": "destroyer2",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "debug": "DEBUG=battleship2:* npm start"
+    "debug": "DEBUG=destroyer2:* npm start"
   },
   "dependencies": {
     "async": "^2.6.1",
