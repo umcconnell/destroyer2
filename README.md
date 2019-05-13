@@ -1,6 +1,6 @@
 # Destroyer2
 
-A realtime multiplayer battleship game
+A real time multiplayer battleship game
 
 ## Table of Contents
 
