@@ -39,7 +39,7 @@ function onclose(msg, ws, wss, room, ROOMS) {
 
             // Delete room if empty
             if (newPlayers.length === 0) {
-                Rooms.setVal(ws.roomId, "turn", room.turn);
+                Rooms.setVal(ws.roomId, "turn", room.turn || "");
                 delete ROOMS[ws.roomId];
                 return false;
             } else {
