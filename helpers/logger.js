@@ -1,3 +1,5 @@
+let winston = require("winston");
+
 let log = console.log;
 let cmd = {
     // CMDs
