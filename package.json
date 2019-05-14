@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "debug": "DEBUG=destroyer2:* npm start"
+    "start": "NODE_ENV=production node ./bin/www",
+    "debug": "NODE_ENV=development node ./bin/www"
   },
   "dependencies": {
     "async": "^2.6.1",

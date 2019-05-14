@@ -24,6 +24,8 @@ app.use(function(req, res) {
     });
 });
 
+console.log(process.env);
+
 // Handle 500
 app.use(function(err, req, res, next) {
     if (res.headersSent) {
