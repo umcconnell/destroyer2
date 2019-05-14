@@ -31,7 +31,7 @@ app.use(function(err, req, res, next) {
         return next(err);
     }
 
-    console.error(err);
+    winston.error(err);
 
     let errStatus = err.status || process.env.HTTP_SERVER_ERROR || 500;
 
