@@ -3,6 +3,7 @@ let Rooms = require("../../models/rooms");
 let { roomInfo } = require("../../models/schemas");
 
 let { heartbeat } = require("../../helpers/websocket");
+let logger = require("../../helpers/logger");
 
 let onmessage = require("./onmessage");
 let onclose = require("./onclose");
