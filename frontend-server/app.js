@@ -4,12 +4,13 @@ let express = require("express");
 let path = require("path");
 let cookieParser = require("cookie-parser");
 let morgan = require("morgan");
+let winston = require("../helpers/logger");
 
 let controller = require("./controllers/index");
 
 let app = express();
 
-app.use(morgan("dev"));
+app.use(morgan("dev", { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
