@@ -3,13 +3,13 @@ require("dotenv").config();
 let express = require("express");
 let path = require("path");
 let cookieParser = require("cookie-parser");
-let logger = require("morgan");
+let morgan = require("morgan");
 
 let controller = require("./controllers/index");
 
 let app = express();
 
-app.use(logger("dev"));
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
