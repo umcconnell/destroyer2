@@ -28,7 +28,9 @@ function setupConnection(ws, params, wss, ROOMS) {
         Rooms.getVal(ws.roomId, "turn")
             .then(turn => (room.turn = turn ? turn : ws.userId))
             .then(Rooms.delVal(ws.roomId, "turn"))
-            .catch(err => logger.error(`Internal Server Error: ${err.stack || err}`))
+            .catch(err =>
+                logger.error(`Internal Server Error: ${err.stack || err}`)
+            )
             .then(() => sendTurn(null, ws, wss, room));
     } else {
         sendTurn(null, ws, wss, room);
