@@ -28,7 +28,6 @@ let logger = winston.createLogger({
     level: environment === "production" ? "info" : "debug",
     format: winston.format.simple(),
     transports: [
-        new winston.transports.Console(config.console),
         new winston.transports.File(
             Object.assign({}, config.file, {
                 level: "error",
@@ -41,6 +40,10 @@ let logger = winston.createLogger({
     ],
     exitOnError: false
 });
+
+if (process.env.NODE_ENV !== "production") {
+    logger.add(new winston.transports.Console(config.console));
+}
 
 logger.stream = {
     write: function(message, encoding) {
