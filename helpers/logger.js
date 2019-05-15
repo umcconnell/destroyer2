@@ -21,15 +21,9 @@ let config = {
             winston.format.simple()
         )
     },
-    errorLog: {
-        level: "error",
-        filename: "logs/error.log",
-        maxsize: 5000000, // 5MB
-        maxFiles: 5
-    },
-    combinedLog: {
+    file: {
         level: environment === "production" ? "info" : "debug",
-        filename: "logs/combined.log",
+        filename: "logs/log.log",
         maxsize: 5000000, // 5MB
         maxFiles: 5
     }
@@ -40,8 +34,15 @@ let logger = winston.createLogger({
     format: winston.format.simple(),
     transports: [
         new winston.transports.Console(config.console),
-        new winston.transports.File(config.errorLog),
-        new winston.transports.File(config.combinedLog)
+        new winston.transports.File(
+            Object.assign({}, config.file, {
+                level: "error",
+                filename: "logs/error.log"
+            })
+        ),
+        new winston.transports.File(
+            Object.assign({}, config.file, { filename: "logs/combined.log" })
+        )
     ],
     exitOnError: false
 });
