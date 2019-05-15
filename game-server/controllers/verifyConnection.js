@@ -1,12 +1,12 @@
 let Users = require("../../models/users");
 let Rooms = require("../../models/rooms");
-let logs = require("../../helpers/logger");
+let logger = require("../../helpers/logger");
 
 function verifyConnection(clients, params, cb) {
     let reject = (msg, status) => {
         // Custom error log
         if (msg)
-            logs.error(
+            logger.error(
                 `WebSocket Error${status ? " " + status : ""}${
                     msg ? " : " + msg : ""
                 }`

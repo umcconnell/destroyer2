@@ -51,9 +51,10 @@ function onclose(msg, ws, wss, room, ROOMS) {
                 return true;
             }
         })
-        .catch(err =>
-            logger.error(`Internal Server Error: ${err.stack || err}`)
-        );
+        .catch(err => {
+            if (err.message === "room not found") return;
+            logger.error(`Internal Server Error: ${err.stack || err}`);
+        });
 }
 
 module.exports = onclose;

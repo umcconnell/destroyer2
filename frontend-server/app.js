@@ -3,13 +3,14 @@ require("dotenv").config();
 let express = require("express");
 let path = require("path");
 let cookieParser = require("cookie-parser");
-let logger = require("morgan");
+let morgan = require("morgan");
+let winston = require("../helpers/logger");
 
 let controller = require("./controllers/index");
 
 let app = express();
 
-app.use(logger("dev"));
+app.use(morgan("dev", { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -30,7 +31,7 @@ app.use(function(err, req, res, next) {
         return next(err);
     }
 
-    console.error(err);
+    winston.error(err);
 
     let errStatus = err.status || process.env.HTTP_SERVER_ERROR || 500;
 

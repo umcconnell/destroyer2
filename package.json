@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "debug": "DEBUG=destroyer2:* npm start"
+    "start": "NODE_ENV=production node ./bin/www",
+    "debug": "NODE_ENV=development node ./bin/www"
   },
   "dependencies": {
     "async": "^2.6.1",
@@ -16,6 +16,7 @@
     "joi": "^14.3.1",
     "morgan": "~1.9.0",
     "redis": "^2.8.0",
+    "winston": "^3.2.1",
     "ws": "^6.1.3"
   }
 }

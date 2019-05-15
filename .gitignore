@@ -3,3 +3,6 @@ node_modules/
 
 /db/dump.rdb
 /db/redis.conf
+
+/logs/*
+!/logs/.gitignore
