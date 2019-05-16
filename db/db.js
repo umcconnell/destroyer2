@@ -9,12 +9,15 @@ let client = redis.createClient({
     url: process.env.REDIS_URL
 });
 
-// TODO: remove in production
-client
-    .monitorAsync()
-    .then(res => logger.info("Entering monitoring mode"))
-    .catch(err => logger.error("Error while entering monitoring mode"));
+if (process.env.NODE_ENV !== "production") {
+    client
+        .monitorAsync()
+        .then(res => logger.info("Entering monitoring mode"))
+        .catch(err => logger.error("Error while entering monitoring mode"));
 
-client.on("monitor", (time, args) => logger.info(time + ": " + args.join(" ")));
+    client.on("monitor", (time, args) =>
+        logger.info(time + ": " + args.join(" "))
+    );
+}
 
 module.exports = client;

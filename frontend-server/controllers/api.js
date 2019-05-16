@@ -88,16 +88,6 @@ router.post(
     }
 );
 
-// TODO: delete room when owner quits => delete with WebSockets => show user a new game quit message
-/* Other options:
-    => extract functions to seperate functions:
-    => check if user is still online
-    or
-    => expire keys?
-    or
-    => delete room after game!?
-*/
-// TODO: disallow deleting room if it contains players? / kick players (preferred) => redis pub/sub
 router.delete(
     "/deleteroom",
     validate("body", validatorSchema.userAuth),
