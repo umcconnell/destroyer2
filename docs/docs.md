@@ -29,6 +29,8 @@
     -   [Reset](#reset)
     -   [Fire Object](#fire-object)
 -   [Customizing](#customizing)
+    -   [Environment](#environment)
+    -   [Logging](#logging)
 
 ## Architecture
 
@@ -119,13 +121,13 @@ Ships may only be in one row or one column and may not have blanks/gaps.
 
 A quick overview of the available API endpoints:
 
-| HTTP Method | URL             | Description                         | Parameters                                  |
-| ----------- | --------------- | ----------------------------------- | ------------------------------------------- |
-| GET         | /api/openrooms  | Get an array of open rooms          | none                                        |
-| POST        | /api/login      | Log a user in and generates a uuid  | userName                                    |
-| POST        | /api/newroom    | Create a new (private) room         | userId, userName, roomName, [private=false] |
-| DELETE      | /api/deleteroom | Delete a room and kick out players  | userId, userName, roomName                  |
-| DELETE      | /api/logout     | Log a user out                      | userId                                      |
+| HTTP Method | URL             | Description                        | Parameters                                  |
+| ----------- | --------------- | ---------------------------------- | ------------------------------------------- |
+| GET         | /api/openrooms  | Get an array of open rooms         | none                                        |
+| POST        | /api/login      | Log a user in and generates a uuid | userName                                    |
+| POST        | /api/newroom    | Create a new (private) room        | userId, userName, roomName, [private=false] |
+| DELETE      | /api/deleteroom | Delete a room and kick out players | userId, userName, roomName                  |
+| DELETE      | /api/logout     | Log a user out                     | userId                                      |
 
 Following endpoints are exposed:
 
@@ -431,7 +433,7 @@ following form:
 A quick overview of the available game events:
 
 | Type            | Emitted By | Description                   | Message                                          |
-|-----------------|------------|-------------------------------|--------------------------------------------------|
+| --------------- | ---------- | ----------------------------- | ------------------------------------------------ |
 | `error`         | server     | Generic error event           | `<String>`                                       |
 | `join`          | server     | Player (re)joined             | `<String>`                                       |
 | `leave`         | server     | Player left                   | `<String>`                                       |
@@ -823,6 +825,8 @@ It has following properties:
 
 ## Customizing
 
+### Environment
+
 By adding a `.env` file and a redis configuration file (`redis.conf`) in the
 `db/` folder, you can customize your setup.
 
@@ -835,3 +839,5 @@ You can use following values in the `.env` file:
 
 **Note:** When using a password you must add it to the `.env` file **and** to
 the redis configuration file.
+
+### Logging
