@@ -7,6 +7,7 @@
     "debug": "NODE_ENV=development node ./bin/www"
   },
   "dependencies": {
+    "app-root-path": "^2.2.1",
     "async": "^2.6.1",
     "bluebird": "^3.5.3",
     "cookie-parser": "~1.4.3",
