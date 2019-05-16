@@ -1,4 +1,5 @@
 let root = require("app-root-path");
+let logger = require(`${root}/helpers/logger`);
 
 let { pipe } = require(`${root}/helpers/utils`);
 let { rejectWs } = require(`${root}/helpers/websocket`);
@@ -20,7 +21,7 @@ function handleMessage(type) {
 }
 
 function onmessage(msg, ws, wss, room) {
-    console.log(`recieved: ${msg}`);
+    logger.debug(`recieved: ${msg}`);
 
     try {
         msg = JSON.parse(msg);
