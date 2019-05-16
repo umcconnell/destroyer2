@@ -1,4 +1,5 @@
-let { messageSchemas } = require("../models/schemas");
+let root = require("app-root-path");
+let { messageSchemas } = require(`${root}/models/schemas`);
 
 exports.heartbeat = function() {
     this.isAlive = true;

@@ -1,7 +1,8 @@
+let root = require("app-root-path");
 let {
     sanitizeHTMLString,
     desanitizeHTMLString
-} = require("../../helpers/stringSanitization");
+} = require(`${root}/helpers/stringSanitization`);
 
 const middleware = prop => {
     return (req, res, next) => {

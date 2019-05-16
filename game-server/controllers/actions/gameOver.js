@@ -1,5 +1,7 @@
-let Rooms = require("../../../models/rooms");
-let { messageSchemas } = require("../../../models/schemas");
+let root = require("app-root-path");
+
+let Rooms = require(`${root}/models/rooms`);
+let { messageSchemas } = require(`${root}/models/schemas`);
 
 module.exports = function(msg, ws, wss, room) {
     room.ready = false;
@@ -15,6 +17,6 @@ module.exports = function(msg, ws, wss, room) {
 
         player.placed = false;
 
-        return Rooms.delVal(ws.roomId, `sea-${player.userId}`)
+        return Rooms.delVal(ws.roomId, `sea-${player.userId}`);
     });
 };

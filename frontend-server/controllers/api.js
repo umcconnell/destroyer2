@@ -1,14 +1,16 @@
 let express = require("express");
 let router = express.Router();
-let validate = require("../middlewares/validator");
-let sanitize = require("../middlewares/sanitizer");
+let root = require("app-root-path");
 
-let { uuid } = require("../../helpers/helpers");
-let Users = require("../../models/users");
-let Rooms = require("../../models/rooms");
-let { validatorSchema, roomSchema } = require("../../models/schemas");
+let validate = require(`${root}/frontend-server/middlewares/validator`);
+let sanitize = require(`${root}/frontend-server/middlewares/sanitizer`);
 
-let { pub } = require("../../db/pubsub");
+let { uuid } = require(`${root}/helpers/helpers`);
+let Users = require(`${root}/models/users`);
+let Rooms = require(`${root}/models/rooms`);
+let { validatorSchema, roomSchema } = require(`${root}/models/schemas`);
+
+let { pub } = require(`${root}/db/pubsub`);
 
 // API show available endpoints.
 router.get("/", function(req, res) {

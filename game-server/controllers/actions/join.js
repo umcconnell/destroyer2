@@ -1,8 +1,9 @@
-let Rooms = require("../../../models/rooms");
-let { messageSchemas } = require("../../../models/schemas");
+let root = require("app-root-path");
+let logger = require(`${root}/helpers/logger`);
 
-let { countShips } = require("../../../helpers/game");
-let logger = require("../../../helpers/logger");
+let Rooms = require(`${root}/models/rooms`);
+let { messageSchemas } = require(`${root}/models/schemas`);
+let { countShips } = require(`${root}/helpers/game`);
 
 module.exports = function(msg, ws, wss, room) {
     let other = room.players.find(player => player.userId !== ws.userId);
@@ -97,7 +98,7 @@ module.exports = function(msg, ws, wss, room) {
             }
         })
         .catch(err => {
-            logger.error(err =>`Internal Server Error: ${err.stack || err}`);
+            logger.error(err => `Internal Server Error: ${err.stack || err}`);
             ws.send(messageSchemas("error", "internal server error"));
         });
 };
