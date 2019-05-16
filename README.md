@@ -75,6 +75,7 @@ See the [docs](docs/docs.md) for more information about the system architecture,
 ## Built With
 
 -   [node](https://nodejs.org/) - The server backend
+-   [express](https://expressjs.com/) - The web server
 -   [redis](https://redis.io/) - The database
 -   [node_redis](https://github.com/NodeRedis/node_redis) - The redis client for node
 -   [ws](https://github.com/websockets/ws) - The WebSocket server
@@ -100,6 +101,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 -   [node](https://nodejs.org/) - The server backend
+-   [express](https://expressjs.com/) - The web server
 -   [redis](https://redis.io/) - The database
 -   [node_redis](https://github.com/NodeRedis/node_redis) - The redis client for node
 -   [ws](https://github.com/websockets/ws) - The WebSocket server
