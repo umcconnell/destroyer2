@@ -103,6 +103,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 -   [redis](https://redis.io/) - The database
 -   [node_redis](https://github.com/NodeRedis/node_redis) - The redis client for node
 -   [ws](https://github.com/websockets/ws) - The WebSocket server
+-   [winston](https://github.com/winstonjs/winston) - The logging library
 -   [feather](https://github.com/feathericons/feather) - The icons
 -   [Warship icon by zidney on the NounProject (resized, minified and changed line thickness)](https://thenounproject.com/term/warship/1597472/) - The logo
 -   Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth) for the README and CONTRIBUTING template
