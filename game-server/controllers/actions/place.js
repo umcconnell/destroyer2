@@ -1,7 +1,9 @@
-let Rooms = require("../../../models/rooms");
-let { messageSchemas } = require("../../../models/schemas");
-let { validGameField } = require("../../../helpers/game");
-let logger = require("../../../helpers/logger");
+let root = require("app-root-path");
+let logger = require(`${root}/helpers/logger`);
+
+let Rooms = require(`${root}/models/rooms`);
+let { messageSchemas } = require(`${root}/models/schemas`);
+let { validGameField } = require(`${root}/helpers/game`);
 
 module.exports = function(msg, ws, wss, room) {
     console.log(msg);
@@ -45,7 +47,7 @@ module.exports = function(msg, ws, wss, room) {
             })
             .catch(err => {
                 logger.error(`Internal Server Error: ${err.stack || err}`);
-                ws.send(messageSchemas("error", "internal server error"))
+                ws.send(messageSchemas("error", "internal server error"));
             });
     }
 };

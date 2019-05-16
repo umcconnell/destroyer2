@@ -1,6 +1,8 @@
-let db = require("../db/db");
-let { key } = require("../helpers/helpers");
-let { chunk, zipObj, toBool } = require("../helpers/utils");
+let root = require("app-root-path");
+
+let db = require(`${root}/db/db`);
+let { key } = require(`${root}/helpers/helpers`);
+let { chunk, zipObj, toBool } = require(`${root}/helpers/utils`);
 
 let roomKey = key("room");
 

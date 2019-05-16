@@ -1,9 +1,11 @@
-let { pipe } = require("../../helpers/utils");
-let { rejectWs } = require("../../helpers/websocket");
+let root = require("app-root-path");
+
+let { pipe } = require(`${root}/helpers/utils`);
+let { rejectWs } = require(`${root}/helpers/websocket`);
 let {
     cleanUTFString,
     sanitizeHTMLString
-} = require("../../helpers/stringSanitization");
+} = require(`${root}/helpers/stringSanitization`);
 
 let types = {
     chat: require("./actions/chat"),

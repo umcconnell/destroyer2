@@ -1,6 +1,8 @@
-let Users = require("../../models/users");
-let Rooms = require("../../models/rooms");
-let logger = require("../../helpers/logger");
+let root = require("app-root-path");
+let logger = require(`${root}/helpers/logger`);
+
+let Users = require(`${root}/models/users`);
+let Rooms = require(`${root}/models/rooms`);
 
 function verifyConnection(clients, params, cb) {
     let reject = (msg, status) => {

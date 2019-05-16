@@ -1,12 +1,13 @@
 let WebSocket = require("ws");
 let url = require("url");
+let root = require("app-root-path");
 
 let verifiyConnection = require("./controllers/verifyConnection");
 let setupConnection = require("./controllers/setupConnection");
 
-let { noop } = require("../helpers/websocket");
-let { messageSchemas } = require("../models/schemas");
-let { sub } = require("../db/pubsub");
+let { noop } = require(`${root}/helpers/websocket`);
+let { messageSchemas } = require(`${root}/models/schemas`);
+let { sub } = require(`${root}/db/pubsub`);
 
 // Convenient wrapper
 WebSocket.prototype._send = WebSocket.prototype.send;

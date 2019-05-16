@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 
-var app = require("../frontend-server/app");
+let root = require("app-root-path");
+var app = require(`${root}/frontend-server/app`);
 var debug = require("debug")("destroyer2:server");
 var http = require("http");
 
@@ -20,7 +21,7 @@ app.set("port", port);
  */
 
 var server = http.createServer(app);
-let gameWSS = require("../game-server/app")(server);
+let gameWSS = require(`${root}/game-server/app`)(server);
 
 /**
  * Listen on provided port, on all network interfaces.
