@@ -11,7 +11,6 @@ let onclose = require("./onclose");
 let sendTurn = require("./actions/turn");
 let join = require("./actions/join");
 
-// TODO: redis pub/sub for /api/deleteroom to remove from ROOMS and notify players
 function setupConnection(ws, params, wss, ROOMS) {
     // Save user info to wss clients
     ws.userId = params.t;
