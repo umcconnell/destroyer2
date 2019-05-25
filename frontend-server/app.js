@@ -18,6 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", controller);
+app.disable("x-powered-by");
 
 // Handle 404
 app.use(function(req, res) {
