@@ -1,4 +1,4 @@
-let Joi = require("joi");
+let Joi = require("@hapi/joi");
 
 module.exports.validatorSchema = {
     userAuth: Joi.object()
