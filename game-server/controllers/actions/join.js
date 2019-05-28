@@ -77,7 +77,12 @@ module.exports = function(msg, ws, wss, room) {
                         player.send(
                             messageSchemas(
                                 "ready",
-                                `${ws.userName} placed his ships`
+                                JSON.stringify({
+                                    msg: `${ws.userName} placed his ships`,
+                                    enemy: room.players.find(
+                                        enemy => enemy.userId !== player.userId
+                                    ).userName
+                                })
                             )
                         )
                     );

@@ -32,14 +32,22 @@ module.exports = function(msg, ws, wss, room) {
                             other.send(
                                 messageSchemas(
                                     "ready",
-                                    "opponent placed his ships"
+                                    JSON.stringify({
+                                        msg: `${ws.userName} placed his ships`,
+                                        enemy: ws.userName
+                                    })
                                 )
                             );
 
                         ws.send(
                             messageSchemas(
                                 other ? "ready" : "placed",
-                                "successfully placed ships"
+                                other
+                                    ? JSON.stringify({
+                                          msg: `successfully placed ships`,
+                                          enemy: ws.userName
+                                      })
+                                    : "successfully placed ships"
                             )
                         );
                     });
