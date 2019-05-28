@@ -623,7 +623,12 @@ Indicates that the room is ready and the client should show the game interface.
 -   **Type:** <br>
     `ready`
 -   **Message:** <br>
-    `<String>`
+    `<JSON string: {msg: <String>, enemy: <String>}>`
+
+    The message JSON object has the property `msg` representing a status
+    message that can be displayed to the user and the property `enemy`
+    indicating the opponent's/enemy's name for the UI to personalize the game.
+
 -   **Emitted By:** <br>
     `server`
 -   **Sample Message:**
@@ -631,7 +636,10 @@ Indicates that the room is ready and the client should show the game interface.
     ```json
     {
         "type": "ready",
-        "msg": "opponent placed his ships"
+        "msg": "{
+            \"msg\": \"successfully placed ships\",
+            \"enemy\": \"Enemy Name\"
+        }"
     }
     ```
 
