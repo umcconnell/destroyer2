@@ -143,8 +143,15 @@
 .game-container h3 {
     margin-top: 0;
 }
+.game-container h3.turn {
+    text-decoration: underline;
+}
 .game-container h3 .icon {
     vertical-align: middle;
+}
+
+.game-container h3:not(.turn) .icon {
+    display: none;
 }
 
 /* Keyframes */

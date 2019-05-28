@@ -183,9 +183,11 @@
                 }&r=${room}`;
             };
 
-            function setTurn(myTurn) {
-                myTurnIcon.classList[myTurn ? "add" : "remove"]("hidden");
-                enemyTurnIcon.classList[myTurn ? "remove" : "add"]("hidden");
+            function setTurn(isMyTurn) {
+                // Move crosshair to enemy sea if my turn,
+                // otherwise move crosshair to my sea
+                mySeaDesc.classList[isMyTurn ? "remove" : "add"]("turn");
+                enemySeaDesc.classList[isMyTurn ? "add" : "remove"]("turn");
             }
 
             function showLoader() {
@@ -215,10 +217,10 @@
                 game = document.getElementById("game"),
                 loader = document.getElementById("loader"),
                 setupBtn = document.getElementById("setup"),
-                myTurnIcon,
+                mySeaDesc,
                 myCount,
                 enemyName,
-                enemyTurnIcon,
+                enemySeaDesc,
                 enemyCount;
 
             main.insertAdjacentHTML(
@@ -320,17 +322,14 @@
                         </div>
                     </div>`
                 );
-                [myTurnIcon, myCount, enemyName, enemyTurnIcon, enemyCount] = [
-                    document
-                        .getElementById("mySeaHeader")
-                        .querySelector(".icon"),
+
+                [mySeaDesc, myCount, enemyName, enemySeaDesc, enemyCount] = [
+                    document.getElementById("mySeaHeader"),
                     document
                         .getElementById("mySeaHeader")
                         .querySelector(".count"),
                     document.getElementById("enemyName"),
-                    document
-                        .getElementById("enemySeaHeader")
-                        .querySelector(".icon"),
+                    document.getElementById("enemySeaHeader"),
                     document
                         .getElementById("enemySeaHeader")
                         .querySelector(".count")
