@@ -45,7 +45,7 @@ module.exports = function(msg, ws, wss, room) {
                                 other
                                     ? JSON.stringify({
                                           msg: `successfully placed ships`,
-                                          enemy: ws.userName
+                                          enemy: other.userName
                                       })
                                     : "successfully placed ships"
                             )
