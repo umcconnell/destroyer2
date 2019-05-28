@@ -137,11 +137,14 @@ function initGame(ws, sea, interactors) {
 
     const events = {
         leave: interactors["showLoader"],
-        ready: () => {
+        ready: msg => {
+            msg = JSON.parse(msg);
+
             interactors["count"](true, myShipsLeft);
             interactors["count"](false, enemyShipsLeft);
 
-            return interactors["showField"](myTurn);
+            interactors["showMsg"](msg.msg);
+            return interactors["showField"](myTurn, msg.enemy);
         },
         count: msg => {
             msg = JSON.parse(msg);
