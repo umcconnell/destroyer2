@@ -143,7 +143,6 @@ function initGame(ws, sea, interactors) {
             interactors["count"](true, myShipsLeft);
             interactors["count"](false, enemyShipsLeft);
 
-            interactors["showMsg"](msg.msg);
             return interactors["showField"](myTurn, msg.enemy);
         },
         count: msg => {
