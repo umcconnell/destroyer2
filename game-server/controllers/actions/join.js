@@ -63,7 +63,9 @@ module.exports = function(msg, ws, wss, room) {
                 ws.placed = true;
 
                 other &&
-                    other.send(messageSchemas("join", "a player rejoined"));
+                    other.send(
+                        messageSchemas("join", `${ws.userName} rejoined`)
+                    );
 
                 // remove loader if other player waiting
                 if (
@@ -73,26 +75,37 @@ module.exports = function(msg, ws, wss, room) {
                     room.ready = true;
                     room.players.forEach(player =>
                         player.send(
-                            messageSchemas("ready", "opponent placed his ships")
+                            messageSchemas(
+                                "ready",
+                                JSON.stringify({
+                                    msg: `${ws.userName} placed his ships`,
+                                    enemy: room.players.find(
+                                        enemy => enemy.userId !== player.userId
+                                    ).userName
+                                })
+                            )
                         )
                     );
                 }
             } else {
-                // Case: player newly joined, but other player waiting with placed ship
+                // Case: player new joined, but other player waiting with placed ship
                 if (seas.length > 1) {
                     seas.forEach(sea => Rooms.delVal(ws.roomId, `sea-${sea}`));
 
                     other &&
                         other.placed &&
                         other.send(
-                            messageSchemas("reset", "a different player joined")
+                            messageSchemas(
+                                "reset",
+                                `a different player joined: ${ws.userName}`
+                            )
                         );
 
                     room.players.forEach(player => (player.placed = false));
                 } else {
                     other &&
                         other.send(
-                            messageSchemas("join", "a new player joined")
+                            messageSchemas("join", `${ws.userName} joined`)
                         );
                 }
             }

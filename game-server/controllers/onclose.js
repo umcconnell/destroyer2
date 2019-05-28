@@ -45,7 +45,7 @@ function onclose(msg, ws, wss, room, ROOMS) {
                 return false;
             } else {
                 newPlayers.forEach(player =>
-                    player.send(messageSchemas("leave", "a player left"))
+                    player.send(messageSchemas("leave", `${ws.userName} left`))
                 );
                 room.players = newPlayers;
                 room.ready = false;

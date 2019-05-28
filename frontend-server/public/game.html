@@ -217,6 +217,7 @@
                 setupBtn = document.getElementById("setup"),
                 myTurnIcon,
                 myCount,
+                enemyName,
                 enemyTurnIcon,
                 enemyCount;
 
@@ -268,12 +269,14 @@
                 initGameFields("#ownSea", "#enemySea", seas.my, seas.enemy);
 
                 initGame(ws, seas, {
-                    showField: myTurn => {
+                    showField: (myTurn, enemy) => {
                         loader.hidden = true;
                         loader.innerHTML = "";
 
                         game.hidden = false;
                         setTurn(myTurn);
+
+                        enemyName.innerHTML = enemy;
 
                         initSea("#enemySea");
                     },
@@ -310,20 +313,21 @@
                         <div class="sea-phone-full sea-container">
                             <h3 id="enemySeaHeader">
                                 ${crosshair}
-                                Enemy Sea
+                                <span id="enemyName"></span>
                                 <span class="count"></span> / 5
                             </h3>
                             ${sea({ id: "enemySea" })}
                         </div>
                     </div>`
                 );
-                [myTurnIcon, myCount, enemyTurnIcon, enemyCount] = [
+                [myTurnIcon, myCount, enemyName, enemyTurnIcon, enemyCount] = [
                     document
                         .getElementById("mySeaHeader")
                         .querySelector(".icon"),
                     document
                         .getElementById("mySeaHeader")
                         .querySelector(".count"),
+                    document.getElementById("enemyName"),
                     document
                         .getElementById("enemySeaHeader")
                         .querySelector(".icon"),

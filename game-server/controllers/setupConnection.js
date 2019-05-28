@@ -2,6 +2,7 @@ let root = require("app-root-path");
 let logger = require(`${root}/helpers/logger`);
 
 let Rooms = require(`${root}/models/rooms`);
+let Users = require(`${root}/models/users`);
 let { roomInfo } = require(`${root}/models/schemas`);
 
 let { heartbeat } = require(`${root}/helpers/websocket`);
@@ -12,11 +13,16 @@ let sendTurn = require("./actions/turn");
 let join = require("./actions/join");
 
 function setupConnection(ws, params, wss, ROOMS) {
-    // Save user info to wss clients
+    // Save user info to ws connection object
     ws.userId = params.t;
     ws.roomId = params.r;
     ws.isAlive = true;
     ws.placed = false;
+    Users.get(ws.userId)
+        .then(name => (ws.userName = name))
+        .catch(err =>
+            logger.error(`Internal Server Error: ${err.stack || err}`)
+        );
 
     if (ws.roomId in ROOMS) ROOMS[ws.roomId].players.push(ws);
     else ROOMS[ws.roomId] = new roomInfo(ws);
