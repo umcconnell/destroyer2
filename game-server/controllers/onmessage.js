@@ -9,7 +9,6 @@ let {
 } = require(`${root}/helpers/stringSanitization`);
 
 let types = {
-    chat: require("./actions/chat"),
     fire: require("./actions/fire"),
     place: require("./actions/place"),
     default: () => ""
