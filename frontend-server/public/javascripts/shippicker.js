@@ -93,6 +93,20 @@ function selectShip(ship, pill, deselectCb) {
 }
 
 /**
+ * Place ships randomly on sea, complete unfinished ships and skip already
+ * placed ships
+ */
+function placeRandomly() {
+    if (currentPill) deselectPill(currentPill);
+
+    return Object.keys(Ships).forEach(ship =>
+        findOccurrences(ship, Sea).length === Ships[ship]
+            ? ""
+            : placeShipRandomly(Sea, ship, findOccurrences(ship, Sea))
+    );
+}
+
+/**
  * Places a ship on the sea and updates the ui
  * @param {element} field HTML Element for sea field
  * @param {string} ship Ship letter from A-E
@@ -169,4 +183,4 @@ function getShipPlacement() {
     return validGameField(Sea).valid && Sea;
 }
 
-export { initShippicker, initShiplist, getShipPlacement };
+export { initShippicker, initShiplist, getShipPlacement, placeRandomly };
