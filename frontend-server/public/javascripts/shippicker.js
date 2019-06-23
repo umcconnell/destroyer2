@@ -238,6 +238,85 @@ function placeShip(field, ship, doneCb) {
         }
     }
 }
+
+/**
+ * Places or completes a specified ship randomly on the sea
+ * @param {array} sea Sea field
+ * @param {string} ship Ship letter from A-E
+ * @param {array} [occurrences=[]] List of already placed ship-parts
+ */
+function placeShipRandomly(sea, ship, occurrences = []) {
+    let size = Ships[ship];
+
+    // Check whether ship placement can be completed
+    if (occurrences.length === size) return;
+    else if (
+        occurrences.length > 0 &&
+        !Object.values(
+            spaceAround(
+                sea,
+                occurrences[0],
+                occurrences[occurrences.length - 1],
+                size - occurrences.length
+            )
+        ).some(val => val)
+    ) {
+        deleteShip(ship, pills.find(pill => pill.dataset.ship === ship));
+        occurrences = [];
+    }
+
+    // Place ship randomly
+    if (occurrences.length === 0) {
+        do {
+            let point = randomInRange(0, 99);
+
+            if (
+                sea[point] == 0 &&
+                Object.values(spaceAround(Sea, point, point, size)).some(
+                    val => val
+                )
+            ) {
+                occurrences.push(point);
+                // Place it
+                sea[point] = ship;
+                sea[point] = ship;
+                fields[point].classList.add(
+                    "ship",
+                    `ship-${FieldLetters.indexOf(ship) + 1}`
+                );
+                fields[point].dataset.ship = ship;
+            }
+        } while (occurrences.length === 0);
+    }
+
+    let dir = spaceAround(
+        sea,
+        occurrences[0],
+        occurrences[occurrences.length - 1],
+        size - occurrences.length
+    );
+    dir = Object.keys(dir).filter(key => dir[key]);
+    dir = dir[randomInRange(0, dir.length - 1)] === "row" ? 1 : 10;
+
+    do {
+        let pos = occurrences[0] - dir;
+        let overflowsLeft =
+            Math.floor(occurrences[0] / 10) !== Math.floor(pos / 10);
+
+        if (sea[pos] != 0 || pos < 0 || (dir == 1 && overflowsLeft))
+            pos = occurrences[occurrences.length - 1] + dir;
+
+        sea[pos] = ship;
+        fields[pos].classList.add(
+            "ship",
+            `ship-${FieldLetters.indexOf(ship) + 1}`
+        );
+        fields[pos].dataset.ship = ship;
+
+        occurrences[pos < occurrences[0] ? "unshift" : "push"](pos);
+    } while (occurrences.length < size);
+}
+
 /*====*\
   Main
 \*====*/
