@@ -99,11 +99,18 @@ function selectShip(ship, pill, deselectCb) {
 function placeRandomly() {
     if (currentPill) deselectPill(currentPill);
 
-    return Object.keys(Ships).forEach(ship =>
-        findOccurrences(ship, Sea).length === Ships[ship]
-            ? ""
-            : placeShipRandomly(Sea, ship, findOccurrences(ship, Sea))
-    );
+    return Object.keys(Ships).forEach(ship => {
+        let pill = pills.find(pill => pill.dataset.ship === ship);
+
+        // Delete
+        if (findOccurrences(ship, Sea).length === Ships[ship])
+            deleteShip(ship, pill);
+        // Place randomly
+        placeShipRandomly(Sea, ship, findOccurrences(ship, Sea));
+        // Select pill
+        pill.click();
+        deselectPill(pill);
+    });
 }
 
 /**
