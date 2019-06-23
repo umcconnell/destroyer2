@@ -18,11 +18,56 @@ let pills, fields;
   Helpers
 \*=======*/
 /**
+ * Generate a random integer between a minimum number (inclusive) and a maximum
+ * number (inclusive)
+ * @param {number} min Minimum number
+ * @param {number} max Maximum number
+ * @return {number} Random integer
+ */
+function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Creates a range between a minimum number and a maximum number
+ * @param {number} min Minumum number / start of the range
+ * @param {number} max Maximum number / end of the range
+ * @param {number} [step=1] Difference between every element of the range
+ * @return {array} Number range
+ */
+function range(min, max, step = 1) {
+    if (min > max) step = -1 * Math.abs(step);
+    else if (min === max) return [min];
+    let result = [];
+
+    if (min < max) {
+        for (let i = min; i <= max; i += step) {
+            result.push(i);
+        }
+    } else {
+        for (let i = min; i >= max; i += step) {
+            result.push(i);
+        }
+    }
+
+    return result;
+}
+
+/**
  * Translates Battleship coordinates to sea index
  * @param {string} coords Letter number coordinate <A-J><1-10>
  */
 function toIndex(coords) {
     return FieldLetters.indexOf(coords[0]) * 10 + Number(coords.slice(1)) - 1;
+}
+
+/**
+ * Transform an index to coordinates
+ * @param {number} index Index in the sea (0-99)
+ * @return {array} A coordinate in the form [row, column]
+ */
+function indexToCoords(index) {
+    return [Math.floor(index / 10), index % 10];
 }
 
 /**
