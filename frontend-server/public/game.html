@@ -14,7 +14,9 @@
         <main class="main medium" id="main">
             <section id="placeships">
                 <h2>Place your ships:</h2>
-                <button class="pill">Place randomly</button>
+                <button class="pill" id="placeRandomlyBtn">
+                    Place randomly
+                </button>
                 <p class="framed">or</p>
                 <ul id="shiplist" class="ship-list list--none list--inline">
                     <li>
@@ -78,7 +80,8 @@
             import {
                 initShippicker,
                 initShiplist,
-                getShipPlacement
+                getShipPlacement,
+                placeRandomly
             } from "./javascripts/shippicker.js";
 
             import { checkCircle } from "./javascripts/icons.js";
@@ -93,7 +96,8 @@
             \* ***** */
             let main = document.getElementById("main"),
                 placeships = document.getElementById("placeships"),
-                setupBtn = document.getElementById("setup");
+                setupBtn = document.getElementById("setup"),
+                placeRandomlyBtn = document.getElementById("placeRandomlyBtn");
 
             main.insertAdjacentHTML(
                 "beforeend",
@@ -149,6 +153,12 @@
             initShiplist("#shiplist", () => {
                 setupBtn.disabled = true;
                 setupBtn.classList.remove("success");
+            });
+
+            placeRandomlyBtn.addEventListener("click", () => {
+                placeRandomly();
+                setupBtn.disabled = false;
+                setupBtn.classList.add("success");
             });
         </script>
         <!-- TODO: Possibly defer (<=/=> WebSocket)-->
