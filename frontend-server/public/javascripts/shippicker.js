@@ -71,6 +71,60 @@ function indexToCoords(index) {
 }
 
 /**
+ * @typedef {object} SpaceAround
+ * @property {boolean} row Whether there is space around a ship on the row of
+ * the ship
+ * @property {boolean} col Whether there is space around a ship on the column of
+ * the ship
+ */
+
+/**
+ * Checks whether there is given space around a ship
+ * @param {array} sea Sea field
+ * @param {number} shipStart Index of the front of the ship
+ * @param {number} shipEnd Index of the end of the ship (0-99)
+ * @param {number} space Minimum amount of space around the ship required
+ * @return {SpaceAround} Information on the space available ardound the ship
+ */
+function spaceAround(sea, shipStart, shipEnd, space) {
+    // [row, col]
+    let coordsStart = indexToCoords(shipStart),
+        coordsEnd = indexToCoords(shipEnd);
+
+    let row = false,
+        col = false;
+    let empty = i => (i < 0 ? false : sea[i] == 0);
+
+    // Ship on one row
+    if (coordsStart[0] === coordsEnd[0]) {
+        // left of the ship
+        row =
+            (Math.floor((shipStart - space) / 10) === coordsStart[0] &&
+                range(shipStart - space, shipStart - 1).every(empty)) ||
+            // right of the ship
+            (Math.floor((shipEnd + space) / 10) === coordsEnd[0] &&
+                range(
+                    shipEnd + 1,
+                    Math.min(shipEnd + space, coordsEnd[0] * 10 + 9)
+                ).every(empty));
+    }
+    // Ship on one column
+    if (coordsStart[1] === coordsEnd[1]) {
+        // Above the ship
+        col =
+            (shipStart - space * 10 > -1 &&
+                range(shipStart - space * 10, shipStart - 10, 10).every(
+                    empty
+                )) ||
+            // Beneath the ship
+            (shipEnd + space * 10 < 100 &&
+                range(shipEnd + 10, shipEnd + space * 10, 10).every(empty));
+    }
+
+    return { row, col };
+}
+
+/**
  * Lists indizes of ships in sea field
  * @param {string} ship Ship letter
  * @param {array} field Sea field
