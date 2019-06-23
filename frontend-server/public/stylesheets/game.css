@@ -115,6 +115,28 @@
 }
 
 /* GAME */
+.framed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.framed:before,
+.framed:after {
+    background: #ddd;
+    height: 2px;
+    flex: 1;
+    content: "";
+}
+
+.framed:after {
+    margin-left: 1em;
+}
+
+.framed:before {
+    margin-right: 1em;
+}
+
 .ship-list li {
     margin: 0.25em;
 }

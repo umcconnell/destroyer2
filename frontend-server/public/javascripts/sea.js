@@ -7,7 +7,8 @@ function initSea(sea) {
     let labels = [...sea.querySelectorAll(".sea__label")].reduce(
         // Split labels into [[numbers], [letters]]
         (acc, curr) => {
-            curr.innerText && acc[fieldLetters.includes(curr.innerText) ? 1 : 0].push(curr);
+            curr.innerText &&
+                acc[fieldLetters.includes(curr.innerText) ? 1 : 0].push(curr);
             return acc;
         },
         [[], []]

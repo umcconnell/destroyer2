@@ -151,6 +151,24 @@ const logout = `<svg
         <line x1="21" y1="12" x2="9" y2="12"></line>
     </svg>`;
 
+const reload = `<svg
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon feather feather-rotate-cw"
+    >
+        <title>reload</title>
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+    </svg>`;
+
 const trash = `<svg
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
@@ -181,5 +199,6 @@ export {
     infoCircle,
     login,
     logout,
+    reload,
     trash
 };

@@ -14,6 +14,10 @@
         <main class="main medium" id="main">
             <section id="placeships">
                 <h2>Place your ships:</h2>
+                <button class="pill" id="placeRandomlyBtn">
+                    Place randomly
+                </button>
+                <p class="framed">or</p>
                 <ul id="shiplist" class="ship-list list--none list--inline">
                     <li>
                         <button class="pill ship-1" data-ship="A">
@@ -76,10 +80,11 @@
             import {
                 initShippicker,
                 initShiplist,
-                getShipPlacement
+                getShipPlacement,
+                placeRandomly
             } from "./javascripts/shippicker.js";
 
-            import { checkCircle } from "./javascripts/icons.js";
+            import { checkCircle, reload } from "./javascripts/icons.js";
 
             let wait = ms => new Promise(res => setTimeout(res, ms));
 
@@ -91,7 +96,8 @@
             \* ***** */
             let main = document.getElementById("main"),
                 placeships = document.getElementById("placeships"),
-                setupBtn = document.getElementById("setup");
+                setupBtn = document.getElementById("setup"),
+                placeRandomlyBtn = document.getElementById("placeRandomlyBtn");
 
             main.insertAdjacentHTML(
                 "beforeend",
@@ -147,6 +153,20 @@
             initShiplist("#shiplist", () => {
                 setupBtn.disabled = true;
                 setupBtn.classList.remove("success");
+            });
+
+            placeRandomlyBtn.addEventListener("click", () => {
+                placeRandomly();
+                // Add reload icon
+                if (
+                    ![...placeRandomlyBtn.children].find(el =>
+                        el.classList.contains("icon")
+                    )
+                )
+                    placeRandomlyBtn.insertAdjacentHTML("beforeend", reload);
+
+                setupBtn.disabled = false;
+                setupBtn.classList.add("success");
             });
         </script>
         <!-- TODO: Possibly defer (<=/=> WebSocket)-->
