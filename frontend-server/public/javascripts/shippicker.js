@@ -27,8 +27,9 @@ function toIndex(coords) {
 
 /**
  * Lists indizes of ships in sea field
- * @param {string} ship ship letter
- * @param {array} field sea field
+ * @param {string} ship Ship letter
+ * @param {array} field Sea field
+ * @return {array} List of matching indizes
  */
 function findOccurrences(ship, field) {
     let result = [];
