@@ -56,6 +56,7 @@ function range(min, max, step = 1) {
 /**
  * Translates Battleship coordinates to sea index
  * @param {string} coords Letter number coordinate <A-J><1-10>
+ * @return {number} Sea index
  */
 function toIndex(coords) {
     return FieldLetters.indexOf(coords[0]) * 10 + Number(coords.slice(1)) - 1;
