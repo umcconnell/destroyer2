@@ -25,8 +25,9 @@ how to deploy the project on a live system.
 
 ### Prerequisites
 
-You will need redis and nodejs with npm installed on your machine to get
-started.
+You will need redis and node with npm installed on your machine to get
+started (visit https://redis.io/download and https://nodejs.org to
+install redis and node with npm).
 
 ### Installing
 
