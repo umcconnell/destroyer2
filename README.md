@@ -8,6 +8,7 @@ A real time multiplayer battleship game
     -   [Prerequisites](#prerequisites)
     -   [Installing](#installing)
     -   [Customizing](#customizing)
+-   [Screenshots](#screenshots)
 -   [Deployment](#deployment)
 -   [Docs](#docs)
 -   [Built With](#built-with)
@@ -71,6 +72,28 @@ and a redis configuration file in the `db/` folder. Make sure to specify the
 redis configuration file when starting the redis server.
 
 See the [docs](/docs/docs.md#customizing) for more information.
+
+## Screenshots
+
+Home screen:
+
+![home screen](docs/static/screenshot_home.png)
+
+Login Screen:
+
+![login screen](docs/static/screenshot_login.png)
+
+Rooms Screen:
+
+![rooms screen](docs/static/screenshot_rooms.png)
+
+Shippicker Screen:
+
+![shippicker screen](docs/static/screenshot_shippicker.png)
+
+Loader Screen:
+
+![loader screen](docs/static/screenshot_waiting.png)
 
 ## Deployment
 
