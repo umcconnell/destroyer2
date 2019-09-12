@@ -3,7 +3,7 @@ let Joi = require('@hapi/joi');;
 
 const middleware = (prop, schema) => {
     return (req, res, next) => {
-        const { error } = Joi.validate(req[prop], schema);
+        const { error } = schema.validate(req[prop]);
         const valid = error || null;
 
         if (!valid) {
