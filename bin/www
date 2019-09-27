@@ -7,7 +7,6 @@
 let root = require("app-root-path");
 var app = require(`${root}/frontend-server/app`);
 var http = require("http");
-let logger = require(`${root}/helpers/logger`);
 
 /**
  * Get port from environment and store in Express.
@@ -84,5 +83,6 @@ function onError(error) {
 function onListening() {
     var addr = server.address();
     var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-    logger.info("Listening on " + bind);
+    console.log("Listening on " + bind);
+    console.log("Press Ctrl+C to stop server.");
 }
