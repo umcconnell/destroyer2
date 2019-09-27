@@ -1,5 +1,6 @@
 let winston = require("winston");
 let environment = process.env.NODE_ENV || "production";
+let logLevel = environment === "production" ? "info" : "debug";
 
 let config = {
     console: {
@@ -11,7 +12,7 @@ let config = {
         )
     },
     file: {
-        level: environment === "production" ? "info" : "debug",
+        level: logLevel,
         filename: "logs/log.log",
         maxsize: 5000000, // 5MB
         maxFiles: 5,
@@ -25,7 +26,7 @@ let config = {
 };
 
 let logger = winston.createLogger({
-    level: environment === "production" ? "info" : "debug",
+    level: logLevel,
     format: winston.format.simple(),
     transports: [
         new winston.transports.Console(
