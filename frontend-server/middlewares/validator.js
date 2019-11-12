@@ -1,6 +1,4 @@
 // see: http://brianyang.com/joi-awesome-code-validation-for-node-js-and-express/
-let Joi = require('@hapi/joi');;
-
 const middleware = (prop, schema) => {
     return (req, res, next) => {
         const { error } = schema.validate(req[prop]);
