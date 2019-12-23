@@ -71,7 +71,7 @@ You can customize the project by adding a `.env` file in the root of the project
 and a redis configuration file in the `db/` folder. Make sure to specify the
 redis configuration file when starting the redis server.
 
-See the [docs](/docs/docs.md#customizing) for more information.
+See the [docs](/docs/index.md#customizing) for more information.
 
 ## Screenshots
 
@@ -99,11 +99,11 @@ Loader Screen:
 
 Change the database password in the [.env ](.env) file and in the
 [redis.conf](db/redis.conf) file.
-(see also: [docs#customizing](/docs/docs.md#customizing))
+(see also: [docs#customizing](/docs/index.md#customizing))
 
 ## Docs
 
-See the [docs](docs/docs.md) for more information about the system architecture,
+See the [docs](docs/index.md) for more information about the system architecture,
 API endpoints, game events and customization.
 
 ## Built With
