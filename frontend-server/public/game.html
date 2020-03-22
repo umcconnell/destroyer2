@@ -194,13 +194,16 @@
 
             let wsUrl = () => {
                 let user = JSON.parse(localStorage.user || "{}");
-                let room = (/r=([^&]*)/g.exec(document.location.search) ||
-                    [])[1];
-                let host = window.document.location.host.replace(/:.*/, "");
-                let port = window.location.port;
-                return `ws://${host}${port ? `:${port}` : ""}/game?t=${
-                    user.userId
-                }&r=${room}`;
+                const location = window.location;
+
+                let room = (/r=([^&]*)/g.exec(location.search) || [])[1];
+                let host = location.host.replace(/:.*/, "");
+                let port = location.port;
+                let protocol = location.protocol.replace(":", "");
+
+                return `ws${protocol == "https" ? "s" : ""}://${host}${
+                    port ? `:${port}` : ""
+                }/game?t=${user.userId}&r=${room}`;
             };
 
             function setTurn(isMyTurn) {
