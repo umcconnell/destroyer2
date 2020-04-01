@@ -58,14 +58,12 @@
                 if (localStorage.rooms) rooms = JSON.parse(localStorage.rooms);
                 let user = JSON.parse(localStorage.user);
 
+                localStorage.removeItem("user");
+                localStorage.removeItem("rooms");
+
                 Promise.all(rooms.map(room => deleteRoom(user, room)))
                     .catch(err => showSnackbar("#error", err))
                     .then(() => logout(user))
-                    .then(msg => {
-                        localStorage.removeItem("user");
-                        localStorage.removeItem("rooms");
-                        return msg;
-                    })
                     .then(msg => showSnackbar("#success", msg))
                     .catch(err => showSnackbar("#error", err))
                     .then(() => (document.location.href = "/index.html"));
