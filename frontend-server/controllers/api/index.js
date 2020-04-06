@@ -7,6 +7,7 @@ let sanitize = require(`${root}/frontend-server/middlewares/sanitizer`);
 let auth = require(`${root}/frontend-server/middlewares/auth`);
 
 let { openRooms, newRoom, deleteRoom } = require("./room");
+let { login } = require("./user");
 
 let { uuid } = require(`${root}/helpers/helpers`);
 let Users = require(`${root}/models/users`);
@@ -26,17 +27,7 @@ router.post(
     "/login",
     sanitize("body"),
     validate("body", validatorSchema.userName),
-    (req, res, errorHandler) => {
-        let id = uuid();
-
-        Users.create(id, req.body.userName)
-            .then((val) =>
-                res
-                    .status(200)
-                    .json({ userId: id, userName: req.body.userName })
-            )
-            .catch(errorHandler);
-    }
+    login
 );
 
 router.post(
