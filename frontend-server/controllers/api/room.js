@@ -32,7 +32,6 @@ exports.openRooms = async function (req, res, errorHandler) {
 };
 
 exports.newRoom = async function (req, res, errorHandler) {
-    // FIXME: User with same name can delete room => save ownerId but don't show
     try {
         const { userId, userName } = req.user;
         const { roomName, secret = false } = req.body;
@@ -40,6 +39,7 @@ exports.newRoom = async function (req, res, errorHandler) {
         const roomId = uuid();
         const room = new roomSchema({
             owner: userName,
+            ownerId: userId,
             name: roomName,
             secret
         });
@@ -53,7 +53,7 @@ exports.newRoom = async function (req, res, errorHandler) {
 
 exports.deleteRoom = async function (req, res, errorHandler) {
     try {
-        const { userId, userName } = req.user;
+        const { userId } = req.user;
         const { roomId } = req.body;
 
         const room = await Rooms.get(roomId);
@@ -62,8 +62,7 @@ exports.deleteRoom = async function (req, res, errorHandler) {
             res.status(404).json({
                 error: "room doesn't exist"
             });
-            // FIXME: User with same name can delete room => check userId
-        } else if (room.owner !== userName) {
+        } else if (room.ownerId !== userId) {
             res.status(403).json({
                 error: "you are not the owner of this room"
             });

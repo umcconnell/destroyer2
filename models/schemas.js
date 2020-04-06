@@ -3,51 +3,35 @@ let Joi = require("@hapi/joi");
 module.exports.validatorSchema = {
     userAuth: Joi.object()
         .keys({
-            userId: Joi.string()
-                .uuid()
-                .required(),
-            userName: Joi.string()
-                .max(20)
-                .required()
+            userId: Joi.string().uuid().required(),
+            userName: Joi.string().max(20).required()
         })
         .pattern(/./, Joi.any()),
     userName: Joi.object()
         .keys({
-            userName: Joi.string()
-                .max(20)
-                .required()
+            userName: Joi.string().max(20).required()
         })
         .pattern(/./, Joi.any()),
     userId: Joi.object()
         .keys({
-            userId: Joi.string()
-                .uuid()
-                .required()
+            userId: Joi.string().uuid().required()
         })
         .pattern(/./, Joi.any()),
     roomDetails: Joi.object()
         .keys({
-            roomName: Joi.string()
-                .max(20)
-                .required(),
-            roomId: Joi.string()
-                .uuid()
-                .required(),
+            roomName: Joi.string().max(20).required(),
+            roomId: Joi.string().uuid().required(),
             secret: Joi.bool()
         })
         .pattern(/./, Joi.any()),
     roomName: Joi.object()
         .keys({
-            roomName: Joi.string()
-                .max(20)
-                .required()
+            roomName: Joi.string().max(20).required()
         })
         .pattern(/./, Joi.any()),
     roomId: Joi.object()
         .keys({
-            roomId: Joi.string()
-                .uuid()
-                .required()
+            roomId: Joi.string().uuid().required()
         })
         .pattern(/./, Joi.any()),
     roomSecret: Joi.object()
@@ -58,9 +42,10 @@ module.exports.validatorSchema = {
 };
 
 module.exports.roomSchema = class {
-    constructor({ name, owner, secret = false }) {
+    constructor({ name, owner, ownerId, secret = false }) {
         this.name = name;
         this.owner = owner;
+        this.ownerId = ownerId;
         this.open = 1;
         this.players = "";
         this.secret = secret ? 1 : 0;

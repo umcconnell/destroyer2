@@ -16,13 +16,13 @@ function trackOpenRooms(id, remove = false) {
 }
 
 // Exists
-exports.exists = function(id) {
+exports.exists = function (id) {
     return db.existsAsync(roomKey(id)).then(toBool);
 };
 
 // CRUD
 // Create
-exports.create = exports.new = function(id, room) {
+exports.create = exports.new = function (id, room) {
     return Promise.all([
         db.hmsetAsync(roomKey(id), room).then(toBool),
         toBool(room.secret) ? "" : trackOpenRooms(id)
@@ -30,41 +30,41 @@ exports.create = exports.new = function(id, room) {
 };
 
 // Read
-exports.get = exports.read = function(id) {
+exports.get = exports.read = function (id) {
     return db.hgetallAsync(roomKey(id));
 };
 
 // Update
-exports.hasVal = exports.has = function(id, prop) {
+exports.hasVal = exports.has = function (id, prop) {
     return db.hexistsAsync(roomKey(id), prop).then(toBool);
 };
 
-exports.getVal = exports.readVal = function(id, prop) {
+exports.getVal = exports.readVal = function (id, prop) {
     return db.hgetAsync(roomKey(id), prop);
 };
 
-exports.setVal = exports.update = function(id, prop, val) {
+exports.setVal = exports.update = function (id, prop, val) {
     // Returns true if a field was updated and false if a field was added
     return db.hsetAsync(roomKey(id), prop, val).then(!toBool);
 };
 
-exports.delVal = function(id, prop) {
+exports.delVal = function (id, prop) {
     return db.hdelAsync(roomKey(id), prop).then(toBool);
 };
 
 // Delete
-exports.delete = function(id) {
+exports.delete = function (id) {
     return Promise.all([db.delAsync(roomKey(id)), trackOpenRooms(id, true)]);
 };
 
 // Open room
-exports.open = function(id) {
+exports.open = function (id) {
     return Promise.all([
         db.hsetAsync(roomKey(id), "open", 1),
         db
             .hgetAsync(roomKey(id), "secret")
             .then(toBool)
-            .then(secret => {
+            .then((secret) => {
                 if (!secret) return trackOpenRooms(id);
                 else return true;
             })
@@ -72,7 +72,7 @@ exports.open = function(id) {
 };
 
 // Close room
-exports.close = function(id) {
+exports.close = function (id) {
     return Promise.all([
         db.hsetAsync(roomKey(id), "open", 0),
         trackOpenRooms(id, true)
@@ -80,7 +80,7 @@ exports.close = function(id) {
 };
 
 // Return open rooms
-exports.openRooms = function() {
+exports.openRooms = function () {
     return db
         .sortAsync(
             "openrooms",
@@ -94,14 +94,14 @@ exports.openRooms = function() {
             "GET",
             "*->owner"
         )
-        .then(values =>
-            chunk(values, 3).map(group => {
+        .then((values) =>
+            chunk(values, 3).map((group) => {
                 group[0] = group[0].substring(5);
                 return zipObj(["id", "name", "owner"], group);
             })
         );
 };
 
-exports.roomsLastModified = function() {
+exports.roomsLastModified = function () {
     return db.getAsync("rooms:lastmodified");
 };
