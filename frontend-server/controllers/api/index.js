@@ -46,25 +46,4 @@ router.delete(
     deleteRoom
 );
 
-router.delete(
-    "/logout",
-    validate("body", validatorSchema.userId),
-    (req, res, errorHandler) => {
-        let { userId } = req.body;
-        Users.exists(userId)
-            .then((exists) => {
-                if (exists) {
-                    Users.delete(userId)
-                        .then(() =>
-                            res
-                                .status(200)
-                                .json({ message: "successfully deleted user" })
-                        )
-                        .catch(errorHandler);
-                } else res.status(404).json({ error: "user doesn't exist" });
-            })
-            .catch(errorHandler);
-    }
-);
-
 module.exports = router;
