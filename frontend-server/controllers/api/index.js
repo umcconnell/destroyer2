@@ -6,7 +6,7 @@ let validate = require(`${root}/frontend-server/middlewares/validator`);
 let sanitize = require(`${root}/frontend-server/middlewares/sanitizer`);
 let auth = require(`${root}/frontend-server/middlewares/auth`);
 
-let { openRooms, newRoom } = require("./room");
+let { openRooms, newRoom, deleteRoom } = require("./room");
 
 let { uuid } = require(`${root}/helpers/helpers`);
 let Users = require(`${root}/models/users`);
@@ -50,40 +50,9 @@ router.post(
 
 router.delete(
     "/deleteroom",
-    validate("body", validatorSchema.userAuth),
+    auth,
     validate("body", validatorSchema.roomId),
-    (req, res, errorHandler) => {
-        let { userName, userId, roomId } = req.body;
-        Users.auth(userName, userId)
-            .then((authorized) => {
-                if (!authorized)
-                    res.status(403).json({ error: "unauthorized" });
-                else {
-                    Rooms.get(roomId)
-                        .then((room) => {
-                            if (room === null)
-                                res.status(404).json({
-                                    error: "room doesn't exist"
-                                });
-                            else if (room.owner !== userName)
-                                res.status(403).json({
-                                    error: "you are not the owner of this room"
-                                });
-                            else
-                                Rooms.delete(roomId)
-                                    .then(() => {
-                                        pub.publish("deleteroom", roomId);
-                                        return res.status(200).json({
-                                            message: "successfully deleted room"
-                                        });
-                                    })
-                                    .catch(errorHandler);
-                        })
-                        .catch(errorHandler);
-                }
-            })
-            .catch(errorHandler);
-    }
+    deleteRoom
 );
 
 router.delete(

@@ -2,6 +2,7 @@ let root = require("app-root-path");
 let { uuid } = require(`${root}/helpers/helpers`);
 
 let Rooms = require(`${root}/models/rooms`);
+let { pub } = require(`${root}/db/pubsub`);
 let { roomSchema } = require(`${root}/models/schemas`);
 
 exports.openRooms = async function (req, res, errorHandler) {
@@ -33,8 +34,8 @@ exports.openRooms = async function (req, res, errorHandler) {
 exports.newRoom = async function (req, res, errorHandler) {
     // FIXME: User with same name can delete room => save ownerId but don't show
     try {
-        let { userId, userName } = req.user;
-        let { roomName, secret = false } = req.body;
+        const { userId, userName } = req.user;
+        const { roomName, secret = false } = req.body;
 
         const roomId = uuid();
         const room = new roomSchema({
@@ -45,6 +46,35 @@ exports.newRoom = async function (req, res, errorHandler) {
 
         await Rooms.create(roomId, room);
         res.status(200).json({ roomId });
+    } catch (e) {
+        errorHandler(e);
+    }
+};
+
+exports.deleteRoom = async function (req, res, errorHandler) {
+    try {
+        const { userId, userName } = req.user;
+        const { roomId } = req.body;
+
+        const room = await Rooms.get(roomId);
+
+        if (room === null) {
+            res.status(404).json({
+                error: "room doesn't exist"
+            });
+            // FIXME: User with same name can delete room => check userId
+        } else if (room.owner !== userName) {
+            res.status(403).json({
+                error: "you are not the owner of this room"
+            });
+        } else {
+            await Rooms.delete(roomId);
+            pub.publish("deleteroom", roomId);
+
+            res.status(200).json({
+                message: "successfully deleted room"
+            });
+        }
     } catch (e) {
         errorHandler(e);
     }
