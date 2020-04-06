@@ -5,6 +5,8 @@ let root = require("app-root-path");
 let validate = require(`${root}/frontend-server/middlewares/validator`);
 let sanitize = require(`${root}/frontend-server/middlewares/sanitizer`);
 
+let { openRooms } = require("./room");
+
 let { uuid } = require(`${root}/helpers/helpers`);
 let Users = require(`${root}/models/users`);
 let Rooms = require(`${root}/models/rooms`);
@@ -13,33 +15,11 @@ let { validatorSchema, roomSchema } = require(`${root}/models/schemas`);
 let { pub } = require(`${root}/db/pubsub`);
 
 // API show available endpoints.
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
     res.sendFile("/api.html", { root: "./frontend-server/public" });
 });
 
-router.get("/openrooms", function(req, res, errorHandler) {
-    Rooms.roomsLastModified()
-        .then(lastModified => {
-            if (lastModified) res.setHeader("Modified-Since", lastModified);
-            res.setHeader(
-                "Cache-Control",
-                "private, no-cache, no-store, must-revalidate"
-            );
-
-            let lastModifiedUser = req.get("If-Modified-Since") || "";
-
-            if (
-                !lastModified ||
-                !lastModifiedUser ||
-                lastModifiedUser < lastModified
-            ) {
-                Rooms.openRooms()
-                    .then(rooms => res.status(200).json([...rooms]))
-                    .catch(errorHandler);
-            } else res.status(304).end();
-        })
-        .catch(errorHandler);
-});
+router.get("/openrooms", openRooms);
 
 router.post(
     "/login",
@@ -49,7 +29,7 @@ router.post(
         let id = uuid();
 
         Users.create(id, req.body.userName)
-            .then(val =>
+            .then((val) =>
                 res
                     .status(200)
                     .json({ userId: id, userName: req.body.userName })
@@ -68,7 +48,7 @@ router.post(
         let { userId, userName, roomName, secret = false } = req.body;
 
         Users.auth(userName, userId)
-            .then(authorized => {
+            .then((authorized) => {
                 if (!authorized)
                     res.status(403).json({ error: "unauthorized" });
                 else {
@@ -95,12 +75,12 @@ router.delete(
     (req, res, errorHandler) => {
         let { userName, userId, roomId } = req.body;
         Users.auth(userName, userId)
-            .then(authorized => {
+            .then((authorized) => {
                 if (!authorized)
                     res.status(403).json({ error: "unauthorized" });
                 else {
                     Rooms.get(roomId)
-                        .then(room => {
+                        .then((room) => {
                             if (room === null)
                                 res.status(404).json({
                                     error: "room doesn't exist"
@@ -132,7 +112,7 @@ router.delete(
     (req, res, errorHandler) => {
         let { userId } = req.body;
         Users.exists(userId)
-            .then(exists => {
+            .then((exists) => {
                 if (exists) {
                     Users.delete(userId)
                         .then(() =>
