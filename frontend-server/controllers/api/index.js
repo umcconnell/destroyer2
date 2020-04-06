@@ -9,12 +9,7 @@ let auth = require(`${root}/frontend-server/middlewares/auth`);
 let { openRooms, newRoom, deleteRoom } = require("./room");
 let { login } = require("./user");
 
-let { uuid } = require(`${root}/helpers/helpers`);
-let Users = require(`${root}/models/users`);
-let Rooms = require(`${root}/models/rooms`);
-let { validatorSchema, roomSchema } = require(`${root}/models/schemas`);
-
-let { pub } = require(`${root}/db/pubsub`);
+let { validatorSchema } = require(`${root}/models/schemas`);
 
 // API show available endpoints.
 router.get("/", function (req, res) {
