@@ -4,8 +4,9 @@ let root = require("app-root-path");
 
 let validate = require(`${root}/frontend-server/middlewares/validator`);
 let sanitize = require(`${root}/frontend-server/middlewares/sanitizer`);
+let auth = require(`${root}/frontend-server/middlewares/auth`);
 
-let { openRooms } = require("./room");
+let { openRooms, newRoom } = require("./room");
 
 let { uuid } = require(`${root}/helpers/helpers`);
 let Users = require(`${root}/models/users`);
@@ -40,32 +41,11 @@ router.post(
 
 router.post(
     "/newroom",
+    auth,
     sanitize("body"),
-    validate("body", validatorSchema.userAuth),
     validate("body", validatorSchema.roomName),
     validate("body", validatorSchema.roomSecret),
-    (req, res, errorHandler) => {
-        let { userId, userName, roomName, secret = false } = req.body;
-
-        Users.auth(userName, userId)
-            .then((authorized) => {
-                if (!authorized)
-                    res.status(403).json({ error: "unauthorized" });
-                else {
-                    let roomId = uuid();
-                    let room = new roomSchema({
-                        owner: userName,
-                        name: roomName,
-                        secret
-                    });
-
-                    Rooms.create(roomId, room)
-                        .then(() => res.status(200).json({ roomId }))
-                        .catch(errorHandler);
-                }
-            })
-            .catch(errorHandler);
-    }
+    newRoom
 );
 
 router.delete(
