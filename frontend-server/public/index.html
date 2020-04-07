@@ -14,31 +14,76 @@
         <main class="main">
             <img src="./images/battleship.svg" alt="Destroyer2 logo" />
             <p>The ultimate multiplayer Battleship game.</p>
-            <a
-                href="./login.html"
-                class="cta-link btn inherit-color"
-                id="startlink"
-                >Start <span class="cta-link__icon">&rarr;</span></a
-            >
+            <p>
+                <input
+                    type="text"
+                    id="userName"
+                    placeholder="Pick Your Username..."
+                    class="input input--full"
+                    maxlength="20"
+                    autofocus
+                />
+            </p>
+            <button class="cta-link btn" id="start">
+                Start
+            </button>
         </main>
         <footer class="footer">
             <p>
                 <a href="./about.html">About</a>
-                <span id="loggedIn" hidden>
-                    | <a href="./logout.html">Logout</a>
-                </span>
             </p>
             <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
         </footer>
-        <script>
-            let startlink = document.getElementById("startlink"),
-                loggedIn = document.getElementById("loggedIn");
+        <script type="module">
+            import { login as loginAction } from "./javascripts/apiActions.js";
+            import { login as loginIcon } from "./javascripts/icons.js";
 
-            // Direct user to openrooms directly if logged in
-            if (localStorage.user) {
-                startlink.href = "./rooms.html";
-                loggedIn.removeAttribute("hidden");
+            import { snackbar } from "./javascripts/components.js";
+            import { showSnackbar } from "./javascripts/overlay.js";
+            import { wait, redirect } from "./javascripts/utils.js";
+
+            if (sessionStorage.user) redirect("rooms.html");
+
+            const userName = document.getElementById("userName"),
+                start = document.getElementById("start");
+
+            document
+                .querySelector("main")
+                .insertAdjacentHTML("beforeend", snackbar({ type: "error" }));
+
+            start.insertAdjacentHTML("beforeend", loginIcon);
+
+            // Helper
+            function displayError(err) {
+                userName.classList.add("error", "shake");
+                wait(1000)
+                    .then(() => userName.classList.remove("error", "shake"))
+                    .then(() => userName.focus());
+                showSnackbar("#error", err, 3500);
             }
+
+            // Main
+            function login() {
+                if (!userName.validity.valid || userName.value === "") {
+                    return displayError(
+                        "Username is required and may only be 20 characters long"
+                    );
+                }
+
+                return loginAction(userName.value)
+                    .then((resp) => {
+                        // Save user info
+                        sessionStorage.user = resp.token;
+                        redirect("./rooms.html");
+                    })
+                    .catch((err) => showSnackbar("#error", err, 3500));
+            }
+
+            // EventListeners
+            start.addEventListener("click", login);
+            userName.addEventListener("keydown", ({ key }) => {
+                if (key === "Enter") login();
+            });
         </script>
     </body>
 </html>
