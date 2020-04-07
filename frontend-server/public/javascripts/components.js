@@ -51,7 +51,7 @@ const loader = ({ ships = false, id = false, classes = false }) =>
             ${ships
                 ? new Array(ships)
                       .fill()
-                      .map(_ => `<span class="loader__ship"></span>`)
+                      .map((_) => `<span class="loader__ship"></span>`)
                 : ""}
         </div>
     `;
@@ -99,7 +99,7 @@ const roomCard = ({ id = false, classes = false, myRoom, room }) =>
 const noRooms = () =>
     html`
     <p style="color: gray">
-        No open rooms :(<br><br>
+        No open rooms ¯\_(ツ)_/¯<br><br>
         Create your own to get started!</span>
     </p>
     `;
@@ -117,27 +117,25 @@ const sea = ({ id = false, classes = false }) =>
                         }</span>`
                 )
                 .join("") +
-                // Sea + left letter labels
-                new Array(10)
-                    .fill()
-                    .map(
-                        (row, rowInd) =>
-                            `<span class="sea__label">${
-                                fieldLetters[rowInd]
-                            }</span>` +
-                            new Array(10)
-                                .fill()
-                                .map(
-                                    (col, colInd) =>
-                                        `<span
+            // Sea + left letter labels
+            new Array(10)
+                .fill()
+                .map(
+                    (row, rowInd) =>
+                        `<span class="sea__label">${fieldLetters[rowInd]}</span>` +
+                        new Array(10)
+                            .fill()
+                            .map(
+                                (col, colInd) =>
+                                    `<span
                                                 class="sea__field"
                                                 data-field="${
                                                     fieldLetters[rowInd]
                                                 }${colInd + 1}"></span>`
-                                )
-                                .join("")
-                    )
-                    .join("")}
+                            )
+                            .join("")
+                )
+                .join("")}
         </div>
     `;
 
