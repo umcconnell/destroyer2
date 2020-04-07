@@ -14,6 +14,8 @@ let types = {
     default: () => ""
 };
 
+let sanitize = pipe([cleanUTFString, sanitizeHTMLString]);
+
 function handleMessage(type) {
     if (types.hasOwnProperty(type)) return types[type];
     else return types["default"];
@@ -31,7 +33,7 @@ function onmessage(msg, ws, wss, room) {
     if (!msg.type || !msg.msg) return rejectWs(ws);
 
     // Sanitize message
-    msg.msg = pipe([cleanUTFString, sanitizeHTMLString])(msg.msg);
+    msg.msg = sanitize(msg.msg);
 
     return handleMessage(msg.type)(msg.msg, ws, wss, room);
 }
