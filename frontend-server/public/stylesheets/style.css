@@ -107,16 +107,6 @@ html {
     transform: translateX(-50%);
 }
 
-/* Alerts */
-.alert {
-    padding: 0.65em 1em;
-    border-left: 6px solid #ddd;
-}
-.alert.warning {
-    border-left-color: orange;
-    background-color: #ffa50044;
-}
-
 /* Links */
 a {
     color: var(--main-color-light);
