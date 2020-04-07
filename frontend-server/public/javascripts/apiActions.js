@@ -4,6 +4,8 @@ const headers = {
     "Content-Type": "application/json"
 };
 
+const JWT = (jwt) => `Bearer ${jwt}`;
+
 async function parseOrThrow(resp) {
     let json = await resp.json();
     if (!resp.ok) throw `${resp.status} ${resp.statusText}: ${json.error}`;
@@ -19,11 +21,8 @@ function openRooms(lastmodified = false) {
         : {};
 
     return fetch("/api/openrooms", {
-        headers: {
-            ...modifiedHeaders,
-            ...headers
-        }
-    }).then(async resp => {
+        headers: { ...modifiedHeaders, ...headers }
+    }).then(async (resp) => {
         let lastmodified = resp.headers.get("Modified-Since");
 
         if (resp.status === 304) return { lastmodified, rooms: false };
@@ -38,9 +37,7 @@ function login(userName) {
     return fetch("/api/login", {
         method: "post",
         headers,
-        body: JSON.stringify({
-            userName
-        })
+        body: JSON.stringify({ userName })
     }).then(parseOrThrow);
 }
 
@@ -48,12 +45,11 @@ function login(userName) {
 function newRoom(user, roomName, secret = false) {
     return fetch("/api/newroom", {
         method: "post",
-        headers,
-        body: JSON.stringify({
-            ...user,
-            roomName,
-            secret
-        })
+        headers: {
+            ...headers,
+            Authorization: JWT(user)
+        },
+        body: JSON.stringify({ roomName, secret })
     }).then(parseOrThrow);
 }
 
@@ -61,23 +57,12 @@ function newRoom(user, roomName, secret = false) {
 function deleteRoom(user, roomId) {
     return fetch("/api/deleteroom", {
         method: "delete",
-        headers,
-        body: JSON.stringify({
-            ...user,
-            roomId
-        })
+        headers: {
+            ...headers,
+            Authorization: JWT(user)
+        },
+        body: JSON.stringify({ roomId })
     }).then(parseOrThrow);
 }
 
-// DELETE /api/logout
-function logout(user) {
-    return fetch("/api/logout", {
-        method: "delete",
-        headers,
-        body: JSON.stringify({
-            ...user
-        })
-    }).then(parseOrThrow);
-}
-
-export { openRooms, login, newRoom, deleteRoom, logout };
+export { openRooms, login, newRoom, deleteRoom };
