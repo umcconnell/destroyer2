@@ -4,7 +4,7 @@ let logger = require(`${root}/helpers/logger`);
 let Users = require(`${root}/models/users`);
 let Rooms = require(`${root}/models/rooms`);
 
-function verifyConnection(clients, params, cb) {
+function verifyConnection(clients, params) {
     let reject = (msg, status) => {
         // Custom error log
         if (msg)
@@ -13,30 +13,35 @@ function verifyConnection(clients, params, cb) {
                     msg ? " : " + msg : ""
                 }`
             );
-        return cb(false, status || 500, msg || "server error");
+
+        return {
+            accepted: false,
+            status: status || 500,
+            msg: msg || "server error"
+        };
     };
 
     if (!params.t || !params.r)
         return reject("please specify user-token and room-token", 400);
 
     let userAlreadyConnected = Array.from(clients).find(
-        client => client.userId === params.t
+        (client) => client.userId === params.t
     );
     if (userAlreadyConnected)
         return reject("user already connected to room", 403);
 
     return Users.exists(params.t)
-        .then(exists => {
+        .then((exists) => {
             if (!exists) throw "unauthorized";
         })
         .then(() =>
             Rooms.get(params.r)
-                .then(room => {
+                .then((room) => {
                     if (!room) throw "room not found";
                     let players = room.players
                         .split(",")
                         // Remove empty fields (e.g "".split(",") => [""])
-                        .filter(el => !!el);
+                        .filter((el) => !!el);
 
                     if (players.includes(params.t))
                         throw "player already in room";
@@ -44,7 +49,7 @@ function verifyConnection(clients, params, cb) {
                     else throw "room full";
                 })
                 // Add player to players list
-                .then(players =>
+                .then((players) =>
                     Rooms.update(
                         params.r,
                         "players",
@@ -55,7 +60,7 @@ function verifyConnection(clients, params, cb) {
                         .catch(reject)
                 )
                 // Remove from openrooms if full
-                .then(full =>
+                .then((full) =>
                     full
                         ? Rooms.close(params.r).catch(() => {
                               throw "server error";
@@ -63,7 +68,7 @@ function verifyConnection(clients, params, cb) {
                         : ""
                 )
                 // Accept user
-                .then(() => cb(true))
+                .then(() => ({ accepted: true }))
         )
         .catch(reject);
 }
