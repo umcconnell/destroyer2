@@ -136,18 +136,16 @@
             </ul>
         </main>
         <footer class="footer">
-            <p>
-                <a href="./index.html">Home</a>
-                <span id="loggedIn" hidden>
-                    | <a href="./logout.html">Logout</a>
-                </span>
-            </p>
+            <p><a href="./index.html" id="loggedIn">Home</a></p>
             <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
         </footer>
         <script>
             let loggedIn = document.getElementById("loggedIn");
 
-            if (localStorage.user) loggedIn.hidden = false;
+            if (sessionStorage.user) {
+                loggedIn.innerText = "Rooms";
+                loggedIn.href = "./rooms.html";
+            }
         </script>
     </body>
 </html>
