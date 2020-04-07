@@ -24,7 +24,7 @@
                     autofocus
                 />
             </p>
-            <p style="text-align: left">
+            <p style="text-align: left;">
                 <label
                     class="material-checkbox checkbox-container"
                     tabindex="0"
@@ -37,38 +37,29 @@
         </main>
         <footer class="footer">
             <p>
-                <a href="./index.html">Home</a> |
                 <a href="./about.html">About</a> |
                 <a href="./rooms.html">Rooms</a>
-                <span id="loggedIn" hidden>
-                    | <a href="./logout.html">Logout</a>
-                </span>
             </p>
             <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
         </footer>
         <script type="module">
             import { newRoom } from "./javascripts/apiActions.js";
+            import { wait } from "./javascripts/utils.js";
 
             import { snackbar } from "./javascripts/components.js";
             import { showSnackbar } from "./javascripts/overlay.js";
 
-            let roomName = document.getElementById("roomName"),
+            const roomName = document.getElementById("roomName"),
                 createBtn = document.getElementById("create"),
-                secretChb = document.getElementById("secret"),
-                loggedIn = document.getElementById("loggedIn");
+                secretChb = document.getElementById("secret");
 
-            // fancy setTimeout wrapper
-            let wait = ms => new Promise(res => setTimeout(res, ms));
-            let user = JSON.parse(localStorage.user);
+            const user = sessionStorage.user;
 
-            if (localStorage.user) loggedIn.hidden = false;
+            document
+                .querySelector("main")
+                .insertAdjacentHTML("beforeend", snackbar({ type: "error" }));
 
-            createBtn.insertAdjacentHTML(
-                "afterend",
-                snackbar({ type: "error" })
-            );
-
-            secretChb.parentElement.addEventListener("keypress", function(evt) {
+            secretChb.parentElement.addEventListener("keypress", (evt) => {
                 if (evt.key === "Enter" || evt.key === " ") {
                     secretChb.checked = !secretChb.checked;
                 }
@@ -92,21 +83,21 @@
                 }
 
                 return newRoom(user, roomName.value, secretChb.checked)
-                    .then(resp => {
+                    .then((resp) => {
                         // Save room info
-                        if (localStorage.rooms) {
-                            localStorage.rooms = JSON.stringify(
-                                JSON.parse(localStorage.rooms).concat([
+                        if (sessionStorage.rooms) {
+                            sessionStorage.rooms = JSON.stringify(
+                                JSON.parse(sessionStorage.rooms).concat([
                                     resp.roomId
                                 ])
                             );
                         } else {
-                            localStorage.rooms = JSON.stringify([resp.roomId]);
+                            sessionStorage.rooms = JSON.stringify([
+                                resp.roomId
+                            ]);
                         }
 
-                        let roomURL = `${window.location.origin}/game.html?r=${
-                            resp.roomId
-                        }`;
+                        let roomURL = `${window.location.origin}/game.html?r=${resp.roomId}`;
                         createBtn.disabled = true;
 
                         if (secretChb.checked) {
