@@ -23,18 +23,14 @@
             <div id="openrooms"></div>
         </main>
         <footer class="footer">
-            <p>
-                <a href="./index.html">Home</a> |
-                <a href="./about.html">About</a>
-                <span id="loggedIn" hidden>
-                    | <a href="./logout.html">Logout</a>
-                </span>
-            </p>
+            <p><a href="./about.html">About</a></p>
             <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
         </footer>
 
         <script type="module">
             import { openRooms, deleteRoom } from "./javascripts/apiActions.js";
+            import { wait, redirect } from "./javascripts/utils.js";
+
             import {
                 snackbar,
                 roomCard,
@@ -42,26 +38,26 @@
             } from "./javascripts/components.js";
             import { showSnackbar } from "./javascripts/overlay.js";
 
-            let openrooms = document.getElementById("openrooms"),
-                loggedIn = document.getElementById("loggedIn");
+            if (!sessionStorage.user) redirect("./index.html");
+
+            const openrooms = document.getElementById("openrooms");
+
             let lastmodifiedUser;
-            let myRooms = localStorage.rooms
-                ? JSON.parse(localStorage.rooms)
+            let myRooms = sessionStorage.rooms
+                ? JSON.parse(sessionStorage.rooms)
                 : [];
 
-            if (localStorage.user) loggedIn.hidden = false;
-
-            let wait = ms => new Promise(res => setTimeout(res, ms));
-
             // Init snackbars
-            openrooms.insertAdjacentHTML(
-                "afterend",
-                snackbar({ type: "error" }) + snackbar({ type: "success" })
-            );
+            document
+                .querySelector("main")
+                .insertAdjacentHTML(
+                    "beforeend",
+                    snackbar({ type: "error" }) + snackbar({ type: "success" })
+                );
 
-            let roomsList = rooms => {
+            let roomsList = (rooms) => {
                 return rooms
-                    .map(room =>
+                    .map((room) =>
                         roomCard({
                             room,
                             myRoom: myRooms.includes(room.id)
@@ -80,7 +76,7 @@
             function trackRooms() {
                 return [
                     ...document.querySelectorAll(".room-card > button")
-                ].forEach(btn => {
+                ].forEach((btn) => {
                     btn.addEventListener("click", removeRoom);
                 });
             }
@@ -91,7 +87,7 @@
                         lastmodifiedUser = lastmodified;
                         displayRooms(rooms);
                     })
-                    .catch(err => showSnackbar("#error", err));
+                    .catch((err) => showSnackbar("#error", err));
             }
 
             function removeRoom(e) {
@@ -99,21 +95,21 @@
                 e.preventDefault();
                 let roomId = this.dataset.roomId;
 
-                deleteRoom(JSON.parse(localStorage.user), roomId)
+                deleteRoom(sessionStorage.user, roomId)
                     .then(() => {
-                        let newRooms = myRooms.filter(id => id !== roomId);
-                        localStorage.rooms = JSON.stringify(newRooms);
+                        let newRooms = myRooms.filter((id) => id !== roomId);
+                        sessionStorage.rooms = JSON.stringify(newRooms);
                         myRooms = newRooms;
                     })
-                    .then(() => getOpenRooms(true))
+                    .then(() => getOpenRooms(false))
                     .then(() =>
                         showSnackbar("#success", "Successfully deleted room")
                     )
-                    .catch(err => showSnackbar("#error", err));
+                    .catch((err) => showSnackbar("#error", err));
             }
 
             // Initial fetch
-            getOpenRooms();
+            getOpenRooms(false);
 
             setInterval(() => getOpenRooms(true), 10000);
         </script>
