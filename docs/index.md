@@ -269,7 +269,7 @@ Create a new room and return a uuid for the room.
 
     OR
 
-    -   **Code:** 403 <br>
+    -   **Code:** 401 <br>
         **Content:** `{ error : "unauthorized" }`
 
     OR
@@ -328,6 +328,11 @@ Delete a room and kick out any players still in the room.
 
     -   **Code:** 400 <br>
         **Content:** `{ error : <Validation error message> }`
+
+    OR
+
+    -   **Code:** 401 <br>
+        **Content:** `{ error : "unauthorized" }`
 
     OR
 
