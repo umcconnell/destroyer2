@@ -52,6 +52,14 @@ module.exports.roomSchema = class {
     }
 };
 
+module.exports.ServerError = class ServerError extends Error {
+    constructor(status = 500, msg = "Internal Server Error") {
+        super(msg);
+        this.name = "ServerError";
+        this.status = status;
+    }
+};
+
 module.exports.messageSchemas = (type, msg) => ({
     type,
     msg
