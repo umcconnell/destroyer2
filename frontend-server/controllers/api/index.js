@@ -20,16 +20,16 @@ router.get("/openrooms", openRooms);
 
 router.post(
     "/login",
-    sanitize("body"),
     validate("body", validatorSchema.userName),
+    sanitize("body"),
     login
 );
 
 router.post(
     "/newroom",
     auth,
-    sanitize("body"),
     validate("body", validatorSchema.roomName),
+    sanitize("body"),
     validate("body", validatorSchema.roomSecret),
     newRoom
 );
