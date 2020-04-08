@@ -9,7 +9,6 @@
     -   [Login](#login)
     -   [New Room](#new-room)
     -   [Delete Room](#delete-room)
-    -   [Logout](#logout)
 -   [Game Events](#game-events)
     -   [Error](#error)
     -   [Join](#join)
@@ -127,7 +126,6 @@ A quick overview of the available API endpoints:
 | POST        | /api/login      | Log a user in and generates a uuid | userName                                    |
 | POST        | /api/newroom    | Create a new (private) room        | userId, userName, roomName, [private=false] |
 | DELETE      | /api/deleteroom | Delete a room and kick out players | userId, userName, roomName                  |
-| DELETE      | /api/logout     | Log a user out                     | userId                                      |
 
 Following endpoints are exposed:
 
@@ -362,63 +360,6 @@ Delete a room and kick out any players still in the room.
             userId: USERID,
             userName: USERNAME,
             roomId: ROOMID
-        }).then(console.log)
-    });
-    ```
-
-### Logout
-
-Log a user out.
-
--   **URL**
-
-    /api/logout
-
--   **Method:**
-
-    `DELETE`
-
--   **URL Params**
-
-    None
-
--   **Data Params**
-
-    **Required:**
-
-    `userId=<UUID>`
-
--   **Success Response:**
-
-    -   **Code:** 200 <br>
-        **Content:** `{ message: "successfully deleted user" }`
-
--   **Error Response:**
-
-    -   **Code:** 400 <br>
-        **Content:** `{ error : <Validation error message> }`
-
-    OR
-
-    -   **Code:** 404 <br>
-        **Content:** `{ error: "user doesn't exist" }`
-
-    OR
-
-    -   **Code:** 500 <br>
-        **Content** `{error: "Internal Server Error"}`
-
--   **Sample Call:**
-
-    ```javascript
-    fetch("/api/logout", {
-        method: "DELETE",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            userId: USERID
         }).then(console.log)
     });
     ```
