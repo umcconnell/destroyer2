@@ -12,7 +12,7 @@ exports.rejectWs = (ws) => ws.send(messageSchemas("error", "invalid input"));
 
 // Taken from the ws library
 // https://github.com/websockets/ws/blob/08c6c8ba70404818f7f4bc23eb5fd0bf9c94c039/lib/websocket-server.js#L384-L406
-exports.abortHandshake = (socket, code, message, headers) => {
+exports.abortHandshake = (socket, code = 500, message, headers) => {
     if (socket.writable) {
         message = message || STATUS_CODES[code];
         headers = {
@@ -32,6 +32,8 @@ exports.abortHandshake = (socket, code, message, headers) => {
         );
     }
 
-    socket.removeListener("error", socketOnError);
+    try {
+        socket.removeListener("error", socketOnError);
+    } catch (e) {}
     socket.destroy();
 };
