@@ -7,6 +7,8 @@ const mapping = {
     "/": "&#x2F;"
 };
 
+const sanitizeRegexp = new RegExp(`[${Object.keys(mapping).join("")}]`, "g");
+
 const desanitizeRegexp = new RegExp(
     "(" +
         Object.values(mapping)
@@ -18,7 +20,7 @@ const desanitizeRegexp = new RegExp(
 
 exports.sanitizeHTMLString = function (input) {
     if (input === "" || typeof input !== "string") return input;
-    return input.replace(/[&<>"'\/]/g, (chara) => mapping[chara]);
+    return input.replace(sanitizeRegexp, (chara) => mapping[chara]);
 };
 
 exports.desanitizeHTMLString = function (input) {
