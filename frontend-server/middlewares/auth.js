@@ -3,7 +3,7 @@ let root = require("app-root-path");
 let { verify } = require(`${root}/helpers/auth`);
 
 function reject(res) {
-    res.status(403).json({ error: "unauthorized" });
+    res.status(401).json({ error: "unauthorized" });
 }
 
 const middleware = (req, res, next) => {
