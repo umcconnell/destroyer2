@@ -15,7 +15,13 @@ let join = require("./actions/join");
 exports.addUserToRoom = async function addUserToRoom(userId, roomId) {
     try {
         let room = await Rooms.get(roomId);
-        if (!room) throw new ServerError(404, "room not found");
+        if (!room) {
+            // Case: Room expired but still available through API
+            try {
+                await Rooms.untrack(roomId);
+            } catch (e) {}
+            throw new ServerError(404, "room not found");
+        }
 
         let players = room.players.split(",").filter((el) => !!el);
 
