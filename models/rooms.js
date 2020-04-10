@@ -11,6 +11,12 @@ function trackOpenRooms(id, remove = false) {
         remove
             ? db.sremAsync("openrooms", roomKey(id))
             : db.saddAsync("openrooms", roomKey(id)),
+        remove
+            ? db.persistAsync(roomKey(id))
+            : db.expireAsync(
+                  roomKey(id),
+                  process.env.EXPIRE_ROOMS || 86400 // 1 day
+              ),
         db.setAsync("rooms:lastmodified", new Date().toUTCString())
     ]);
 }
@@ -55,6 +61,10 @@ exports.delVal = function (id, prop) {
 // Delete
 exports.delete = function (id) {
     return Promise.all([db.delAsync(roomKey(id)), trackOpenRooms(id, true)]);
+};
+
+exports.untrack = function (id) {
+    return trackOpenRooms(id, true);
 };
 
 // Open room
