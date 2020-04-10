@@ -68,7 +68,7 @@ function main(server) {
         if (channel === "deleteroom")
             Array.from(wss.clients).forEach((client) => {
                 if (client.roomId === roomId) {
-                    client.send(messageSchemas("kick", "owner closed room"));
+                    client.send(messageSchemas("kick", "room was closed"));
                     return client.terminate();
                 }
             });
