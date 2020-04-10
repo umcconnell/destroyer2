@@ -1,6 +1,7 @@
 let root = require("app-root-path");
 
 let db = require(`${root}/db/db`);
+let { pub } = require(`${root}/db/pubsub`);
 let { key } = require(`${root}/helpers/helpers`);
 let { chunk, zipObj, toBool } = require(`${root}/helpers/utils`);
 
@@ -60,6 +61,7 @@ exports.delVal = function (id, prop) {
 
 // Delete
 exports.delete = function (id) {
+    pub.publish("deleteroom", id);
     return Promise.all([db.delAsync(roomKey(id)), trackOpenRooms(id, true)]);
 };
 

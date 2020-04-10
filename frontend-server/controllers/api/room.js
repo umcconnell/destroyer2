@@ -2,7 +2,6 @@ let root = require("app-root-path");
 let { uuid } = require(`${root}/helpers/helpers`);
 
 let Rooms = require(`${root}/models/rooms`);
-let { pub } = require(`${root}/db/pubsub`);
 let { roomSchema } = require(`${root}/models/schemas`);
 
 exports.openRooms = async function (req, res, errorHandler) {
@@ -68,7 +67,6 @@ exports.deleteRoom = async function (req, res, errorHandler) {
             });
         } else {
             await Rooms.delete(roomId);
-            pub.publish("deleteroom", roomId);
 
             res.status(200).json({
                 message: "successfully deleted room"
