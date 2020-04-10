@@ -106,12 +106,24 @@ exports.openRooms = function () {
             "GET",
             "*->owner"
         )
-        .then((values) =>
-            chunk(values, 3).map((group) => {
-                group[0] = group[0].substring(5);
-                return zipObj(["id", "name", "owner"], group);
-            })
-        );
+        .then((values) => {
+            const chunks = chunk(values, 3);
+
+            let result = [];
+
+            for (let [id, name, owner] of chunks) {
+                id = id.substring(5);
+                // Case: room expired
+                if (owner === null && name === null) {
+                    exports.delete(id);
+                } else {
+                    result.push(
+                        zipObj(["id", "name", "owner"], [id, name, owner])
+                    );
+                }
+            }
+            return result;
+        });
 };
 
 exports.roomsLastModified = function () {
