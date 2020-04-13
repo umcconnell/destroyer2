@@ -2,6 +2,8 @@ let WebSocket = require("ws");
 let root = require("app-root-path");
 let logger = require(`${root}/helpers/logger`);
 
+let Rooms = require(`${root}/models/rooms`);
+
 let { verifyConnection } = require("./controllers/verifyConnection");
 let {
     setupConnection,
@@ -59,6 +61,7 @@ function main(server) {
         return setupConnection(ws, user, roomId, wss, ROOMS);
     });
 
+    // Cleanup stuff
     const interval = setInterval(function ping() {
         Array.from(wss.clients).forEach((ws) => {
             if (ws.isAlive === false) return ws.terminate();
@@ -67,6 +70,12 @@ function main(server) {
             ws.ping(noop);
         });
     }, 30000);
+
+    if (process.env.CLEANUP_INTERVAL) {
+        const cleanup_interval = setInterval(() => {
+            Rooms.openRooms();
+        }, process.env.CLEANUP_INTERVAL * 1000 || 60000);
+    }
 
     sub.on("message", function (channel, roomId) {
         if (channel === "deleteroom") closeRoom(null, null, roomId, wss, null);
