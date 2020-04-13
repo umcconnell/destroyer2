@@ -22,7 +22,7 @@ function handleMessage(type) {
 }
 
 function onmessage(msg, ws, wss, room) {
-    logger.debug(`recieved: ${msg}`);
+    logger.debug(`received: ${msg}`);
 
     try {
         msg = JSON.parse(msg);
