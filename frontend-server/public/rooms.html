@@ -81,31 +81,36 @@
                 });
             }
 
-            function getOpenRooms(cached) {
-                openRooms(cached ? lastmodifiedUser : false)
-                    .then(({ rooms, lastmodified }) => {
-                        lastmodifiedUser = lastmodified;
-                        displayRooms(rooms);
-                    })
-                    .catch((err) => showSnackbar("#error", err));
+            async function getOpenRooms(cached) {
+                try {
+                    let { rooms, lastmodified } = await openRooms(
+                        cached ? lastmodifiedUser : false
+                    );
+
+                    lastmodifiedUser = lastmodified;
+                    displayRooms(rooms);
+                } catch (err) {
+                    showSnackbar("#error", err.message);
+                }
             }
 
-            function removeRoom(e) {
+            async function removeRoom(e) {
                 e.stopPropagation();
                 e.preventDefault();
                 let roomId = this.dataset.roomId;
 
-                deleteRoom(sessionStorage.user, roomId)
-                    .then(() => {
-                        let newRooms = myRooms.filter((id) => id !== roomId);
-                        sessionStorage.rooms = JSON.stringify(newRooms);
-                        myRooms = newRooms;
-                    })
-                    .then(() => getOpenRooms(false))
-                    .then(() =>
-                        showSnackbar("#success", "Successfully deleted room")
-                    )
-                    .catch((err) => showSnackbar("#error", err));
+                try {
+                    await deleteRoom(sessionStorage.user, roomId);
+
+                    let newRooms = myRooms.filter((id) => id !== roomId);
+                    sessionStorage.rooms = JSON.stringify(newRooms);
+                    myRooms = newRooms;
+
+                    getOpenRooms(false);
+                    showSnackbar("#success", "Successfully deleted room");
+                } catch (err) {
+                    showSnackbar("#error", err.message);
+                }
             }
 
             // Initial fetch
