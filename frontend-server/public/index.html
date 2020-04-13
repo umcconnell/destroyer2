@@ -52,29 +52,32 @@
             start.insertAdjacentHTML("beforeend", loginIcon);
 
             // Helper
-            function displayError(err) {
+            async function displayError(err) {
                 userName.classList.add("error", "shake");
-                wait(1000)
-                    .then(() => userName.classList.remove("error", "shake"))
-                    .then(() => userName.focus());
+                await wait(1000);
+
+                userName.classList.remove("error", "shake");
+                userName.focus();
                 showSnackbar("#error", err, 3500);
             }
 
             // Main
-            function login() {
+            async function login() {
                 if (!userName.validity.valid || userName.value === "") {
                     return displayError(
                         "Username is required and may only be 20 characters long"
                     );
                 }
 
-                return loginAction(userName.value)
-                    .then((resp) => {
-                        // Save user info
-                        sessionStorage.user = resp.token;
-                        redirect("./rooms.html");
-                    })
-                    .catch((err) => showSnackbar("#error", err, 3500));
+                try {
+                    let resp = await loginAction(userName.value);
+
+                    // Save user info
+                    sessionStorage.user = resp.token;
+                    redirect("./rooms.html");
+                } catch (err) {
+                    showSnackbar("#error", err.message, 3500);
+                }
             }
 
             // EventListeners
