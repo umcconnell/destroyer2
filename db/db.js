@@ -9,11 +9,15 @@ let client = redis.createClient({
     url: process.env.REDIS_URL
 });
 
+if (process.env.AGGRESSIVE_CLEANUP) {
+    client.config("set", ["notify-keyspace-events", "Ex"]);
+}
+
 if (process.env.NODE_ENV !== "production") {
     client
         .monitorAsync()
-        .then(res => logger.info("Entering monitoring mode"))
-        .catch(err => logger.error("Error while entering monitoring mode"));
+        .then((res) => logger.info("Entering monitoring mode"))
+        .catch((err) => logger.error("Error while entering monitoring mode"));
 
     client.on("monitor", (time, args) =>
         logger.info(time + ": " + args.join(" "))

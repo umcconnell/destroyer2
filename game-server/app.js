@@ -7,9 +7,9 @@ let {
     setupConnection,
     addUserToRoom
 } = require("./controllers/setupConnection");
+let { closeRoom } = require("./controllers/closeRoom");
 
 let { noop, abortHandshake } = require(`${root}/helpers/websocket`);
-let { messageSchemas } = require(`${root}/models/schemas`);
 let { sub } = require(`${root}/db/pubsub`);
 
 // Convenient wrapper
@@ -19,6 +19,10 @@ WebSocket.prototype.send = function (msg) {
 };
 
 sub.subscribe("deleteroom");
+// Subscribe to expired rooms
+if (process.env.AGGRESSIVE_CLEANUP) {
+    sub.psubscribe("__keyevent@*__:expired");
+}
 
 function main(server) {
     let ROOMS = {};
@@ -65,14 +69,16 @@ function main(server) {
     }, 30000);
 
     sub.on("message", function (channel, roomId) {
-        if (channel === "deleteroom")
-            Array.from(wss.clients).forEach((client) => {
-                if (client.roomId === roomId) {
-                    client.send(messageSchemas("kick", "room was closed"));
-                    return client.terminate();
-                }
-            });
+        if (channel === "deleteroom") closeRoom(null, null, roomId, wss, null);
     });
+
+    if (process.env.AGGRESSIVE_CLEANUP) {
+        sub.on("pmessage", function (pattern, channel, roomId) {
+            if (pattern === "__keyevent@*__:expired")
+                //                    remove room:* prefix
+                closeRoom(null, null, roomId.substr(5), wss, null);
+        });
+    }
 
     return wss;
 }
