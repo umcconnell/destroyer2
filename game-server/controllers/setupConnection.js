@@ -7,8 +7,8 @@ let { roomInfo } = require(`${root}/models/schemas`);
 
 let { heartbeat } = require(`${root}/helpers/websocket`);
 
-let onmessage = require("./onmessage");
-let onclose = require("./onclose");
+let onmessage = require("./actions/onmessage");
+let onclose = require("./actions/onclose");
 let sendTurn = require("./actions/turn");
 let join = require("./actions/join");
 

@@ -9,8 +9,8 @@ let {
 } = require(`${root}/helpers/stringSanitization`);
 
 let types = {
-    fire: require("./actions/fire"),
-    place: require("./actions/place"),
+    fire: require("./fire"),
+    place: require("./place"),
     default: () => ""
 };
 
