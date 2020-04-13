@@ -1,30 +1,29 @@
-const wait = ms => new Promise(res => setTimeout(res, ms));
+const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 let snackbarCount = 0;
 
-function showSnackbar(snackbar, text, duration = 2000) {
+async function showSnackbar(snackbar, text, duration = 2000) {
     if (!(snackbar instanceof Element))
         snackbar = document.querySelector(snackbar);
 
     let clonedSnackbar = snackbar.cloneNode(true);
     snackbar.insertAdjacentElement("afterend", clonedSnackbar);
-    snackbarCount++
+    snackbarCount++;
 
     let content = [...clonedSnackbar.childNodes].find(
-        n => n.classList && n.classList.contains("snackbar__content")
+        (n) => n.classList && n.classList.contains("snackbar__content")
     );
 
     content.innerHTML = text;
     clonedSnackbar.style.zIndex = 100 + snackbarCount;
     clonedSnackbar.classList.add("show");
 
-    return wait(duration).then(() => {
-        clonedSnackbar.classList.remove("show");
-        return wait(250).then(
-            () =>
-                clonedSnackbar.parentElement.removeChild(clonedSnackbar) &&
-                (content.innerHTML = "")
-        );
-    });
+    await wait(duration);
+    clonedSnackbar.classList.remove("show");
+    await wait(250);
+    return (
+        clonedSnackbar.parentElement.removeChild(clonedSnackbar) &&
+        (content.innerHTML = "")
+    );
 }
 
 function showOverlay(overlay, text) {
