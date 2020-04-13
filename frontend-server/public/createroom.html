@@ -66,53 +66,57 @@
             });
 
             // Helper
-            function displayError(err) {
+            async function displayError(err) {
                 roomName.classList.add("error", "shake");
-                wait(1000)
-                    .then(() => roomName.classList.remove("error", "shake"))
-                    .then(() => roomName.focus());
+                await wait(1000);
+                roomName.classList.remove("error", "shake");
+                roomName.focus();
                 showSnackbar("#error", err, 3500);
             }
 
             // Main
-            function createRoom() {
+            async function createRoom() {
                 if (!roomName.validity.valid || roomName.value === "") {
                     return displayError(
                         "Room name is required and may only be 20 characters long"
                     );
                 }
 
-                return newRoom(user, roomName.value, secretChb.checked)
-                    .then((resp) => {
-                        // Save room info
-                        if (sessionStorage.rooms) {
-                            sessionStorage.rooms = JSON.stringify(
-                                JSON.parse(sessionStorage.rooms).concat([
-                                    resp.roomId
-                                ])
-                            );
-                        } else {
-                            sessionStorage.rooms = JSON.stringify([
+                try {
+                    let resp = await newRoom(
+                        user,
+                        roomName.value,
+                        secretChb.checked
+                    );
+
+                    // Save room info
+                    if (sessionStorage.rooms) {
+                        sessionStorage.rooms = JSON.stringify(
+                            JSON.parse(sessionStorage.rooms).concat([
                                 resp.roomId
-                            ]);
-                        }
+                            ])
+                        );
+                    } else {
+                        sessionStorage.rooms = JSON.stringify([resp.roomId]);
+                    }
 
-                        let roomURL = `${window.location.origin}/game.html?r=${resp.roomId}`;
-                        createBtn.disabled = true;
+                    let roomURL = `${window.location.origin}/game.html?r=${resp.roomId}`;
+                    createBtn.disabled = true;
 
-                        if (secretChb.checked) {
-                            createBtn.insertAdjacentHTML(
-                                "beforebegin",
-                                `<p>
+                    if (secretChb.checked) {
+                        createBtn.insertAdjacentHTML(
+                            "beforebegin",
+                            `<p>
                                     Use this URL to join the room and invite friends:<br>
                                     <a href="${roomURL}">${roomURL}</a>
                                 </p>`
-                            );
-                        } else {
-                            document.location.href = roomURL;
-                        }
-                    })
-                    .catch(displayError);
+                        );
+                    } else {
+                        document.location.href = roomURL;
+                    }
+                } catch (err) {
+                    displayError(err.message);
+                }
             }
 
             // EventListeners
