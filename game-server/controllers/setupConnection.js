@@ -23,7 +23,10 @@ exports.addUserToRoom = async function addUserToRoom(userId, roomId) {
             throw new ServerError(404, "room not found");
         }
 
-        let players = room.players.split(",").filter((el) => !!el);
+        let players = room.players
+            .split(",")
+            .filter((el) => !!el)
+            .filter((el) => el !== userId);
 
         if (players.length >= 2) throw new ServerError(403, "room full");
         else if (players.includes(userId)) {
