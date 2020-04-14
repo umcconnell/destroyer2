@@ -2,8 +2,7 @@ let root = require("app-root-path");
 let logger = require(`${root}/helpers/logger`);
 
 let Rooms = require(`${root}/models/rooms`);
-let { ServerError } = require(`${root}/models/schemas`);
-let { roomInfo } = require(`${root}/models/schemas`);
+let { roomInfo, ServerError } = require(`${root}/models/schemas`);
 
 let { heartbeat } = require(`${root}/helpers/websocket`);
 
