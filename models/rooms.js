@@ -32,7 +32,7 @@ exports.exists = function (id) {
 exports.create = exports.new = function (id, room) {
     return Promise.all([
         db.hmsetAsync(roomKey(id), room).then(toBool),
-        toBool(room.secret) ? "" : trackOpenRooms(id)
+        exports.open(id)
     ]);
 };
 
@@ -78,7 +78,13 @@ exports.open = function (id) {
             .then(toBool)
             .then((secret) => {
                 if (!secret) return trackOpenRooms(id);
-                else return true;
+                else {
+                    // Also expire secret rooms
+                    return db.expireAsync(
+                        roomKey(id),
+                        process.env.EXPIRE_ROOMS || 86400 // 1 day
+                    );
+                }
             })
     ]).then(() => true);
 };
