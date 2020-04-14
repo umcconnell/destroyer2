@@ -29,7 +29,11 @@ if (process.env.AGGRESSIVE_CLEANUP) {
 function main(server) {
     let ROOMS = {};
 
-    let wss = new WebSocket.Server({ noServer: true, path: "/game" });
+    let wss = new WebSocket.Server({
+        noServer: true,
+        path: "/game",
+        clientTracking: true
+    });
 
     server.on("upgrade", async function upgrade(req, socket, head) {
         let user, roomId;
