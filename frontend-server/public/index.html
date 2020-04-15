@@ -74,7 +74,12 @@
 
                     // Save user info
                     sessionStorage.user = resp.token;
-                    redirect("./rooms.html");
+                    let redirectAfterLogin = sessionStorage.redirectAfterLogin;
+
+                    if (redirectAfterLogin) {
+                        sessionStorage.removeItem("redirectAfterLogin");
+                        redirect(`./game.html?r=${redirectAfterLogin}`);
+                    } else redirect("./rooms.html");
                 } catch (err) {
                     showSnackbar("#error", err.message, 3500);
                 }

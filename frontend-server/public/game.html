@@ -72,7 +72,7 @@
             <p>&lt;/&gt; with &hearts; by Ulysse McConnell</p>
         </footer>
         <script type="module">
-            import { wait } from "./javascripts/utils.js";
+            import { wait, redirect } from "./javascripts/utils.js";
             import dialogPolyfill from "./javascripts/dialog-polyfill.js";
             import { sea, dialog, snackbar } from "./javascripts/components.js";
             import { showSnackbar } from "./javascripts/overlay.js";
@@ -93,10 +93,19 @@
             /* ***** *\
              * Setup *
             \* ***** */
+            const room = (/r=([^&]*)/g.exec(location.search) || [])[1];
+            window.room = room;
+
             let main = document.getElementById("main"),
                 placeships = document.getElementById("placeships"),
                 setupBtn = document.getElementById("setup"),
                 placeRandomlyBtn = document.getElementById("placeRandomlyBtn");
+
+            // Log user in first
+            if (!sessionStorage.user) {
+                sessionStorage.setItem("redirectAfterLogin", room);
+                redirect("/index.html");
+            }
 
             main.insertAdjacentHTML(
                 "beforeend",
@@ -168,7 +177,7 @@
                 setupBtn.classList.add("success");
             });
         </script>
-        <script type="module">
+        <script type="module" defer="true">
             import {
                 sea,
                 snackbar,
@@ -194,7 +203,6 @@
                 let user = sessionStorage.user || "";
                 const location = window.location;
 
-                let room = (/r=([^&]*)/g.exec(location.search) || [])[1];
                 let host = location.host.replace(/:.*/, "");
                 let port = location.port;
                 let protocol = location.protocol.replace(":", "");
