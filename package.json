@@ -4,7 +4,9 @@
     "private": true,
     "scripts": {
         "start": "NODE_ENV=production node ./bin/www",
-        "debug": "NODE_ENV=development node ./bin/www"
+        "debug": "NODE_ENV=development node ./bin/www",
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
     },
     "_moduleAliases": {
         "@root": ".",
