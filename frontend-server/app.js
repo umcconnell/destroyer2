@@ -12,7 +12,7 @@ let app = express();
 app.use(morgan("dev", { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.use("/", controller);
 app.disable("x-powered-by");
