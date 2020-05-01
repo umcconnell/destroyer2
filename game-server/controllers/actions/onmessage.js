@@ -1,12 +1,11 @@
-let root = require("app-root-path");
-let logger = require(`${root}/helpers/logger`);
+let logger = require("@helpers/logger");
 
-let { pipe } = require(`${root}/helpers/utils`);
-let { rejectWs } = require(`${root}/helpers/websocket`);
+let { pipe } = require("@helpers/utils");
+let { rejectWs } = require("@helpers/websocket");
 let {
     cleanUTFString,
     sanitizeHTMLString
-} = require(`${root}/helpers/stringSanitization`);
+} = require("@helpers/stringSanitization");
 
 let types = {
     fire: require("./fire"),

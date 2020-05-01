@@ -1,9 +1,8 @@
-let root = require("app-root-path");
-let logger = require(`${root}/helpers/logger`);
+let logger = require("@helpers/logger");
 
-let Rooms = require(`${root}/models/rooms`);
-let { messageSchemas } = require(`${root}/models/schemas`);
-let { countShips } = require(`${root}/helpers/game`);
+let Rooms = require("@models/rooms");
+let { messageSchemas } = require("@models/schemas");
+let { countShips } = require("@helpers/game");
 
 async function seaAlreadyPlaced(ws, room, dbRoom, other, seas) {
     let mySea = dbRoom[`sea-${ws.userId}`],

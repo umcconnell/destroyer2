@@ -1,8 +1,7 @@
-let root = require("app-root-path");
-let logger = require(`${root}/helpers/logger`);
+let logger = require("@helpers/logger");
 
-let Rooms = require(`${root}/models/rooms`);
-let { ServerError, messageSchemas } = require(`${root}/models/schemas`);
+let Rooms = require("@models/rooms");
+let { ServerError, messageSchemas } = require("@models/schemas");
 
 async function closeWs(playerId, roomId) {
     let room = await Rooms.get(roomId);

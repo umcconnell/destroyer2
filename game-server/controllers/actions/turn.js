@@ -1,5 +1,4 @@
-let root = require("app-root-path");
-let { messageSchemas } = require(`${root}/models/schemas`);
+let { messageSchemas } = require("@models/schemas");
 
 module.exports = function (msg, ws, wss, room) {
     if (room.players.length == 2) {

@@ -1,11 +1,9 @@
-let root = require("app-root-path");
+let { findOccurrences, replaceAt } = require("@helpers/utils");
+let { toIndex } = require("@helpers/game");
+let logger = require("@helpers/logger");
 
-let { findOccurrences, replaceAt } = require(`${root}/helpers/utils`);
-let { toIndex } = require(`${root}/helpers/game`);
-let logger = require(`${root}/helpers/logger`);
-
-let Rooms = require(`${root}/models/rooms`);
-let { messageSchemas } = require(`${root}/models/schemas`);
+let Rooms = require("@models/rooms");
+let { messageSchemas } = require("@models/schemas");
 let gameOver = require("./gameOver");
 
 module.exports = async function (coords, ws, wss, room) {
