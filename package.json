@@ -6,6 +6,14 @@
         "start": "NODE_ENV=production node ./bin/www",
         "debug": "NODE_ENV=development node ./bin/www"
     },
+    "_moduleAliases": {
+        "@root": ".",
+        "@db": "db/",
+        "@helpers": "helpers/",
+        "@models": "models/",
+        "@frontend-server": "frontend-server/",
+        "@game-server": "game-server/"
+    },
     "dependencies": {
         "@hapi/joi": "^17.1.1",
         "bluebird": "^3.7.2",
