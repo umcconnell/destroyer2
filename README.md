@@ -1,6 +1,16 @@
-# Destroyer2
+<br/>
+<div id="logo" align="center">
+    <br />
+    <img src="docs/.vuepress/public/logo.svg" alt="Battleship2 Logo" width="300"/>
+    <h3>Battleship Game</h3>
+    <p>A real-time multiplayer battleship game powered by node and redis</p>
+</div>
 
-A real time multiplayer battleship game
+<div style='margin:0 auto;width:80%;box-shadow: 0 0 16px #ddd'>
+
+![Destroyer2](docs/.vuepress/public/screenshots/home.png)
+
+</div>
 
 ## Table of Contents
 
