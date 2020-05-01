@@ -1,6 +1,4 @@
-let root = require("app-root-path");
-
-let { verify } = require(`${root}/helpers/auth`);
+let { verify } = require("@helpers/auth");
 
 function reject(res) {
     res.status(401).json({ error: "unauthorized" });
