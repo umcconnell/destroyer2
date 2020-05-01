@@ -139,17 +139,18 @@ const sea = ({ id = false, classes = false }) =>
         </div>
     `;
 
-const dialog = ({ id = false, classes = false, content }) =>
+const modal = ({ id = false, classes = false, description, content }) =>
     html`
-        <dialog
+        <div
+            class="modal ${classes ? classes : ""}"
             ${id ? `id="${id}"` : ""}
-            class="dialog ${classes ? classes : ""}"
+            aria-label="${description}"
         >
-            <button class="dialog__close btn--none">&times</button>
-            <p class="dialog__content">
+            <div class="modal__content">
+                <button class="modal__close modal__close-icon">&times;</button>
                 ${content}
-            </p>
-        </dialog>
+            </div>
+        </div>
     `;
 
 const gameOverlay = ({ id = false, classes = false, content = "" }) =>
@@ -175,6 +176,6 @@ export {
     roomCardDelete,
     noRooms,
     sea,
-    dialog,
+    modal,
     gameOverlay
 };
