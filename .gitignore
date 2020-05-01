@@ -6,3 +6,5 @@ node_modules/
 
 /logs/*
 !/logs/.gitignore
+
+docs/.vuepress/dist
