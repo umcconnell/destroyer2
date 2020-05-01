@@ -1,10 +1,9 @@
-let root = require("app-root-path");
-let logger = require(`${root}/helpers/logger`);
+let logger = require("@helpers/logger");
 
-let Rooms = require(`${root}/models/rooms`);
-let { roomInfo, ServerError } = require(`${root}/models/schemas`);
+let Rooms = require("@models/rooms");
+let { roomInfo, ServerError } = require("@models/schemas");
 
-let { heartbeat } = require(`${root}/helpers/websocket`);
+let { heartbeat } = require("@helpers/websocket");
 
 let onmessage = require("./actions/onmessage");
 let onclose = require("./actions/onclose");

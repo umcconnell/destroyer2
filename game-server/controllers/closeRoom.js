@@ -1,8 +1,7 @@
-let root = require("app-root-path");
-let logger = require(`${root}/helpers/logger`);
+let logger = require("@helpers/logger");
 
-let Rooms = require(`${root}/models/rooms`);
-let { messageSchemas } = require(`${root}/models/schemas`);
+let Rooms = require("@models/rooms");
+let { messageSchemas } = require("@models/schemas");
 
 exports.closeRoom = async function (ws, user, roomId, wss, ROOMS) {
     for (let client of wss.clients) {

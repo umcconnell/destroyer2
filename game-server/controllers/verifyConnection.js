@@ -1,9 +1,8 @@
 let url = require("url");
-let root = require("app-root-path");
 
-let { verify } = require(`${root}/helpers/auth`);
+let { verify } = require("@helpers/auth");
 
-let { ServerError } = require(`${root}/models/schemas`);
+let { ServerError } = require("@models/schemas");
 
 exports.verifyConnection = async function verifyConnection(clients, req) {
     let { t: token, r: roomId } = url.parse(req.url, true).query;
