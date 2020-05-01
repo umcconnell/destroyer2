@@ -1,7 +1,6 @@
-let root = require("app-root-path");
 const redis = require("redis");
 const bluebird = require("bluebird");
-const logger = require(`${root}/helpers/logger`);
+const logger = require("@helpers/logger");
 bluebird.promisifyAll(redis);
 
 let client = redis.createClient({
