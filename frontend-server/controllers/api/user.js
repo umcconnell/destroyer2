@@ -1,7 +1,5 @@
-let root = require("app-root-path");
-
 let jwt = require("jsonwebtoken");
-let { uuid } = require(`${root}/helpers/helpers`);
+let { uuid } = require("@helpers/helpers");
 const JWT_KEY = process.env.JWT_KEY;
 
 if (!JWT_KEY) logger.error("NO JSON WEB TOKEN KEY SPECIFIED!");

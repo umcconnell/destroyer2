@@ -1,20 +1,14 @@
 let express = require("express");
 let router = express.Router();
-let root = require("app-root-path");
 
-let validate = require(`${root}/frontend-server/middlewares/validator`);
-let sanitize = require(`${root}/frontend-server/middlewares/sanitizer`);
-let auth = require(`${root}/frontend-server/middlewares/auth`);
+let validate = require("@frontend-server/middlewares/validator");
+let sanitize = require("@frontend-server/middlewares/sanitizer");
+let auth = require("@frontend-server/middlewares/auth");
 
 let { openRooms, newRoom, deleteRoom } = require("./room");
 let { login } = require("./user");
 
-let {
-    userName,
-    roomName,
-    roomSecret,
-    roomId
-} = require(`${root}/models/validation`);
+let { userName, roomName, roomSecret, roomId } = require("@models/validation");
 
 // API show available endpoints.
 router.get("/", function (req, res) {

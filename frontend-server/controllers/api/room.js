@@ -1,8 +1,7 @@
-let root = require("app-root-path");
-let { uuid } = require(`${root}/helpers/helpers`);
+let { uuid } = require("@helpers/helpers");
 
-let Rooms = require(`${root}/models/rooms`);
-let { roomSchema } = require(`${root}/models/schemas`);
+let Rooms = require("@models/rooms");
+let { roomSchema } = require("@models/schemas");
 
 exports.openRooms = async function (req, res, errorHandler) {
     try {
