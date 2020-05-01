@@ -5,7 +5,7 @@
         <title>Destroyer2</title>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="stylesheet" href="./stylesheets/style.css" />
-        <link rel="stylesheet" href="./stylesheets/dialog.css" />
+        <link rel="stylesheet" href="./stylesheets/modal.css" />
         <link rel="stylesheet" href="./stylesheets/game.css" />
         <link rel="stylesheet" href="./stylesheets/loader.css" />
     </head>
@@ -73,8 +73,8 @@
         </footer>
         <script type="module">
             import { wait, redirect } from "./javascripts/utils.js";
-            import dialogPolyfill from "./javascripts/dialog-polyfill.js";
-            import { sea, dialog, snackbar } from "./javascripts/components.js";
+            import Modal from "./javascripts/modal.js";
+            import { sea, modal, snackbar } from "./javascripts/components.js";
             import { showSnackbar } from "./javascripts/overlay.js";
 
             import { initSea } from "./javascripts/sea.js";
@@ -135,23 +135,21 @@
             if (!localStorage.alreadyPlayed) {
                 document.body.insertAdjacentHTML(
                     "beforeend",
-                    dialog({
+                    modal({
                         id: "instructions",
-                        content: `Select the ship type you want to place
+                        description: "game instructions",
+                        content: `<h2>Instructions</h2>
+                            <p>Select the ship type you want to place
                             and place it on the sea by selecting the fields on
                             which you want to place it. Ships can only be placed
                             horizontally or vertically. Click on the "x" next
-                            to a ship type to delete your selection.
-                            <div style="text-align: right">
-                                <button class="dialog__close btn">Got It!</button>
-                            </div>`
+                            to a ship type to delete your selection.</p>`
                     })
                 );
 
-                let instructions = document.getElementById("instructions");
-                dialogPolyfill.registerDialog(instructions);
+                let instructions = new Modal("#instructions");
                 localStorage.alreadyPlayed = "true";
-                wait(1500).then(instructions.showModal);
+                wait(1500).then(() => instructions.open());
             }
 
             initShippicker("#shippicker", () => {
