@@ -2,9 +2,8 @@ require("dotenv").config();
 
 let express = require("express");
 let path = require("path");
-let root = require("app-root-path");
 let morgan = require("morgan");
-let winston = require(`${root}/helpers/logger`);
+let winston = require("@helpers/logger");
 
 let controller = require("./controllers/index");
 
