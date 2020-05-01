@@ -3,9 +3,8 @@
 /**
  * Module dependencies.
  */
-
-let root = require("app-root-path");
-var app = require(`${root}/frontend-server/app`);
+require("module-alias/register");
+var app = require("@frontend-server/app");
 var http = require("http");
 
 /**
@@ -20,7 +19,7 @@ app.set("port", port);
  */
 
 var server = http.createServer(app);
-let gameWSS = require(`${root}/game-server/app`)(server);
+let gameWSS = require("@game-server/app")(server);
 
 /**
  * Listen on provided port, on all network interfaces.
