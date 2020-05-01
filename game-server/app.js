@@ -1,8 +1,7 @@
 let WebSocket = require("ws");
-let root = require("app-root-path");
-let logger = require(`${root}/helpers/logger`);
+let logger = require("@helpers/logger");
 
-let Rooms = require(`${root}/models/rooms`);
+let Rooms = require("@models/rooms");
 
 let { verifyConnection } = require("./controllers/verifyConnection");
 let {
@@ -11,8 +10,8 @@ let {
 } = require("./controllers/setupConnection");
 let { closeRoom } = require("./controllers/closeRoom");
 
-let { noop, abortHandshake } = require(`${root}/helpers/websocket`);
-let { sub } = require(`${root}/db/pubsub`);
+let { noop, abortHandshake } = require("@helpers/websocket");
+let { sub } = require("@db/pubsub");
 
 // Convenient wrapper
 WebSocket.prototype._send = WebSocket.prototype.send;
