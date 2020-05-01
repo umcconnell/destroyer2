@@ -1,5 +1,4 @@
-let root = require("app-root-path");
-let logger = require(`${root}/helpers/logger`);
+let logger = require("@helpers/logger");
 
 let jwt = require("jsonwebtoken");
 const JWT_KEY = process.env.JWT_KEY;
