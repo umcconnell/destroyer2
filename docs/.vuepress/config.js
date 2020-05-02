@@ -10,6 +10,7 @@ module.exports = {
     nav: [
       { text: 'Guide', link: '/guide/' }
     ],
+    smoothScroll: true,
 
     editLinks: true,
     editLinkText: 'Help us improve this page!',
