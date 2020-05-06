@@ -16,7 +16,12 @@ module.exports = {
                 {
                     title: "Guide",
                     collapsable: false,
-                    children: ["", "architecture", "field-representation"]
+                    children: [
+                        "",
+                        "architecture",
+                        "field-representation",
+                        "api"
+                    ]
                 }
             ]
         },
