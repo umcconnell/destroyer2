@@ -1,17 +1,35 @@
 ---
 home: true
 heroText: Destroyer2
-tagline: A node real-time multiplayer battleship game
+tagline: A real-time multiplayer battleship game
 actionText: Get Started →
 actionLink: /guide/
 features:
     - title: Fast
-      details: Enjoy great performance with Redis and Websockets.
+      details: Enjoy great performance with Node.js™, Redis™ and WebSockets.
     - title: Simple
-      details: Simple node server setup and deployment. Check the deployment section in the guide!
+      details: Simple server setup and deployment. Check the deployment section in the guide!
     - title: Powerful
       details: Automatic room cleanup, network loss resilience, and more!
-footer: |
-    MIT Licensed | Copyright © 2020 Ulysse McConnell and contributors |
-    Powered by VuePress
 ---
+
+<footer class="footer">
+<a
+  href="https://github.com/umcconnell/destroyer2/blob/master/LICENSE.md"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  MIT License
+</a>
+| Copyright © 2020 Ulysse McConnell and contributors
+<p>
+  Powered by
+  <a
+    href="https://vuepress.vuejs.org/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    VuePress
+  </a>
+</p>
+</footer>
