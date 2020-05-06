@@ -8,7 +8,7 @@ A quick overview of the available API endpoints:
 | HTTP Method | URL             | Description                        | Parameters                                  |
 | ----------- | --------------- | ---------------------------------- | ------------------------------------------- |
 | GET         | /api/openrooms  | Get an array of open rooms         | none                                        |
-| POST        | /api/login      | Log a user in and generates a uuid | userName                                    |
+| POST        | /api/login      | Log a user in and generate a uuid  | userName                                    |
 | POST        | /api/newroom    | Create a new (private) room        | userId, userName, roomName, [private=false] |
 | DELETE      | /api/deleteroom | Delete a room and kick out players | userId, userName, roomName                  |
 
