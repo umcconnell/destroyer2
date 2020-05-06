@@ -21,7 +21,8 @@ module.exports = {
                         "architecture",
                         "field-representation",
                         "api",
-                        "game-events"
+                        "game-events",
+                        "customizing"
                     ]
                 }
             ]
