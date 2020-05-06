@@ -141,9 +141,9 @@ Indicates user has successfully placed his ships.
 ## Already Placed
 
 Indicates the user has already placed his ships. Emitted when at least one
-player had placed their ships (and possibly already played), one or two had left
-and a player rejoined. The UI should hide the ship-placement interface and
-display the game interface.
+player has placed his or her ships (and possibly already played), one or two
+have left, and a player rejoined. The UI should hide the ship-placement
+interface and display the game interface.
 
 -   **Type:** <br>
     `alreadyPlaced`
@@ -169,7 +169,7 @@ display the game interface.
 
 ## Count
 
-Indicates how many ships the user and the opponent have left respectively.
+Indicates how many ships the user and the opponent have left, respectively.
 Sent if two players had placed their ships (and possibly already played), one or
 two left, and a player rejoined. Otherwise the UI is expected to keep count
 of the [sunk](#sunk) events recieved and to display a counter per player.
@@ -180,7 +180,7 @@ of the [sunk](#sunk) events recieved and to display a counter per player.
     `<JSON string: {me: <Number>, enemy: <Number>}>`
 
     The message JSON object has the properties `me` and `enemy` indicating how
-    many ships the users have remaining respectively.
+    many ships the users have remaining, respectively.
 
 -   **Emitted By:** <br>
     `server`
@@ -206,7 +206,7 @@ Indicates that the room is ready and the client should show the game interface.
     `<JSON string: {msg: <String>, enemy: <String>}>`
 
     The message JSON object has the property `msg` representing a status
-    message that can be displayed to the user and the property `enemy`
+    message that can be displayed to the user, and the property `enemy`
     indicating the opponent's/enemy's name for the UI to personalize the game.
 
 -   **Emitted By:** <br>
@@ -254,15 +254,15 @@ Fire at enemy's game field. Out-of-turn fires are ignored.
     `user`
 -   **Success Response:**
 
-    -   [hit](#hit) with you = false
+    -   [hit](#hit) with `you = false`
 
     OR
 
-    -   [sunk](#sunk) with you = false
+    -   [sunk](#sunk) with `you = false`
 
     OR
 
-    -   [miss](#miss) with you = false
+    -   [miss](#miss) with `you = false`
 
 -   **Sample Message:**
 
@@ -381,7 +381,7 @@ home.
 
 ## Reset
 
-Emitted when two players were playing, one player left and a different player
+Emitted when two players were playing, one player left, and a different player
 joined (only emitted to waiting player). The UI should notify the waiting user
 and reload the page.
 
@@ -405,7 +405,7 @@ and reload the page.
 Some events (hit, sunk, miss) use a hit object to transmit information about a
 user's shot/fire.
 
-It has following properties:
+The hit object has following properties:
 
 -   `you`: `<Boolean>` - Indicates whether one of your ships was hit/sunk/missed
     (true if enemy fired, false if you fired)
