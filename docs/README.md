@@ -5,13 +5,13 @@ tagline: A node real-time multiplayer battleship game
 actionText: Get Started →
 actionLink: /guide/
 features:
-- title: Simplicity First
-  details: Minimal setup with markdown-centered project structure helps you focus on writing.
-- title: Vue-Powered
-  details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
-- title: Performant
-  details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
+    - title: Fast
+      details: Enjoy great performance with Redis and Websockets.
+    - title: Simple
+      details: Simple node server setup and deployment. Check the deployment section in the guide!
+    - title: Powerful
+      details: Automatic room cleanup, network loss resilience, and more!
 footer: |
-  MIT Licensed | Copyright © 2020 Ulysse McConnell and contributors |
-  Powered by VuePress
+    MIT Licensed | Copyright © 2020 Ulysse McConnell and contributors |
+    Powered by VuePress
 ---
