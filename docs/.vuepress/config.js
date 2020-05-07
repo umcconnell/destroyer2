@@ -3,7 +3,15 @@ module.exports = {
     description: "A node real-time multiplayer battleship game",
     base: process.env.NODE_ENV === "development" ? "" : "/destroyer2/",
     evergreen: false,
-    plugins: ["@vuepress/active-header-links", "@vuepress/back-to-top"],
+    plugins: {
+        "@vuepress/active-header-links": true,
+        "@vuepress/back-to-top": true,
+        "@vuepress/medium-zoom": {
+            options: {
+                margin: 16
+            }
+        }
+    },
     themeConfig: {
         repo: "umcconnell/destroyer2",
         docsDir: "docs",
