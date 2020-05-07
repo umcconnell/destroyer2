@@ -1,6 +1,7 @@
 ---
 home: true
-heroText: Destroyer2
+heroImage: logo.svg
+heroText: 
 tagline: A real-time multiplayer battleship game
 actionText: Get Started →
 actionLink: /guide/
