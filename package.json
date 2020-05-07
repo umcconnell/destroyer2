@@ -1,5 +1,6 @@
 {
     "name": "destroyer2",
+    "description": "real-time multiplayer battleship game",
     "version": "3.1.10",
     "private": true,
     "scripts": {
