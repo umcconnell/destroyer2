@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: logo.svg
-heroText: 
+heroText:
 tagline: A real-time multiplayer battleship game
 actionText: Get Started →
 actionLink: /guide/

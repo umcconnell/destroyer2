@@ -3,7 +3,7 @@
     <br />
     <img src="docs/.vuepress/public/logo.svg" alt="Battleship2 Logo" width="300"/>
     <h3>Battleship Game</h3>
-    <p>A real-time multiplayer battleship game powered by node and redis</p>
+    <p>A real-time multiplayer battleship game</p>
 </div>
 
 <div style='margin:0 auto;width:80%;box-shadow: 0 0 16px #ddd'>
@@ -35,9 +35,9 @@ how to deploy the project on a live system.
 
 ### Prerequisites
 
-You will need redis and node with npm installed on your machine to get
+You will need Redis and Node.js with npm installed on your machine to get
 started (visit https://redis.io/download and https://nodejs.org to
-install redis and node with npm).
+install Redis and Node.js with npm).
 
 ### Installing
 
@@ -56,8 +56,8 @@ And install npm dependencies
 npm install
 ```
 
-Finally, start the redis server.
-You may optionally specify a redis configuration file as argument to
+Finally, start the Redis server.
+You may optionally specify a Redis configuration file as argument to
 `redis-server`
 
 ```bash
@@ -77,8 +77,8 @@ Navigate to http://localhost:8080 to get started!
 ### Customizing
 
 You can customize the project by adding a `.env` file in the root of the project
-and a redis configuration file in the `db/` folder. Make sure to specify the
-redis configuration file when starting the redis server.
+and a Redis configuration file in the `db/` folder. Make sure to specify the
+Redis configuration file when starting the Redis server.
 
 See the [docs](/docs/index.md#customizing) for more information.
 
@@ -95,11 +95,11 @@ API endpoints, game events and customization.
 
 ## Built With
 
--   [node](https://nodejs.org/) - The server backend
+-   [Node.js](https://nodejs.org/) - The server backend
 -   [express](https://expressjs.com/) - The web server
--   [redis](https://redis.io/) - The database
--   [node_redis](https://github.com/NodeRedis/node_redis) - The redis
-    client for node
+-   [Redis](https://redis.io/) - The database
+-   [node_redis](https://github.com/NodeRedis/node_redis) - The Redis
+    client for Node.js
 -   [ws](https://github.com/websockets/ws) - The WebSocket server
 
 ## Contributing
@@ -127,11 +127,11 @@ This project is licensed under the MIT License - see the
 
 ## Acknowledgments
 
--   [node](https://nodejs.org/) - The server backend
+-   [Node.js](https://nodejs.org/) - The server backend
 -   [express](https://expressjs.com/) - The web server
--   [redis](https://redis.io/) - The database
--   [node_redis](https://github.com/NodeRedis/node_redis) - The redis client for
-    node
+-   [Redis](https://redis.io/) - The database
+-   [node_redis](https://github.com/NodeRedis/node_redis) - The Redis client for
+    Node.js
 -   [ws](https://github.com/websockets/ws) - The WebSocket server
 -   [winston](https://github.com/winstonjs/winston) - The logging library
 -   [feather](https://github.com/feathericons/feather) - The icons

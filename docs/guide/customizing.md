@@ -10,13 +10,13 @@ You can use following values in the `.env` file:
 -   `PORT` - The port to serve the project on
 -   `HTTP_SERVER_ERROR` - The error code to print out when encountering a
     server error
--   `REDIS_URL` - The redis url the server should connect to. If left empty, the
-    server tries connecting to the default url 127.0.0.1:6379
--   `DB_PASS` - The redis database password
+-   `REDIS_URL` - The Redis database url the server should connect to. If left
+    empty, the server tries connecting to the default url 127.0.0.1:6379
+-   `DB_PASS` - The Redis database password
 
 ::: tip
 When using a password, you must add it to the `.env` file **and** to
-the redis configuration file.
+the Redis configuration file.
 :::
 
 ## Logging
