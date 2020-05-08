@@ -41,8 +41,10 @@ Return json data about open / available rooms.
 
 -   **Data Params**
 
-    `if-modified-since=[UTC String]` <br>
-    (see: [mdn.io/If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since))
+    **Optional:**
+
+    -   `if-modified-since=[UTC String]` <br>
+        (see: [mdn.io/If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since))
 
 -   **Success Response:**
 
@@ -71,11 +73,13 @@ Return json data about open / available rooms.
 
 ## Login
 
-Log a user in and return a uuid.
+Log a user in and return a <abbr title="JSON Web Token">JWT</abbr> containing
+the username und uuid. The <abbr title="JSON Web Token">JWT</abbr> is
+**valid for one day**.
 
 -   **URL**
 
-    /api/login
+    `/api/login`
 
 -   **Method:**
 
@@ -89,12 +93,12 @@ Log a user in and return a uuid.
 
     **Required:**
 
-    `userName=<String maxlength 20>`
+    -   `userName=<String maxlength 20>`
 
 -   **Success Response:**
 
     -   **Code:** 200 <br>
-        **Content:** `{ userId : <UUID>, userName : <String> }`
+        **Content:** `{ token : <JWT token string> }`
 
 -   **Error Response:**
 
@@ -116,15 +120,10 @@ Log a user in and return a uuid.
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            userName: USERNAME
-        }).then(console.log)
-    });
+            userName: <Username>
+        })
+    }).then(console.log);
     ```
-
--   **Notes**: As HTML special characters (`& < > " ' /`) are escaped, this
-    causes a username with 20 characters or less and one or more special
-    characters to be potentially longer than 20 characters, causing a validation
-    error.
 
 ## New Room
 
