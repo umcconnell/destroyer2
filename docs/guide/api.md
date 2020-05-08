@@ -127,11 +127,12 @@ the username und uuid. The <abbr title="JSON Web Token">JWT</abbr> is
 
 ## New Room
 
-Create a new room and return a uuid for the room.
+Create a new room and return a uuid for the room. This endpoints
+**requires auth**.
 
 -   **URL**
 
-    /api/newroom
+    `/api/newroom`
 
 -   **Method:**
 
@@ -145,11 +146,9 @@ Create a new room and return a uuid for the room.
 
     **Required:**
 
-    -   `userId=<UUID>`
-    -   `userName=<String>`
     -   `roomName=<String maxlength 20>`
 
-    **Optional**
+    **Optional:**
 
     -   `secret=<Boolean default:false>`
 
@@ -180,15 +179,14 @@ Create a new room and return a uuid for the room.
         method: "POST",
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            Authorization: "Bearer <JWT>"
         },
         body: JSON.stringify({
-            userId: USERID,
-            userName: USERNAME,
-            roomName: ROOMNAME
+            roomName: <ROOMNAME>
             // secret: true
-        }).then(console.log)
-    });
+        })
+    }).then(console.log);
     ```
 
 ## Delete Room
