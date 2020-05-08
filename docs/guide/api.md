@@ -29,7 +29,7 @@ Return json data about open / available rooms.
 
 -   **URL**
 
-    /api/openrooms
+    `/api/openrooms`
 
 -   **Method:**
 
@@ -42,12 +42,16 @@ Return json data about open / available rooms.
 -   **Data Params**
 
     `if-modified-since=[UTC String]` <br>
-    (see: mdn.io/If-Modified-Since)
+    (see: [mdn.io/If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since))
 
 -   **Success Response:**
 
     -   **Code:** 200 <br>
-        **Content:** `[{id: <UUID>, name: <String>, owner: <String>}]`
+        **Content:** `[{id: <UUID>, name: <String>, owner: <String>}, ...]`
+
+    OR
+
+    -   **Code:** 304 (Content not Modified)
 
 -   **Error Response:**
 
@@ -59,7 +63,8 @@ Return json data about open / available rooms.
     ```javascript
     fetch("/api/openrooms", {
         headers: {
-            Accept: "application/json"
+            Accept: "application/json",
+            "If-Modified-Since": "Fri, 14 Mar 2015 09:26:53 GMT"
         }
     }).then(console.log);
     ```
