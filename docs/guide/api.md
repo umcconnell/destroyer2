@@ -15,8 +15,7 @@ in the `Authorization` header (see
 [RFC 6750](https://tools.ietf.org/html/rfc6750)) of HTTP requests that require
 auth.
 
-The header should look like this: `Authorization: Bearer <JWT>`.<br>
-See below for more examples on how to call the API.
+The header should look like this: `Authorization: Bearer <JWT>`. See below for more examples on how to call the API.
 :::
 
 Following endpoints are exposed:
