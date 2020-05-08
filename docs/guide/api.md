@@ -1,7 +1,5 @@
 # API
 
-TODO: Update example calls
-
 A quick overview of the available API endpoints:
 
 | HTTP Method | URL             | Description                                                          | Parameters                                                         | Requires Auth |
@@ -191,11 +189,12 @@ Create a new room and return a uuid for the room. This endpoints
 
 ## Delete Room
 
-Delete a room and kick out any players still in the room.
+Delete a room and kick out any players still in the room. This endpoints
+**requires auth**.
 
 -   **URL**
 
-    /api/deleteroom
+    `/api/deleteroom`
 
 -   **Method:**
 
@@ -209,8 +208,6 @@ Delete a room and kick out any players still in the room.
 
     **Required:**
 
-    -   `userId=<UUID>`
-    -   `userName=<String>`
     -   `roomId=<UUID>`
 
 -   **Success Response:**
@@ -250,12 +247,11 @@ Delete a room and kick out any players still in the room.
         method: "DELETE",
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            Authorization: "Bearer <JWT>"
         },
         body: JSON.stringify({
-            userId: USERID,
-            userName: USERNAME,
-            roomId: ROOMID
-        }).then(console.log)
-    });
+            roomId: <ROOMID>
+        })
+    }).then(console.log);
     ```
