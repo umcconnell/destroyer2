@@ -11,8 +11,8 @@ let { login } = require("./user");
 let { userName, roomName, roomSecret, roomId } = require("@models/validation");
 
 // API show available endpoints.
-router.get("/", function (req, res) {
-    res.sendFile("/api.html", { root: "./frontend-server/public" });
+router.get("/", function(req, res) {
+    res.sendFile("/api.html", { root: "./public" });
 });
 
 router.get("/openrooms", openRooms);
