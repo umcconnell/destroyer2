@@ -1,16 +1,25 @@
 # API
 
-TODO: Mark endpoints that require auth
 TODO: Update example calls
 
 A quick overview of the available API endpoints:
 
-| HTTP Method | URL             | Description                        | Parameters                                  |
-| ----------- | --------------- | ---------------------------------- | ------------------------------------------- |
-| GET         | /api/openrooms  | Get an array of open rooms         | none                                        |
-| POST        | /api/login      | Log a user in and generate a uuid  | userName                                    |
-| POST        | /api/newroom    | Create a new (private) room        | userId, userName, roomName, [private=false] |
-| DELETE      | /api/deleteroom | Delete a room and kick out players | userId, userName, roomName                  |
+| HTTP Method | URL             | Description                                                          | Parameters                                                         | Requires Auth |
+| ----------- | --------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------- |
+| GET         | /api/openrooms  | Get an array of open rooms                                           | none                                                               | No            |
+| POST        | /api/login      | Log a user in and generate a <abbr title="JSON Web Token">JWT</abbr> | userName                                                           | No            |
+| POST        | /api/newroom    | Create a new (private) room                                          | <abbr title="JSON Web Token">JWT</abbr>, roomName, [private=false] | Yes           |
+| DELETE      | /api/deleteroom | Delete a room and kick out players                                   | <abbr title="JSON Web Token">JWT</abbr>, roomId                    | Yes           |
+
+::: tip
+The <abbr title="JSON Web Token">JWT</abbr> authorization token has to be passed
+in the `Authorization` header (see
+[RFC 6750](https://tools.ietf.org/html/rfc6750)) of HTTP requests that require
+auth.
+
+The header should look like this: `Authorization: Bearer <JWT>`.<br>
+See below for more examples on how to call the API.
+:::
 
 Following endpoints are exposed:
 
