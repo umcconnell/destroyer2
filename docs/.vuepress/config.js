@@ -1,5 +1,6 @@
 module.exports = {
     title: "Destroyer2",
+    port: 8000,
     description: "A node real-time multiplayer battleship game",
     base: process.env.NODE_ENV === "development" ? "" : "/destroyer2/",
     evergreen: false,
