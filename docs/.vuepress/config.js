@@ -30,6 +30,7 @@ module.exports = {
                         "architecture",
                         "field-representation",
                         "api",
+                        "auth",
                         "game-events",
                         "customizing"
                     ]
