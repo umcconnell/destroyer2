@@ -5,7 +5,7 @@ bluebird.promisifyAll(redis);
 
 let client = redis.createClient({
     password: process.env.DB_PASS,
-    url: process.env.REDIS_URL
+    url: process.env.DB_URL
 });
 
 if (process.env.AGGRESSIVE_CLEANUP) {
@@ -15,8 +15,8 @@ if (process.env.AGGRESSIVE_CLEANUP) {
 if (process.env.NODE_ENV !== "production") {
     client
         .monitorAsync()
-        .then((res) => logger.info("Entering monitoring mode"))
-        .catch((err) => logger.error("Error while entering monitoring mode"));
+        .then(res => logger.info("Entering monitoring mode"))
+        .catch(err => logger.error("Error while entering monitoring mode"));
 
     client.on("monitor", (time, args) =>
         logger.info(time + ": " + args.join(" "))
