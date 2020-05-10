@@ -31,6 +31,7 @@ module.exports = {
                         "field-representation",
                         "api",
                         "auth",
+                        "cleanup",
                         "game-events",
                         "customizing"
                     ]
