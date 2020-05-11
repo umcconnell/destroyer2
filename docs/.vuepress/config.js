@@ -39,6 +39,13 @@ module.exports = {
                         "customizing"
                     ]
                 }
+            ],
+            "/legal/": [
+                {
+                    title: "Legal",
+                    collapsable: false,
+                    children: ["privacy", "trademark-disclaimer"]
+                }
             ]
         },
 

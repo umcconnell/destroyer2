@@ -33,4 +33,8 @@ features:
     VuePress
   </a>
 </p>
+<p>
+<a :href="$withBase('/legal/privacy')">Privacy Policy</a> |
+<a :href="$withBase('/legal/trademark-disclaimer')">Trademark Disclaimer</a>
+</p>
 </footer>
