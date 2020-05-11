@@ -138,6 +138,8 @@ This project is licensed under the MIT License - see the
 -   [ws](https://github.com/websockets/ws) - The WebSocket server
 -   [winston](https://github.com/winstonjs/winston) - The logging library
 -   [dotenv](https://github.com/motdotla/dotenv) - The .env file parser
+-   [module-alias](https://github.com/ilearnio/module-alias) - Custom module
+    aliases
 -   [feather](https://github.com/feathericons/feather) - The icons
 -   [Warship icon by zidney on the NounProject (resized, minified and changed line thickness)](https://thenounproject.com/term/warship/1597472/) - The logo
 -   Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth) for the
