@@ -11,9 +11,8 @@ A quick overview of the available API endpoints:
 
 ::: tip
 The <abbr title="JSON Web Token">JWT</abbr> authorization token has to be passed
-in the `Authorization` header (see
-[RFC 6750](https://tools.ietf.org/html/rfc6750)) of HTTP requests that require
-auth.
+in the `Authorization` header of HTTP requests that require auth (see
+[RFC 6750](https://tools.ietf.org/html/rfc6750)).
 
 The header should look like this: `Authorization: Bearer <JWT>`. See below for more examples on how to call the API.
 :::
