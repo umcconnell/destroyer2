@@ -129,6 +129,7 @@ This project is licensed under the MIT License - see the
 
 -   [Node.js](https://nodejs.org/) - The server backend
 -   [express](https://expressjs.com/) - The web server
+-   [@hapi/joi](https://hapi.dev/module/joi/) - Object validator for API
 -   [Redis](https://redis.io/) - The database
 -   [node_redis](https://github.com/NodeRedis/node_redis) - The Redis client for
     Node.js
