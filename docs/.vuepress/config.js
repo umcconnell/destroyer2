@@ -17,7 +17,10 @@ module.exports = {
         repo: "umcconnell/destroyer2",
         docsDir: "docs",
 
-        nav: [{ text: "Guide", link: "/guide/" }],
+        nav: [
+            { text: "Guide", link: "/guide/" },
+            { text: "Screenshots", link: "/screenshots/" }
+        ],
         smoothScroll: true,
 
         sidebar: {
