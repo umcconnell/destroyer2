@@ -1,6 +1,7 @@
 const redis = require("redis");
 const bluebird = require("bluebird");
 const logger = require("@helpers/logger");
+const { toBool } = require("@helpers/utils");
 
 const retry_strategy = require("./retryStrategy");
 
@@ -12,7 +13,7 @@ let client = redis.createClient({
     retry_strategy
 });
 
-if (process.env.AGGRESSIVE_CLEANUP) {
+if (toBool(process.env.AGGRESSIVE_CLEANUP)) {
     client.config("set", ["notify-keyspace-events", "Ex"]);
 }
 
