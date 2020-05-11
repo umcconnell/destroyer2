@@ -138,3 +138,4 @@ This project is licensed under the MIT License - see the
 -   [Warship icon by zidney on the NounProject (resized, minified and changed line thickness)](https://thenounproject.com/term/warship/1597472/) - The logo
 -   Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth) for the
     README and CONTRIBUTING template
+-   [vuepress](https://vuepress.vuejs.org/) - The documentation generator
