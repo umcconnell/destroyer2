@@ -2,12 +2,12 @@
 
 A quick overview of the available API endpoints:
 
-| HTTP Method | URL             | Description                                                          | Parameters                                                         | Requires Auth |
-| ----------- | --------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------- |
-| GET         | /api/openrooms  | Get an array of open rooms                                           | none                                                               | No            |
-| POST        | /api/login      | Log a user in and generate a <abbr title="JSON Web Token">JWT</abbr> | userName                                                           | No            |
-| POST        | /api/newroom    | Create a new (private) room                                          | <abbr title="JSON Web Token">JWT</abbr>, roomName, [private=false] | Yes           |
-| DELETE      | /api/deleteroom | Delete a room and kick out players                                   | <abbr title="JSON Web Token">JWT</abbr>, roomId                    | Yes           |
+| HTTP Method | URL                               | Description                                                          | Parameters                                                         | Requires Auth |
+| ----------- | --------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------- |
+| GET         | [`/api/openrooms`](#open-rooms)   | Get an array of open rooms                                           | none                                                               | No            |
+| POST        | [`/api/login`](#login)            | Log a user in and generate a <abbr title="JSON Web Token">JWT</abbr> | userName                                                           | No            |
+| POST        | [`/api/newroom`](#new-room)       | Create a new (private) room                                          | <abbr title="JSON Web Token">JWT</abbr>, roomName, [private=false] | Yes           |
+| DELETE      | [`/api/deleteroom`](#delete-room) | Delete a room and kick out players                                   | <abbr title="JSON Web Token">JWT</abbr>, roomId                    | Yes           |
 
 ::: tip
 The <abbr title="JSON Web Token">JWT</abbr> authorization token has to be passed
