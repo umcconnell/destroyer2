@@ -80,18 +80,21 @@ You can customize the project by adding a `.env` file in the root of the project
 and a Redis configuration file in the `db/` folder. Make sure to specify the
 Redis configuration file when starting the Redis server.
 
-See the [docs](/docs/index.md#customizing) for more information.
+See the example [.env configuration](./.env.example) file and the
+[docs](https://umcconnell.github.io/destroyer2/guide) for more information.
 
 ## Deployment
 
-Change the database password in the [.env ](.env) file and in the
-[redis.conf](db/redis.conf) file.
-(see also: [docs#customizing](/docs/index.md#customizing))
+Change the database password in the [.env ](./.env.example) file and in the
+[redis.conf](./db/redis.conf) file.
+(see also:
+[docs#customizing](https://umcconnell.github.io/destroyer2/guide/customizing))
 
 ## Docs
 
-See the [docs](docs/index.md) for more information about the system architecture,
-API endpoints, game events and customization.
+See the [docs](https://umcconnell.github.io/destroyer2/guide) for more
+information about the system architecture, API endpoints, game events and
+customization.
 
 ## Built With
 
