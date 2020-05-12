@@ -1,1 +1,0 @@
-# Destroyer2 docs
