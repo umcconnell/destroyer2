@@ -41,9 +41,11 @@ See the [Auth](./auth) docs for more information.
 
 ### Database
 
--   `DB_URL` - The Redis database url the server should connect to. If left
-    empty, the server tries connecting to the default url `127.0.0.1:6379`
--   `DB_PASS` - The Redis database password.
+-   `DB_URL` - The Redis database url the server should connect to. You may also
+    specify `REDIS_URL` as an alias to this key. If left empty, the server tries
+    connecting to the default url `127.0.0.1:6379`.
+-   `DB_PASS` - The Redis database password. You may also specify `REDIS_PASS`
+    as an alias to this key.
 
     ::: tip
     When using a password, you must add it to the `.env` file **and** to the
