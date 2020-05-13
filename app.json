@@ -1,0 +1,33 @@
+{
+    "name": "Destroyer2",
+    "description": "A real-time multiplayer battleship game",
+    "keywords": ["node", "redis", "battleship", "game"],
+    "website": "https://umcconnell.github.io/destroyer2/",
+    "repository": "https://github.com/umcconnell/destroyer2",
+    "logo": "https://github.com/umcconnell/destroyer2/blob/master/docs/.vuepress/public/logo.svg",
+    "success_url": "/",
+    "env": {
+        "JWT_KEY": {
+            "description": "A secret key for signing JSON Web Tokens.",
+            "generator": "secret",
+            "required": true
+        }
+    },
+    "formation": {
+        "web": {
+            "quantity": 1,
+            "size": "free"
+        }
+    },
+    "image": "heroku/nodejs",
+    "addons": [
+        {
+            "plan": "heroku-redis:hobby-dev"
+        }
+    ],
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        }
+    ]
+}
