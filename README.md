@@ -149,3 +149,5 @@ This project is licensed under the MIT License - see the
 -   Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth) for the
     README and CONTRIBUTING template
 -   [vuepress](https://vuepress.vuejs.org/) - The documentation generator
+-   [Algolia DocSearch](https://docsearch.algolia.com/) - The documentation
+    search provider
