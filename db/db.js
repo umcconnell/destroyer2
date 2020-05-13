@@ -8,8 +8,8 @@ const retry_strategy = require("./retryStrategy");
 bluebird.promisifyAll(redis);
 
 let client = redis.createClient({
-    password: process.env.DB_PASS,
-    url: process.env.DB_URL,
+    password: process.env.REDIS_PASS || process.env.DB_PASS,
+    url: process.env.REDIS_URL || process.env.DB_URL,
     retry_strategy
 });
 
