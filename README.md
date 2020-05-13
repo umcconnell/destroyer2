@@ -90,6 +90,10 @@ Change the database password in the [.env ](./.env.example) file and in the
 (see also:
 [docs#customizing](https://umcconnell.github.io/destroyer2/guide/customizing))
 
+Deploy the app to a free Heroku instance:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Docs
 
 See the [docs](https://umcconnell.github.io/destroyer2/guide) for more
