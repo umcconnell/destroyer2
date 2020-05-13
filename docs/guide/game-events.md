@@ -98,7 +98,7 @@ Place a user's game field/"sea".
     `place`
 -   **Message:** <br>
     `<Game Field String>` (see: [Field Representation](#field-representation))
--   **Emitted By:**)<br>
+-   **Emitted By:**<br>
     `user`
 -   **Success Response** <br>
 
