@@ -4,6 +4,7 @@ let express = require("express");
 let path = require("path");
 let morgan = require("morgan");
 let winston = require("@helpers/logger");
+let { toBool } = require("@helpers/utils");
 
 let controller = require("./controllers/index");
 
@@ -12,20 +13,23 @@ let app = express();
 app.use(morgan("dev", { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "..", "public")));
+
+if (toBool(process.env.SERVE_STATIC || true)) {
+    app.use(express.static(path.join(__dirname, "..", "public")));
+}
 
 app.use("/", controller);
 app.disable("x-powered-by");
 
 // Handle 404
-app.use(function (req, res) {
+app.use(function(req, res) {
     res.status(404).json({
         error: "Page not Found"
     });
 });
 
 // Handle 500
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     if (res.headersSent) {
         return next(err);
     }
