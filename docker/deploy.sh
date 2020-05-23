@@ -6,7 +6,7 @@ echo ""
 
 # Help menu
 if [ $# -eq 0 ] || [ "$1" == "help" ]; then
-   bash deploy/scripts/help.sh
+   bash docker/scripts/help.sh
    exit 0
 fi
 
@@ -24,22 +24,22 @@ esac
 echo ""
 echo "*** Note: ***"
 echo "If docker should throw an error you might want to try"
-echo "running this same script as sudo user (sudo deploy/script.sh)"
+echo "running this same script as sudo user (sudo docker/deploy.sh)"
 echo ""
 
 # Clean
 if [ "$1" == "clean" ]; then
-    bash deploy/scripts/clean.sh
+    bash docker/scripts/clean.sh
 
 # Stop
 elif [ "$1" == "stop" ]; then
-    bash deploy/scripts/stop.sh
+    bash docker/scripts/stop.sh
 
 # Simple Deploy
 elif [ "$1" == "simple" ]; then
-    bash deploy/scripts/simple.sh
+    bash docker/scripts/simple.sh
 
 # Reverse-proxy Deploy
 elif [ "$1" == "reverse-proxy" ]; then
-    bash deploy/scripts/reverse-proxy.sh
+    bash docker/scripts/reverse-proxy.sh
 fi

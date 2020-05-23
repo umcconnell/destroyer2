@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "docker-compose -f deploy/simple/docker-compose.yml up -d"
+echo "docker-compose -f docker/simple/docker-compose.yml up -d"
 echo ""
-docker-compose -f deploy/simple/docker-compose.yml up -d
+docker-compose -f docker/simple/docker-compose.yml up -d
 echo ""
 echo "Done!"
 echo "Run docker ps to see running processes"

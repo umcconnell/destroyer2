@@ -36,7 +36,7 @@ volumes:
         driver: local
         driver_opts:
             type: none
-            device: "${BASE_DIR}/deploy/reverse-proxy/keys/"
+            device: "${BASE_DIR}/docker/reverse-proxy/keys/"
             o: bind
     web-root:
         driver: local
@@ -48,5 +48,5 @@ volumes:
         driver: local
         driver_opts:
             type: none
-            device: "${BASE_DIR}/deploy/reverse-proxy/dhparam/"
+            device: "${BASE_DIR}/docker/reverse-proxy/dhparam/"
             o: bind
