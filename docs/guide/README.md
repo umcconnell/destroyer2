@@ -1,1 +1,1 @@
-# Destroyer2 docs
+# Destroyer2 Guide

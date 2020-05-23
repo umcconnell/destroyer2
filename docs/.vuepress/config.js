@@ -19,6 +19,7 @@ module.exports = {
 
         nav: [
             { text: "Guide", link: "/guide/" },
+            { text: "Docs", link: "/docs/" },
             { text: "Screenshots", link: "/screenshots/" }
         ],
         algolia:
@@ -31,9 +32,9 @@ module.exports = {
         smoothScroll: true,
 
         sidebar: {
-            "/guide/": [
+            "/docs/": [
                 {
-                    title: "Guide",
+                    title: "Docs",
                     collapsable: false,
                     children: [
                         "",
@@ -42,9 +43,15 @@ module.exports = {
                         "api",
                         "auth",
                         "cleanup",
-                        "game-events",
-                        "customizing"
+                        "game-events"
                     ]
+                }
+            ],
+            "/guide/": [
+                {
+                    title: "Guide",
+                    collapsable: false,
+                    children: ["", "customizing"]
                 }
             ],
             "/legal/": [
