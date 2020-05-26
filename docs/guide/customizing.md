@@ -7,7 +7,7 @@ Here's an overview of the values you can use in the `.env` file:
 
 | Key                                | Default          | Description                            |
 | ---------------------------------- | ---------------- | -------------------------------------- |
-| [`Port`](#web-server)              | `8080`           | Web Server Port                        |
+| [`PORT`](#web-server)              | `8080`           | Web Server Port                        |
 | [`HTTP_SERVER_ERROR`](#web-server) | `500`            | HTTP error for generic server errors   |
 | [`JWT_KEY`](#jwt)                  |                  | JSON Web Token encryption key          |
 | [`DB_URL`](#database)              | `127.0.0.1:6379` | Database URL                           |
