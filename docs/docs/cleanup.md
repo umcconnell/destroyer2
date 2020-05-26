@@ -3,7 +3,7 @@
 Destroyer2 automatically lets open rooms expire after a specified time to keep
 the database clean. The expiration time in seconds can be set with the
 `EXPIRE_ROOMS` key in the `.env` file. The default is after 1 day. See the
-[customizing section](./customizing#environment) for more information on
+[customizing section](/guide/customizing) for more information on
 available environment variables.
 
 Waiting users in an expired room are kicked out. However, rooms never expire
