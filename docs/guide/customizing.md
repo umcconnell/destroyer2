@@ -33,7 +33,7 @@ Check out the [example .env](https://github.com/umcconnell/destroyer2/blob/maste
     This key should definitely be specified in production and kept secret!
     :::
 
-See the [Auth](./auth) docs for more information.
+See the [Auth](/docs/auth) docs for more information.
 
 ## Database
 
@@ -71,4 +71,4 @@ See the [Auth](./auth) docs for more information.
 -   `CLEANUP_INTERVAL` - Interval length in seconds, after which passive cleanup
     is activated by calling the openrooms endpoint. Default is `false`.
 
-See the [Cleanup](./cleanup) docs for more information.
+See the [Cleanup](/docs/cleanup) docs for more information.
