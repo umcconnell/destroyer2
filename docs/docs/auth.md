@@ -23,7 +23,7 @@ HS256 uses a single secret key to sign payloads. It is important to specify a
 secret key, as potential malicious users could otherwise circumvent auth.
 
 The secret key must be specified under the `JWT_KEY` key in the `.env` file.
-See the [customizing section](./customizing#environment) for more information on
+See the [customizing section](/guide/customizing) for more information on
 available environment variables.
 
 ## Authorization
