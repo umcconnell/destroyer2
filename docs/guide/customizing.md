@@ -5,25 +5,31 @@ By adding a `.env` file and a redis configuration file (`redis.conf`) in the
 
 Here's an overview of the values you can use in the `.env` file:
 
-| Key                                | Default          | Description                            |
-| ---------------------------------- | ---------------- | -------------------------------------- |
-| [`PORT`](#web-server)              | `8080`           | Web Server Port                        |
-| [`HTTP_SERVER_ERROR`](#web-server) | `500`            | HTTP error for generic server errors   |
-| [`JWT_KEY`](#jwt)                  |                  | JSON Web Token encryption key          |
-| [`DB_URL`](#database)              | `127.0.0.1:6379` | Database URL                           |
-| [`DB_PASS`](#database)             |                  | Database password                      |
-| [`CONNECTION_RETRY`](#database)    | `20`             | Number of database reconnection trials |
-| [`EXPIRE_ROOMS`](#cleanup)         | `86400` = 1 day  | Number of seconds to keep open rooms   |
-| [`AGGRESSIVE_CLEANUP`](#cleanup)   | `false`          | Whether to perform aggressive cleanup  |
-| [`CLEANUP_INTERVAL`](#cleanup)     | `false`          | Length in seconds of cleanup interval  |
+| Key                                | Default          | Description                             |
+| ---------------------------------- | ---------------- | --------------------------------------- |
+| [`PORT`](#web-server)              | `8080`           | Web Server Port                         |
+| [`HTTP_SERVER_ERROR`](#web-server) | `500`            | HTTP error for generic server errors    |
+| [`STATIC_SERVE`](#web-server)      | `false`          | Whether to serve static files with node |
+| [`JWT_KEY`](#jwt)                  |                  | JSON Web Token encryption key           |
+| [`DB_URL`](#database)              | `127.0.0.1:6379` | Database URL                            |
+| [`DB_PASS`](#database)             |                  | Database password                       |
+| [`CONNECTION_RETRY`](#database)    | `20`             | Number of database reconnection trials  |
+| [`EXPIRE_ROOMS`](#cleanup)         | `86400` = 1 day  | Number of seconds to keep open rooms    |
+| [`AGGRESSIVE_CLEANUP`](#cleanup)   | `false`          | Whether to perform aggressive cleanup   |
+| [`CLEANUP_INTERVAL`](#cleanup)     | `false`          | Length in seconds of cleanup interval   |
 
-Check out the [example .env](https://github.com/umcconnell/destroyer2/blob/master/.env.example) file for a concrete example configuration.
+Check out the
+[example .env](https://github.com/umcconnell/destroyer2/blob/master/.env.example)
+file for a concrete example configuration.
 
 ## Web Server
 
 -   `PORT` - The port to serve the project on. Default is `8080`.
 -   `HTTP_SERVER_ERROR` - The error code to print out when encountering a
     generic internal server error. Default is `500`.
+-   `STATIC_SERVE` - Whether or not to serve static files using node. This can
+    be useful when using a reverse proxy and/or a different webserver such as
+    Nginx™ to serve the frontend (`public/`). Default is `false`
 
 ## JWT
 
