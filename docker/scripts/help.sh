@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Help menu
+echo "Usage:"
+echo "  ./docker/deploy.sh [COMMAND]"
+echo ""
 echo "Commands:"
 echo "  help             Show this help"
 echo "  simple           Simple docker setup (node and redis)"
