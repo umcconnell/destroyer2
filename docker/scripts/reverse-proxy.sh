@@ -48,14 +48,6 @@ do
                 exit 0
             fi
 
-            # Generate config files
-            echo "Generate docker-compose.yml"
-            cp docker/reverse-proxy/~docker-compose.yml docker/reverse-proxy/docker-compose.yml
-            echo "Generate nginx.conf"
-            cp docker/reverse-proxy/nginx-conf/~nginx.conf docker/reverse-proxy/nginx-conf/nginx.conf
-            echo "Generate ssl-renewal.sh"
-            cp docker/reverse-proxy/~ssl-renewal.sh docker/reverse-proxy/ssl-renewal.sh
-
             # Get email
             echo "=== Email ==="
             echo "Enter your email address used for certbot (e.g. john.doe@example.com)"
@@ -72,6 +64,25 @@ do
             export DOMAIN_NAME
             echo ""
 
+            # Review information
+            echo "=== Review ==="
+            echo "Base Directory: $BASE_DIR"
+            echo "  Domain Email: $DOMAIN_EMAIL"
+            echo "   Domain Name: $DOMAIN_NAME"
+            echo ""
+            if [ "no" == $(ask_yes_or_no "Is this OK?") ]; then
+                exit 0
+            fi
+            echo ""
+
+            # Generate config files
+            echo "Generate docker-compose.yml"
+            cp docker/reverse-proxy/~docker-compose.yml docker/reverse-proxy/docker-compose.yml
+            echo "Generate nginx.conf"
+            cp docker/reverse-proxy/nginx-conf/~nginx.conf docker/reverse-proxy/nginx-conf/nginx.conf
+            echo "Generate ssl-renewal.sh"
+            cp docker/reverse-proxy/~ssl-renewal.sh docker/reverse-proxy/ssl-renewal.sh
+            
             # Write changes to file
             sed -i -e 's|{{BASE_DIR}}|'$BASE_DIR'|g' docker/reverse-proxy/docker-compose.yml
             sed -i -e 's|{{BASE_DIR}}|'$BASE_DIR'|g' docker/reverse-proxy/ssl-renewal.sh
