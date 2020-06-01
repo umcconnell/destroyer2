@@ -14,6 +14,21 @@ features:
       details: Automatic room cleanup, network loss resilience, and more!
 ---
 
+### Quick start
+
+```bash
+# clone
+git clone https://github.com/umcconnell/destroyer2.git
+cd destroyer2
+
+# setup
+# make sure you have docker and docker-compose installed!
+./docker/deploy.sh simple
+
+# Done!
+# visit http://localhost:8080 to get started
+```
+
 <footer class="footer">
 <a
   href="https://github.com/umcconnell/destroyer2/blob/master/LICENSE.md"
