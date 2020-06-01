@@ -71,7 +71,7 @@ Return json data about open / available rooms.
 
 Log a user in and return a <abbr title="JSON Web Token">JWT</abbr> containing
 the username und uuid. The <abbr title="JSON Web Token">JWT</abbr> is
-**valid for one day**. See the [auth docs](./auth) for more information.
+**valid for one day**. See the [auth docs](./auth.md) for more information.
 
 -   **URL**
 
