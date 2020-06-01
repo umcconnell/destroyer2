@@ -51,7 +51,7 @@ module.exports = {
                 {
                     title: "Guide",
                     collapsable: false,
-                    children: ["", "customizing", "logging"]
+                    children: ["", "customizing", "docker", "logging"]
                 }
             ],
             "/legal/": [
