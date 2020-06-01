@@ -9,7 +9,7 @@ features:
     - title: Fast
       details: Enjoy great performance with Node.js™, Redis™ and WebSockets.
     - title: Simple
-      details: Simple server setup and deployment. Check the deployment section in the guide!
+      details: Simple server setup and deployment. Check the guide for simple deployment instructions, including for Docker™!
     - title: Powerful
       details: Automatic room cleanup, network loss resilience, and more!
 ---

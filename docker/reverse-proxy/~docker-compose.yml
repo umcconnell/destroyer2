@@ -1,0 +1,60 @@
+version: "3"
+services:
+    destroyer2:
+        depends_on:
+            - redis
+        build:
+            context: ../..
+        restart: unless-stopped
+        env_file:
+            - ../../.env
+        environment:
+            - NODE_ENV=production
+            - DB_URL=redis://redis
+            - STATIC_SERVE=false
+
+    redis:
+        image: "redis:alpine"
+        restart: unless-stopped
+
+    nginx:
+        image: "nginx:alpine"
+        restart: "unless-stopped"
+        ports:
+            - "80:80"
+            - "443:443"
+        depends_on:
+            - destroyer2
+        volumes:
+            - ./nginx-conf:/etc/nginx/conf.d
+            - web-root:/var/www/html
+            - certbot-etc:/etc/letsencrypt
+            - certbot-var:/var/lib/letsencrypt
+            - dhparam:/etc/ssl/certs
+
+    certbot:
+        image: certbot/certbot
+        container_name: certbot
+        volumes:
+            - certbot-etc:/etc/letsencrypt
+            - certbot-var:/var/lib/letsencrypt
+            - web-root:/var/www/html
+        depends_on:
+            - nginx
+        command: "certonly --webroot --webroot-path=/var/www/html --email {{DOMAIN_EMAIL}} --agree-tos --no-eff-email --staging -d {{DOMAIN_NAME}}"
+
+volumes:
+    certbot-etc:
+    certbot-var:
+    web-root:
+        driver: local
+        driver_opts:
+            type: none
+            device: "{{BASE_DIR}}/public/"
+            o: bind
+    dhparam:
+        driver: local
+        driver_opts:
+            type: none
+            device: "{{BASE_DIR}}/docker/reverse-proxy/dhparam/"
+            o: bind

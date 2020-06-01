@@ -1,0 +1,19 @@
+version: "3"
+services:
+    destroyer2:
+        depends_on:
+            - redis
+        build:
+            context: ../..
+        ports:
+            - "8080:8080"
+        restart: unless-stopped
+        env_file:
+            - ../../.env
+        environment:
+            - NODE_ENV=production
+            - DB_URL=redis://redis
+
+    redis:
+        image: "redis:alpine"
+        restart: unless-stopped

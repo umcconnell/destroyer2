@@ -1,0 +1,52 @@
+version: "3"
+services:
+    destroyer2:
+        depends_on:
+            - redis
+        build:
+            context: ../..
+        restart: unless-stopped
+        env_file:
+            - ../../.env
+        environment:
+            - NODE_ENV=production
+            - DB_URL=redis://redis
+            - STATIC_SERVE=false
+
+    redis:
+        image: "redis:alpine"
+        restart: unless-stopped
+
+    nginx:
+        image: "nginx:alpine"
+        restart: "unless-stopped"
+        ports:
+            - "80:80"
+            - "443:443"
+        depends_on:
+            - destroyer2
+        volumes:
+            - ./nginx-conf-local:/etc/nginx/conf.d
+            - web-root:/var/www/html
+            - certificates:/etc/ssl/keys
+            - dhparam:/etc/ssl/certs
+
+volumes:
+    certificates:
+        driver: local
+        driver_opts:
+            type: none
+            device: "${BASE_DIR}/docker/reverse-proxy/keys/"
+            o: bind
+    web-root:
+        driver: local
+        driver_opts:
+            type: none
+            device: "${BASE_DIR}/public/"
+            o: bind
+    dhparam:
+        driver: local
+        driver_opts:
+            type: none
+            device: "${BASE_DIR}/docker/reverse-proxy/dhparam/"
+            o: bind
