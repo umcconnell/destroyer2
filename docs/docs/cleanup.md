@@ -3,7 +3,7 @@
 Destroyer2 automatically lets open rooms expire after a specified time to keep
 the database clean. The expiration time in seconds can be set with the
 `EXPIRE_ROOMS` key in the `.env` file. The default is after 1 day. See the
-[customizing section](/guide/customizing) for more information on
+[customizing section](../guide/customizing.md) for more information on
 available environment variables.
 
 Waiting users in an expired room are kicked out. However, rooms never expire
@@ -16,7 +16,7 @@ multipronged approach to this problem.
 ## Passive Cleanup
 
 Expired rooms are deleted from the `openrooms` list when this list is read. This
-means that calls to the `api/openrooms` [endpoint](./api#open-rooms) clean up
+means that calls to the `api/openrooms` [endpoint](./api.md#open-rooms) clean up
 expired but still visible zombie rooms.
 
 However, as this endpoint is cached using the [If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since) header, only new users
@@ -31,7 +31,7 @@ consumes a little more ressources.
 
 Aggressive cleanup offers two modes to actively remove expired rooms:
 
--   A **regular cleanup** that calls the [`openrooms`](./api#open-rooms)
+-   A **regular cleanup** that calls the [`openrooms`](./api.md#open-rooms)
     endpoint at regular intervals without cache to activate passive cleanup.
     This mode can be enabled with the `CLEANUP_INTERVAL` key in the `.env` file,
     specifying the interval in seconds, in which the endpoint should be called.
