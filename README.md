@@ -81,7 +81,7 @@ and a Redis configuration file in the `db/` folder. Make sure to specify the
 Redis configuration file when starting the Redis server.
 
 See the example [.env configuration](./.env.example) file and the
-[docs](https://umcconnell.github.io/destroyer2/guide) for more information.
+[guide](https://umcconnell.github.io/destroyer2/guide) for more information.
 
 ## Deployment
 
@@ -96,7 +96,7 @@ Deploy the app to a free Heroku instance:
 
 ## Docs
 
-See the [docs](https://umcconnell.github.io/destroyer2/guide) for more
+See the [docs](https://umcconnell.github.io/destroyer2/docs) for more
 information about the system architecture, API endpoints, game events and
 customization.
 
