@@ -97,7 +97,7 @@ Place a user's game field/"sea".
 -   **Type:** <br>
     `place`
 -   **Message:** <br>
-    `<Game Field String>` (see: [Field Representation](./field-representation))
+    `<Game Field String>` (see: [Field Representation](./field-representation.md))
 -   **Emitted By:**<br>
     `user`
 -   **Success Response** <br>
@@ -149,7 +149,7 @@ interface and display the game interface.
     `alreadyPlaced`
 -   **Message:** <br>
     `<Game Field String[;Game Field String]>`
-    (see: [Field Representation](./field-representation))
+    (see: [Field Representation](./field-representation.md))
 
     The first game field string is the user's game field. If the opponent has
     already placed his ships, the second game field string represents the
