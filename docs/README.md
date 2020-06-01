@@ -17,16 +17,16 @@ features:
 ### Quick start
 
 ```bash
-# clone
+# Clone
 git clone https://github.com/umcconnell/destroyer2.git
 cd destroyer2
 
-# setup
-# make sure you have docker and docker-compose installed!
+# Setup
+# Make sure you have docker and docker-compose installed!
 ./docker/deploy.sh simple
 
 # Done!
-# visit http://localhost:8080 to get started
+# Visit http://localhost:8080 to get started
 ```
 
 <footer class="footer">
