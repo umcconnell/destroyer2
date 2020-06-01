@@ -39,7 +39,7 @@ file for a concrete example configuration.
     This key should definitely be specified in production and kept secret!
     :::
 
-See the [Auth](/docs/auth) docs for more information.
+See the [Auth](../docs/auth.md) docs for more information.
 
 ## Database
 
@@ -77,4 +77,4 @@ See the [Auth](/docs/auth) docs for more information.
 -   `CLEANUP_INTERVAL` - Interval length in seconds, after which passive cleanup
     is activated by calling the openrooms endpoint. Default is `false`.
 
-See the [Cleanup](/docs/cleanup) docs for more information.
+See the [Cleanup](../docs/cleanup.md) docs for more information.
