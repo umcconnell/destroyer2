@@ -30,8 +30,9 @@
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your
-local machine for development and testing purposes. See deployment for notes on
-how to deploy the project on a live system.
+local machine for development and testing purposes. See
+[deployment](#deployment) for notes on how to deploy the project on a live
+system.
 
 For detailed instructions on how to install, set up, customize and deploy
 Destroyer2, visit the [guide](https://umcconnell.github.io/destroyer2/guide/)
@@ -51,6 +52,7 @@ Clone the git repository
 
 ```bash
 git clone https://github.com/umcconnell/destroyer2.git
+cd destroyer2
 ```
 
 And install npm dependencies
@@ -59,17 +61,18 @@ And install npm dependencies
 npm install
 ```
 
-Finally, start the Redis server.
+Finally, start the Redis server in a different shell.
 You may optionally specify a Redis configuration file as argument to
 `redis-server`
 
 ```bash
-cd ./db/
+cd path/to/destroyer2/db/
 redis-server
-# or redis-server ./redis.conf
+# If you have a redis configuration file, instead run:
+# redis-server redis.conf
 ```
 
-And start the webserver
+Back in the first shell, start the webserver:
 
 ```bash
 npm run debug
