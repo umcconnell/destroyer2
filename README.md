@@ -33,6 +33,9 @@ These instructions will get you a copy of the project up and running on your
 local machine for development and testing purposes. See deployment for notes on
 how to deploy the project on a live system.
 
+For detailed instructions on how to install, set up, customize and deploy
+Destroyer2, visit the [guide](https://umcconnell.github.io/destroyer2/guide/)
+
 ### Prerequisites
 
 You will need Redis and Node.js with npm installed on your machine to get
