@@ -95,7 +95,7 @@ section in the guide for more information:
 Set a database password in the [.env ](./.env.example) file and in the
 [redis.conf](./db/redis.conf) file. See the deployment guide for more infos and
 detailed instructions:
-[guide](https://umcconnell.github.io/destroyer2/guide))
+[guide](https://umcconnell.github.io/destroyer2/guide)
 
 Deploy the app to a free Heroku instance:
 
