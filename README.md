@@ -80,8 +80,9 @@ You can customize the project by adding a `.env` file in the root of the project
 and a Redis configuration file in the `db/` folder. Make sure to specify the
 Redis configuration file when starting the Redis server.
 
-See the example [.env configuration](./.env.example) file and the
-[guide](https://umcconnell.github.io/destroyer2/guide) for more information.
+See the example [.env configuration](./.env.example) file and the customizing
+section in the guide for more information:
+[guide/customizing](https://umcconnell.github.io/destroyer2/guide/customizing)
 
 ## Deployment
 
