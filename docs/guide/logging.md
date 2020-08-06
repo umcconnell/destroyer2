@@ -1,6 +1,14 @@
 # Logging
 
-TODO: Explain default configuration
+By default, all logs are printed to the console and saved to file in the `logs/`
+folder. The log files will not exceed 5 MB.
+
+In production mode, only logs with the level `info` or higher will be output
+to the console and saved to file. All logs are saved to the `logs/combined.log`
+file. Additionally, all error logs are saved to `logs/error.log` for easy
+inspection of program errors.
+
+## Customizing
 
 You can customize the log formats in `/helpers/logger.js`. The `config` variable
 is worth mentioning here, as it contains the basic configuration for the file
