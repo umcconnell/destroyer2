@@ -26,4 +26,3 @@ jobs:
 
             - run: npm ci
             - run: npm run format
-
