@@ -12,6 +12,8 @@
 
 </div>
 
+![Lint](https://github.com/umcconnell/destroyer2/workflows/Lint/badge.svg)
+
 ## Table of Contents
 
 -   [Getting Started](#getting-started)
