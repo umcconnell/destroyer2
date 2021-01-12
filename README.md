@@ -12,6 +12,9 @@
 
 </div>
 
+![Lint](https://github.com/umcconnell/destroyer2/workflows/Lint/badge.svg)
+![Github Pages](https://github.com/umcconnell/destroyer2/workflows/Github%20Pages/badge.svg)
+
 ## Table of Contents
 
 -   [Getting Started](#getting-started)
