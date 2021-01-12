@@ -1,7 +1,7 @@
 let { uuid } = require("@helpers/helpers");
 let { sign } = require("@helpers/auth");
 
-exports.login = async function(req, res, errorHandler) {
+exports.login = async function (req, res, errorHandler) {
     try {
         const { userName } = req.body;
 

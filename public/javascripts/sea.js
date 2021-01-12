@@ -16,7 +16,7 @@ function initSea(sea) {
 
     console.log(labels);
 
-    fields.forEach(field => {
+    fields.forEach((field) => {
         field.addEventListener("mouseenter", () => {
             let coords = field.dataset.field;
             labels[0][Number(coords.slice(1)) - 1].classList.add("active");
@@ -24,8 +24,8 @@ function initSea(sea) {
         });
 
         field.addEventListener("mouseleave", () =>
-            labels.forEach(group =>
-                group.forEach(label => label.classList.remove("active"))
+            labels.forEach((group) =>
+                group.forEach((label) => label.classList.remove("active"))
             )
         );
     });

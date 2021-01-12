@@ -20,8 +20,8 @@ if (toBool(process.env.AGGRESSIVE_CLEANUP)) {
 if (process.env.NODE_ENV !== "production") {
     client
         .monitorAsync()
-        .then(res => logger.info("Entering monitoring mode"))
-        .catch(err => logger.error("Error while entering monitoring mode"));
+        .then((res) => logger.info("Entering monitoring mode"))
+        .catch((err) => logger.error("Error while entering monitoring mode"));
 
     client.on("monitor", (time, args) =>
         logger.info(time + ": " + args.join(" "))

@@ -29,7 +29,7 @@ function validGameField(field) {
     else if (!/[A-E0-2]/g.test(field.join("")))
         return { valid: false, msg: "Field contains illegal characters" };
     else {
-        let shipMap = [...ships.slice().map(el => [el, []])].reduce(
+        let shipMap = [...ships.slice().map((el) => [el, []])].reduce(
             (obj, { 0: key, 1: val }) => Object.assign(obj, { [key]: val }),
             {}
         );
@@ -41,19 +41,19 @@ function validGameField(field) {
             }
         });
 
-        let allShips = Object.values(shipMap).every(el => el !== []);
+        let allShips = Object.values(shipMap).every((el) => el !== []);
         let shipsValidity = Object.entries(shipMap)
             .sort()
-            .map(entry => validShipPlacement(...entry));
+            .map((entry) => validShipPlacement(...entry));
 
         if (!allShips)
             return { valid: false, msg: "Amount of ships must be 5" };
-        else if (!shipsValidity.every(el => el))
+        else if (!shipsValidity.every((el) => el))
             return {
                 valid: false,
                 msg: `Ship(s) ${ships
                     .map((letter, i) => (shipsValidity[i] ? false : letter))
-                    .filter(el => el)
+                    .filter((el) => el)
                     .join(", ")} is / are invalid`
             };
         else return { valid: true };

@@ -50,7 +50,7 @@ let logger = winston.createLogger({
 });
 
 logger.stream = {
-    write: function(message, encoding) {
+    write: function (message, encoding) {
         logger.debug(message);
     }
 };

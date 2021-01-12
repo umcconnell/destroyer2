@@ -1,13 +1,13 @@
-exports.pipe = arr => start =>
+exports.pipe = (arr) => (start) =>
     arr.reduce((acc, curr, i) => curr(acc, i), start);
 
-exports.chunk = function(array, amount) {
+exports.chunk = function (array, amount) {
     return Array(Math.ceil(array.length / amount))
         .fill()
         .map((_, i) => array.slice(i * amount, i * amount + amount));
 };
 
-exports.findOccurrences = function(it, search) {
+exports.findOccurrences = function (it, search) {
     let result = [],
         counter = 0;
 
@@ -17,7 +17,7 @@ exports.findOccurrences = function(it, search) {
     return result;
 };
 
-exports.replaceAt = function(string, index, replacement) {
+exports.replaceAt = function (string, index, replacement) {
     return (
         string.substr(0, index) +
         replacement +
@@ -25,13 +25,13 @@ exports.replaceAt = function(string, index, replacement) {
     );
 };
 
-exports.zipObj = function(fields, values) {
+exports.zipObj = function (fields, values) {
     let result = {};
     fields.forEach((field, i) => (result[field] = values[i]));
     return result;
 };
 
-exports.toBool = val => {
+exports.toBool = (val) => {
     switch (val) {
         case 1:
         case "1":

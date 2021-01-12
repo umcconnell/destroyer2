@@ -94,7 +94,7 @@ function spaceAround(sea, shipStart, shipEnd, space) {
 
     let row = false,
         col = false;
-    let empty = i => (i < 0 ? false : sea[i] == 0);
+    let empty = (i) => (i < 0 ? false : sea[i] == 0);
 
     // Ship on one row
     if (coordsStart[0] === coordsEnd[0]) {
@@ -162,13 +162,13 @@ function deleteShip(ship, pill) {
     currentPill = undefined;
     // Field
     fields
-        .filter(field => field.dataset.ship === ship)
-        .forEach(field => {
+        .filter((field) => field.dataset.ship === ship)
+        .forEach((field) => {
             field.removeAttribute("data-ship");
             field.className = "sea__field";
         });
 
-    Sea = Sea.map(field => (field === ship ? 0 : field));
+    Sea = Sea.map((field) => (field === ship ? 0 : field));
 }
 
 /**
@@ -185,7 +185,7 @@ function selectShip(ship, pill, deselectCb) {
         pill.insertAdjacentHTML("beforeend", close);
     }
 
-    pill.querySelector(".feather-close").addEventListener("click", e => {
+    pill.querySelector(".feather-close").addEventListener("click", (e) => {
         e.stopPropagation();
         deleteShip(ship, pill);
         deselectPill(pill);
@@ -239,9 +239,12 @@ function placeShipRandomly(sea, ship, occurrences = []) {
                 occurrences[occurrences.length - 1],
                 size - occurrences.length
             )
-        ).some(val => val)
+        ).some((val) => val)
     ) {
-        deleteShip(ship, pills.find(pill => pill.dataset.ship === ship));
+        deleteShip(
+            ship,
+            pills.find((pill) => pill.dataset.ship === ship)
+        );
         occurrences = [];
     }
 
@@ -253,7 +256,7 @@ function placeShipRandomly(sea, ship, occurrences = []) {
             if (
                 sea[point] == 0 &&
                 Object.values(spaceAround(Sea, point, point, size)).some(
-                    val => val
+                    (val) => val
                 )
             ) {
                 occurrences.push(point);
@@ -275,7 +278,7 @@ function placeShipRandomly(sea, ship, occurrences = []) {
         occurrences[occurrences.length - 1],
         size - occurrences.length
     );
-    dir = Object.keys(dir).filter(key => dir[key]);
+    dir = Object.keys(dir).filter((key) => dir[key]);
     dir = dir[randomInRange(0, dir.length - 1)] === "row" ? 1 : 10;
 
     do {
@@ -312,7 +315,7 @@ function initShiplist(list, deselectCb = () => "") {
 
     pills = [...list.querySelectorAll(".pill")];
 
-    pills.forEach(pill =>
+    pills.forEach((pill) =>
         pill.addEventListener("click", () => {
             if (currentShip) {
                 currentShip = undefined;
@@ -335,7 +338,7 @@ function initShippicker(picker, doneCb = () => "") {
 
     fields = [...picker.querySelectorAll(".sea__field")];
 
-    fields.forEach(field =>
+    fields.forEach((field) =>
         field.addEventListener("click", () =>
             currentShip ? placeShip(field, currentShip, doneCb) : false
         )
@@ -349,8 +352,8 @@ function initShippicker(picker, doneCb = () => "") {
 function placeRandomly() {
     if (currentPill) deselectPill(currentPill);
 
-    return Object.keys(Ships).forEach(ship => {
-        let pill = pills.find(pill => pill.dataset.ship === ship);
+    return Object.keys(Ships).forEach((ship) => {
+        let pill = pills.find((pill) => pill.dataset.ship === ship);
 
         // Delete
         if (findOccurrences(ship, Sea).length === Ships[ship])

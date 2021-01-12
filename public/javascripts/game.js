@@ -36,7 +36,7 @@ function fillField(field, placements, fillHit = true) {
             (acc, curr, i) => (curr != 0 ? acc.concat({ i, ship: curr }) : acc),
             []
         )
-        .forEach(ship => {
+        .forEach((ship) => {
             let classes = [];
 
             switch (ship.ship) {
@@ -67,17 +67,17 @@ function initMinimalNotifications(ws, interactors) {
     const events = {
         join: interactors["showSnackbar"],
         leave: interactors["showSnackbar"],
-        kick: msg =>
+        kick: (msg) =>
             interactors["showSnackbar"](msg).then(
                 () => (document.location.href = "/rooms.html")
             ),
         alreadyPlaced: interactors["showGameField"],
-        turn: msg => (myTurn = msg),
+        turn: (msg) => (myTurn = msg),
         reset: interactors["reload"],
         error: interactors["showError"]
     };
 
-    return ws.addEventListener("message", msg => {
+    return ws.addEventListener("message", (msg) => {
         console.log(msg);
         return handleMessage(msg, events);
     });
@@ -107,7 +107,7 @@ function initGame(ws, sea, interactors) {
             val &&
             (field === "my" ? myFields : enemyFields)[i].classList.add(type));
 
-    enemyFields.forEach(enemyField =>
+    enemyFields.forEach((enemyField) =>
         enemyField.addEventListener(
             "click",
             () =>
@@ -137,7 +137,7 @@ function initGame(ws, sea, interactors) {
 
     const events = {
         leave: interactors["showLoader"],
-        ready: msg => {
+        ready: (msg) => {
             msg = JSON.parse(msg);
 
             interactors["count"](true, myShipsLeft);
@@ -145,14 +145,14 @@ function initGame(ws, sea, interactors) {
 
             return interactors["showField"](myTurn, msg.enemy);
         },
-        count: msg => {
+        count: (msg) => {
             msg = JSON.parse(msg);
 
             [myShipsLeft, enemyShipsLeft] = [msg.me, msg.enemy];
             interactors["count"](true, myShipsLeft);
             return interactors["count"](false, enemyShipsLeft);
         },
-        hit: msg => {
+        hit: (msg) => {
             msg = JSON.parse(msg);
             handleFire(msg, "hit");
             return interactors["showMsg"](
@@ -161,7 +161,7 @@ function initGame(ws, sea, interactors) {
                     : `You hit the enemy on ${msg.coords}`
             );
         },
-        sunk: msg => {
+        sunk: (msg) => {
             msg = JSON.parse(msg);
             handleFire(msg, "sunk");
 
@@ -175,7 +175,7 @@ function initGame(ws, sea, interactors) {
                     : `You sunk a ship on ${msg.coords}`
             );
         },
-        miss: msg => {
+        miss: (msg) => {
             msg = JSON.parse(msg);
             handleFire(msg, "miss");
             return interactors["showMsg"](
@@ -187,7 +187,7 @@ function initGame(ws, sea, interactors) {
         gameOver: interactors["showOverlay"]
     };
 
-    return ws.addEventListener("message", msg => handleMessage(msg, events));
+    return ws.addEventListener("message", (msg) => handleMessage(msg, events));
 }
 
 export { initMinimalNotifications, initGameFields, initGame };

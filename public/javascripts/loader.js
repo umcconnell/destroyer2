@@ -18,7 +18,7 @@ function initShipsLoader(radar) {
             ) / 2,
         ships = [...radar.querySelectorAll(".loader__ship")];
 
-    ships.forEach(ship => {
+    ships.forEach((ship) => {
         // Center of circle/radar is at (0,0)
         // Formula used: x^2 + y^2 = radius^2
 

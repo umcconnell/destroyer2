@@ -26,11 +26,11 @@ function bindEvents(Modal) {
         ({ target }) => target === Modal.backdrop && Modal.close()
     );
 
-    Modal.closeBtn.forEach(btn =>
+    Modal.closeBtn.forEach((btn) =>
         btn.addEventListener("click", () => Modal.close())
     );
 
-    Modal.modal.addEventListener("keydown", e => {
+    Modal.modal.addEventListener("keydown", (e) => {
         if (Modal.state !== "open") return;
         else if (e.key === "Escape") {
             Modal.close();
@@ -91,7 +91,7 @@ export default class Modal {
         document.body.classList.add("modal-open");
 
         // Emit event
-        this.events["open"] && this.events["open"].forEach(cb => cb(this));
+        this.events["open"] && this.events["open"].forEach((cb) => cb(this));
         // Save currently focused element for focus-restore
         this.lastFocusedElement = document.activeElement;
         this.modal.focus();
@@ -107,7 +107,7 @@ export default class Modal {
         document.body.classList.remove("modal-open");
 
         // Emit event
-        this.events["close"] && this.events["close"].forEach(cb => cb(this));
+        this.events["close"] && this.events["close"].forEach((cb) => cb(this));
         // Restore focus
         this.lastFocusedElement && this.lastFocusedElement.focus();
     }
@@ -125,6 +125,6 @@ export default class Modal {
 
     removeEvent(evt, func) {
         let evtList = this.events[evt];
-        evtList && (evtList = evtList.filter(cb => cb !== func));
+        evtList && (evtList = evtList.filter((cb) => cb !== func));
     }
 }

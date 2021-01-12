@@ -76,9 +76,7 @@ const roomCardDelete = ({ id = false, classes = false, room }) =>
             class="btn--none btn--icon top right ${classes ? classes : ""}"
             data-room-id="${room.id}"
         >
-            <span class="visually-hidden">
-                Delete my room
-            </span>
+            <span class="visually-hidden"> Delete my room </span>
             ${trash}
         </button>
     `;
@@ -107,35 +105,37 @@ const noRooms = () =>
 const sea = ({ id = false, classes = false }) =>
     html`
         <div class="sea ${classes ? classes : ""}" ${id ? `id="${id}"` : ""}>
-            ${// Top row number labels + empty label in top left
-            new Array(11)
-                .fill()
-                .map(
-                    (_, colInd) =>
-                        `<span class="sea__label">${
-                            colInd === 0 ? "" : colInd
-                        }</span>`
-                )
-                .join("") +
-            // Sea + left letter labels
-            new Array(10)
-                .fill()
-                .map(
-                    (row, rowInd) =>
-                        `<span class="sea__label">${fieldLetters[rowInd]}</span>` +
-                        new Array(10)
-                            .fill()
-                            .map(
-                                (col, colInd) =>
-                                    `<span
+            ${
+                // Top row number labels + empty label in top left
+                new Array(11)
+                    .fill()
+                    .map(
+                        (_, colInd) =>
+                            `<span class="sea__label">${
+                                colInd === 0 ? "" : colInd
+                            }</span>`
+                    )
+                    .join("") +
+                // Sea + left letter labels
+                new Array(10)
+                    .fill()
+                    .map(
+                        (row, rowInd) =>
+                            `<span class="sea__label">${fieldLetters[rowInd]}</span>` +
+                            new Array(10)
+                                .fill()
+                                .map(
+                                    (col, colInd) =>
+                                        `<span
                                                 class="sea__field"
                                                 data-field="${
                                                     fieldLetters[rowInd]
                                                 }${colInd + 1}"></span>`
-                            )
-                            .join("")
-                )
-                .join("")}
+                                )
+                                .join("")
+                    )
+                    .join("")
+            }
         </div>
     `;
 
@@ -159,9 +159,7 @@ const gameOverlay = ({ id = false, classes = false, content = "" }) =>
             ${id ? `id="${id}"` : ""}
             class="overlay ${classes ? classes : ""}"
         >
-            <p class="overlay__content">
-                ${content}
-            </p>
+            <p class="overlay__content">${content}</p>
             <button class="btn" onclick="document.location.reload()">
                 Restart
             </button>
