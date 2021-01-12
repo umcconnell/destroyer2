@@ -8,7 +8,9 @@
         "debug": "NODE_ENV=development node ./bin/www",
         "dev": "npm run debug",
         "docs:dev": "vuepress dev docs",
-        "docs:build": "vuepress build docs"
+        "docs:build": "vuepress build docs",
+        "format": "prettier --check .",
+        "format-write": "npx prettier --write ."
     },
     "_moduleAliases": {
         "@root": ".",
