@@ -37,6 +37,6 @@
         "@vuepress/plugin-back-to-top": "^1.8.0",
         "@vuepress/plugin-medium-zoom": "^1.8.0",
         "prettier": "2.2.1",
-        "vuepress": "^1.8.0"
+        "vuepress": "^1.8.2"
     }
 }
