@@ -30,7 +30,7 @@
         "morgan": "~1.10.0",
         "redis": "^3.0.2",
         "winston": "^3.3.3",
-        "ws": "^7.4.2"
+        "ws": "^7.4.3"
     },
     "devDependencies": {
         "@vuepress/plugin-active-header-links": "^1.8.0",
