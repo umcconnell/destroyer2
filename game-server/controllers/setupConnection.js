@@ -83,7 +83,10 @@ exports.setupConnection = async function setupConnection(
 
     ws.on("pong", heartbeat);
 
-    ws.on("message", (msg) => onmessage(msg, ws, wss, room));
+    ws.on("message", (data, isBinary) => {
+        const msg = isBinary ? data : data.toString();
+        onmessage(msg, ws, wss, room)
+    });
 
     ws.on("close", () => onclose(null, ws, wss, room, ROOMS));
 };
