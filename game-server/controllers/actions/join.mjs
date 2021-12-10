@@ -1,8 +1,8 @@
-let logger = require("@helpers/logger");
+import logger from "#helpers/logger";
 
-let Rooms = require("@models/rooms");
-let { messageSchemas } = require("@models/schemas");
-let { countShips } = require("@helpers/game");
+import * as Rooms from "#models/rooms";
+import { messageSchemas } from "#models/schemas";
+import { countShips } from "#helpers/game";
 
 async function seaAlreadyPlaced(ws, room, dbRoom, other, seas) {
     let mySea = dbRoom[`sea-${ws.userId}`],
@@ -81,17 +81,17 @@ async function differentPlayer(ws, room, dbRoom, other, seas) {
         );
 
         room.turn = other.userId;
-        await Rooms.update(ws.roomId, "turn", other.userId);
+        await Rooms.setVal(ws.roomId, "turn", other.userId);
     }
 
     room.players.forEach((player) => (player.placed = false));
 }
 
-module.exports = async function (msg, ws, wss, room) {
+export default async function join(msg, ws, wss, room) {
     let other = room.players.find((player) => player.userId !== ws.userId);
 
     try {
-        dbRoom = await Rooms.get(ws.roomId);
+        let dbRoom = await Rooms.read(ws.roomId);
         let seas = Object.keys(dbRoom)
             .filter((key) => key.startsWith("sea-"))
             .map((sea) => sea.slice(4));
@@ -109,4 +109,4 @@ module.exports = async function (msg, ws, wss, room) {
         logger.error(`Internal Server Error: ${err.stack || err}`);
         ws.send(messageSchemas("error", "internal server error"));
     }
-};
+}

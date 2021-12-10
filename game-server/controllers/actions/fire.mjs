@@ -1,12 +1,12 @@
-let { findOccurrences, replaceAt } = require("@helpers/utils");
-let { toIndex } = require("@helpers/game");
-let logger = require("@helpers/logger");
+import { findOccurrences, replaceAt } from "#helpers/utils";
+import { toIndex } from "#helpers/game";
+import logger from "#helpers/logger";
 
-let Rooms = require("@models/rooms");
-let { messageSchemas } = require("@models/schemas");
-let gameOver = require("./gameOver");
+import * as Rooms from "#models/rooms";
+import { messageSchemas } from "#models/schemas";
+import gameOver from "./gameOver.mjs";
 
-module.exports = async function (coords, ws, wss, room) {
+export default async function fire(coords, ws, wss, room) {
     if (!room.ready) return;
     // Ignore wrong off-turn fires
     else if (room.turn !== ws.userId) return;
@@ -15,7 +15,7 @@ module.exports = async function (coords, ws, wss, room) {
         other = room.players.find((player) => player.userId !== ws.userId);
 
     try {
-        let r = await Rooms.get(ws.roomId);
+        let r = await Rooms.read(ws.roomId);
         let sea = r[`sea-${other.userId}`];
 
         switch (sea[index]) {
@@ -74,4 +74,4 @@ module.exports = async function (coords, ws, wss, room) {
             player.send(messageSchemas("error", "internal server error"))
         );
     }
-};
+}

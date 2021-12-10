@@ -1,7 +1,7 @@
-let Rooms = require("@models/rooms");
-let { messageSchemas } = require("@models/schemas");
+import * as Rooms from "#models/rooms";
+import { messageSchemas } from "#models/schemas";
 
-module.exports = function (msg, ws, wss, room) {
+export default function gameOver(msg, ws, wss, room) {
     room.ready = false;
     room.turn = undefined;
 
@@ -17,4 +17,4 @@ module.exports = function (msg, ws, wss, room) {
 
         return Rooms.delVal(ws.roomId, `sea-${player.userId}`);
     });
-};
+}

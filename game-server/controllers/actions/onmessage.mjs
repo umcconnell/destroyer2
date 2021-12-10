@@ -1,15 +1,18 @@
-let logger = require("@helpers/logger");
+import logger from "#helpers/logger";
 
-let { pipe } = require("@helpers/utils");
-let { rejectWs } = require("@helpers/websocket");
-let {
+import { pipe } from "#helpers/utils";
+import { rejectWs } from "#helpers/websocket";
+import {
     cleanUTFString,
     sanitizeHTMLString
-} = require("@helpers/stringSanitization");
+} from "#helpers/stringSanitization";
+
+import fire from "./fire.mjs";
+import place from "./place.mjs";
 
 let types = {
-    fire: require("./fire"),
-    place: require("./place"),
+    fire,
+    place,
     default: () => ""
 };
 
@@ -20,7 +23,7 @@ function handleMessage(type) {
     else return types["default"];
 }
 
-function onmessage(msg, ws, wss, room) {
+export default function onmessage(msg, ws, wss, room) {
     logger.debug(`received: ${msg}`);
 
     try {
@@ -36,5 +39,3 @@ function onmessage(msg, ws, wss, room) {
 
     return handleMessage(msg.type)(msg.msg, ws, wss, room);
 }
-
-module.exports = onmessage;

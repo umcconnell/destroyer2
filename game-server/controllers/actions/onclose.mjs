@@ -1,10 +1,10 @@
-let logger = require("@helpers/logger");
+import logger from "#helpers/logger";
 
-let Rooms = require("@models/rooms");
-let { ServerError, messageSchemas } = require("@models/schemas");
+import * as Rooms from "#models/rooms";
+import { ServerError, messageSchemas } from "#models/schemas";
 
 async function closeWs(playerId, roomId) {
-    let room = await Rooms.get(roomId);
+    let room = await Rooms.read(roomId);
 
     if (!room) throw new ServerError(404, "room not found");
 
@@ -12,12 +12,12 @@ async function closeWs(playerId, roomId) {
     let players = room.players.split(",").filter((el) => !!el);
 
     let newPlayers = players.filter((id) => id !== playerId);
-    await Rooms.update(roomId, "players", newPlayers.join(","));
+    await Rooms.setVal(roomId, "players", newPlayers.join(","));
 
     if (newPlayers.length < 2) Rooms.open(roomId);
 }
 
-async function onclose(msg, ws, wss, room, ROOMS) {
+export default async function onclose(msg, ws, wss, room, ROOMS) {
     try {
         await closeWs(ws.userId, ws.roomId);
 
@@ -43,5 +43,3 @@ async function onclose(msg, ws, wss, room, ROOMS) {
         logger.error(`Internal Server Error: ${err.stack || err}`);
     }
 }
-
-module.exports = onclose;
