@@ -1,14 +1,14 @@
-let express = require("express");
-let router = express.Router();
+import { Router } from "express";
+let router = Router();
 
-let validate = require("@frontend-server/middlewares/validator");
-let sanitize = require("@frontend-server/middlewares/sanitizer");
-let auth = require("@frontend-server/middlewares/auth");
+import validate from "#frontend-server/middlewares/validator";
+import sanitize from "#frontend-server/middlewares/sanitizer";
+import auth from "#frontend-server/middlewares/auth";
 
-let { openRooms, newRoom, deleteRoom } = require("./room");
-let { login } = require("./user");
+import { openRooms, newRoom, deleteRoom } from "./room.mjs";
+import { login } from "./user.mjs";
 
-let { userName, roomName, roomSecret, roomId } = require("@models/validation");
+import { userName, roomName, roomSecret, roomId } from "#models/validation";
 
 if (process.env.NODE_ENV !== "production") {
     // API show available endpoints.
@@ -32,4 +32,4 @@ router.post(
 
 router.delete("/deleteroom", auth, validate("body", roomId), deleteRoom);
 
-module.exports = router;
+export default router;

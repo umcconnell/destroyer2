@@ -1,7 +1,7 @@
-let { uuid } = require("@helpers/helpers");
-let { sign } = require("@helpers/auth");
+import { uuid } from "#helpers/helpers";
+import { sign } from "#helpers/auth";
 
-exports.login = async function (req, res, errorHandler) {
+export async function login(req, res, errorHandler) {
     try {
         const { userName } = req.body;
 
@@ -10,4 +10,4 @@ exports.login = async function (req, res, errorHandler) {
     } catch (e) {
         errorHandler(e);
     }
-};
+}
