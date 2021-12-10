@@ -1,22 +1,24 @@
-const { STATUS_CODES } = require("http");
-let { messageSchemas } = require("@models/schemas");
+import { STATUS_CODES } from "http";
+import { messageSchemas } from "#models/schemas";
 
-exports.heartbeat = function () {
+export function heartbeat() {
     this.isAlive = true;
-};
+}
 
-exports.noop = () => {};
+export function noop() {}
 
-exports.rejectWs = (ws) => ws.send(messageSchemas("error", "invalid input"));
+export function rejectWs(ws) {
+    return ws.send(messageSchemas("error", "invalid input"));
+}
 
 // Taken from the ws library
 // https://github.com/websockets/ws/blob/08c6c8ba70404818f7f4bc23eb5fd0bf9c94c039/lib/websocket-server.js#L384-L406
-exports.abortHandshake = (socket, code = 500, message, headers) => {
+export function abortHandshake(socket, code = 500, message, headers) {
     if (socket.writable) {
         message = message || STATUS_CODES[code];
         headers = {
             Connection: "close",
-            "Content-type": "text/html",
+            "Content-Type": "text/html",
             "Content-Length": Buffer.byteLength(message),
             ...headers
         };
@@ -35,4 +37,4 @@ exports.abortHandshake = (socket, code = 500, message, headers) => {
         socket.removeListener("error", socketOnError);
     } catch (e) {}
     socket.destroy();
-};
+}

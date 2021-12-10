@@ -1,11 +1,11 @@
-let logger = require("@helpers/logger");
+import logger from "#helpers/logger";
 
-let jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 const JWT_KEY = process.env.JWT_KEY;
 
 if (!JWT_KEY) logger.error("NO JSON WEB TOKEN KEY SPECIFIED!");
 
-exports.sign = (payload) => {
+export function sign(payload) {
     return new Promise((res, rej) => {
         jwt.sign(payload, JWT_KEY, { algorithm: "HS256" }, (err, token) => {
             if (err) {
@@ -16,9 +16,9 @@ exports.sign = (payload) => {
             }
         });
     });
-};
+}
 
-exports.verify = (token, { maxAge = "1d", clockTolerance = 60 } = {}) => {
+export function verify(token, { maxAge = "1d", clockTolerance = 60 } = {}) {
     return new Promise((res, rej) => {
         jwt.verify(
             token,
@@ -34,4 +34,4 @@ exports.verify = (token, { maxAge = "1d", clockTolerance = 60 } = {}) => {
             }
         );
     });
-};
+}

@@ -1,13 +1,14 @@
-exports.pipe = (arr) => (start) =>
-    arr.reduce((acc, curr, i) => curr(acc, i), start);
+export function pipe(arr) {
+    return (start) => arr.reduce((acc, curr, i) => curr(acc, i), start);
+}
 
-exports.chunk = function (array, amount) {
+export function chunk(array, amount) {
     return Array(Math.ceil(array.length / amount))
         .fill()
         .map((_, i) => array.slice(i * amount, i * amount + amount));
-};
+}
 
-exports.findOccurrences = function (it, search) {
+export function findOccurrences(it, search) {
     let result = [],
         counter = 0;
 
@@ -15,23 +16,23 @@ exports.findOccurrences = function (it, search) {
         if (el === search) result.push(el) && counter++;
     }
     return result;
-};
+}
 
-exports.replaceAt = function (string, index, replacement) {
+export function replaceAt(string, index, replacement) {
     return (
         string.substr(0, index) +
         replacement +
         string.substr(index + replacement.length)
     );
-};
+}
 
-exports.zipObj = function (fields, values) {
+export function zipObj(fields, values) {
     let result = {};
     fields.forEach((field, i) => (result[field] = values[i]));
     return result;
-};
+}
 
-exports.toBool = (val) => {
+export function toBool(val) {
     switch (val) {
         case 1:
         case "1":
@@ -44,4 +45,8 @@ exports.toBool = (val) => {
         default:
             return false;
     }
-};
+}
+
+export function isEmptyObject(obj) {
+    return obj && Object.keys(obj).length === 0;
+}

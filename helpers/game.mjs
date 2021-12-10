@@ -24,7 +24,7 @@ function validShipPlacement(type, placements) {
     );
 }
 
-module.exports.validGameField = function (field) {
+export function validGameField(field) {
     if (field.length !== 100)
         return { valid: false, msg: "Field must be 10x10" };
     else if (!/[A-E0-2]/g.test(field.join("")))
@@ -58,20 +58,20 @@ module.exports.validGameField = function (field) {
             };
         else return { valid: true };
     }
-};
+}
 
-module.exports.countShips = function (field) {
+export function countShips(field) {
     let arr = new Array(ships.length).fill(0);
     return field.reduce((acc, ship) => {
         ships.indexOf(ship) > -1 ? acc[ships.indexOf(ship)]++ : "";
         return acc;
     }, arr);
-};
+}
 
-module.exports.toIndex = function (coords) {
+export function toIndex(coords) {
     return fieldLetters.indexOf(coords[0]) * 10 + Number(coords.slice(1)) - 1;
-};
+}
 
-module.exports.toCoords = function (index) {
+export function toCoords(index) {
     return fieldLetters[Math.floor(index / 10)] + ((index % 10) + 1);
-};
+}

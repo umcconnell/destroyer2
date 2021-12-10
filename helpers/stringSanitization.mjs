@@ -18,12 +18,12 @@ const desanitizeRegexp = new RegExp(
     "g"
 );
 
-exports.sanitizeHTMLString = function (input) {
+export function sanitizeHTMLString(input) {
     if (input === "" || typeof input !== "string") return input;
     return input.replace(sanitizeRegexp, (chara) => mapping[chara]);
-};
+}
 
-exports.desanitizeHTMLString = function (input) {
+export function desanitizeHTMLString(input) {
     if (input === "" || typeof input !== "string") return input;
 
     return input.replace(
@@ -31,9 +31,9 @@ exports.desanitizeHTMLString = function (input) {
         (group) =>
             Object.entries(mapping).find((entry) => (entry[1] = group))[0]
     );
-};
+}
 
-exports.cleanUTFString = function (input) {
+export function cleanUTFString(input) {
     let output = "";
     for (let i = 0; i < input.length; i++) {
         if (input.charCodeAt(i) <= 127) {
@@ -41,4 +41,4 @@ exports.cleanUTFString = function (input) {
         }
     }
     return output;
-};
+}

@@ -1,4 +1,5 @@
-let winston = require("winston");
+import winston from "winston";
+
 let environment = process.env.NODE_ENV || "production";
 let logLevel = environment === "production" ? "info" : "debug";
 
@@ -55,4 +56,4 @@ logger.stream = {
     }
 };
 
-module.exports = logger;
+export default logger;
