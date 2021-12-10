@@ -1,16 +1,19 @@
-require("dotenv").config();
+import { fileURLToPath } from "url";
+import path from "path";
 
-let express = require("express");
-let path = require("path");
-let morgan = require("morgan");
-let winston = require("@helpers/logger");
-let { toBool } = require("@helpers/utils");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-let controller = require("./controllers/index");
+import express from "express";
+import morgan from "morgan";
+import logger from "#helpers/logger";
+import { toBool } from "#helpers/utils";
+
+import controller from "#frontend-server/controllers/index";
 
 let app = express();
 
-app.use(morgan("dev", { stream: winston.stream }));
+app.use(morgan("dev", { stream: logger.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -34,11 +37,11 @@ app.use(function (err, req, res, next) {
         return next(err);
     }
 
-    winston.error(`Internal Server Error: ${err.stack || err}`);
+    logger.error(`Internal Server Error: ${err.stack || err}`);
 
     let errStatus = err.status || process.env.HTTP_SERVER_ERROR || 500;
 
     return res.status(errStatus).json({ error: "Internal Server Error" });
 });
 
-module.exports = app;
+export default app;
