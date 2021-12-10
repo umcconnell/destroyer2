@@ -1,12 +1,13 @@
 #!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
-require("module-alias/register");
-const app = require("@frontend-server/app");
-const http = require("http");
 
+import "dotenv/config";
+import http from "http";
+
+import app from "#frontend-server/app";
+import gameWSSServer from "#game-server/app";
 /**
  * Get port from environment and store in Express.
  */
@@ -19,7 +20,7 @@ app.set("port", port);
  */
 
 const server = http.createServer(app);
-const gameWSS = require("@game-server/app")(server);
+const gameWSS = gameWSSServer(server);
 
 /**
  * Listen on provided port, on all network interfaces.
