@@ -1,10 +1,9 @@
-let url = require("url");
+import url from "url";
 
-let { verify } = require("@helpers/auth");
+import { verify } from "#helpers/auth";
+import { ServerError } from "#models/schemas";
 
-let { ServerError } = require("@models/schemas");
-
-exports.verifyConnection = async function verifyConnection(clients, req) {
+export async function verifyConnection(clients, req) {
     let { t: token, r: roomId } = url.parse(req.url, true).query;
 
     if (!token || !roomId)
@@ -24,4 +23,4 @@ exports.verifyConnection = async function verifyConnection(clients, req) {
         throw new ServerError(403, "user already connected to room");
 
     return { user, roomId };
-};
+}

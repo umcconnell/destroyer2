@@ -1,9 +1,9 @@
-let logger = require("@helpers/logger");
+import logger from "#helpers/logger";
 
-let Rooms = require("@models/rooms");
-let { messageSchemas } = require("@models/schemas");
+import * as Rooms from "#models/rooms";
+import { messageSchemas } from "#models/schemas";
 
-exports.closeRoom = async function (ws, user, roomId, wss, ROOMS) {
+export async function closeRoom(ws, user, roomId, wss, ROOMS) {
     for (let client of wss.clients) {
         if (client.roomId === roomId) {
             client.send(messageSchemas("kick", "room was closed"));
@@ -17,4 +17,4 @@ exports.closeRoom = async function (ws, user, roomId, wss, ROOMS) {
     } catch (err) {
         logger.error(`Internal Server Error: ${err.stack || err}`);
     }
-};
+}

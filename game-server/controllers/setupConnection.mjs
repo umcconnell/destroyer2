@@ -1,18 +1,19 @@
-let logger = require("@helpers/logger");
+import logger from "#helpers/logger";
 
-let Rooms = require("@models/rooms");
-let { roomInfo, ServerError } = require("@models/schemas");
+import * as Rooms from "#models/rooms";
+import { RoomInfo, ServerError } from "#models/schemas";
 
-let { heartbeat } = require("@helpers/websocket");
+import { heartbeat } from "#helpers/websocket";
 
-let onmessage = require("./actions/onmessage");
-let onclose = require("./actions/onclose");
-let sendTurn = require("./actions/turn");
-let join = require("./actions/join");
+import onmessage from "./actions/onmessage.mjs";
+import onclose from "./actions/onclose.mjs";
+import sendTurn from "./actions/turn.mjs";
+import join from "./actions/join.mjs";
 
-exports.addUserToRoom = async function addUserToRoom(userId, roomId) {
+export async function addUserToRoom(userId, roomId) {
     try {
-        let room = await Rooms.get(roomId);
+        let room = await Rooms.read(roomId);
+
         if (!room) {
             // Case: Room expired but still available through API
             try {
@@ -31,7 +32,7 @@ exports.addUserToRoom = async function addUserToRoom(userId, roomId) {
             throw new ServerError(403, "player already in room");
         }
 
-        await Rooms.update(
+        await Rooms.setVal(
             roomId,
             "players",
             players.concat([userId]).join(",")
@@ -44,15 +45,9 @@ exports.addUserToRoom = async function addUserToRoom(userId, roomId) {
         // Catch internal server errors such as problems with the DB
         else throw new ServerError();
     }
-};
+}
 
-exports.setupConnection = async function setupConnection(
-    ws,
-    user,
-    roomId,
-    wss,
-    ROOMS
-) {
+export async function setupConnection(ws, user, roomId, wss, ROOMS) {
     // Save user info to ws connection object
     ws.userName = user.userName;
     ws.userId = user.userId;
@@ -61,18 +56,18 @@ exports.setupConnection = async function setupConnection(
     ws.placed = false;
 
     if (ws.roomId in ROOMS) ROOMS[ws.roomId].players.push(ws);
-    else ROOMS[ws.roomId] = new roomInfo(ws);
+    else ROOMS[ws.roomId] = new RoomInfo(ws);
 
     const room = ROOMS[ws.roomId];
 
     // Turn might be reset after gameOver but room still exists
     if (!room.turn) {
         try {
-            turn = await Rooms.getVal(ws.roomId, "turn");
+            let turn = await Rooms.getVal(ws.roomId, "turn");
             room.turn = turn ? turn : ws.userId;
 
             await Rooms.delVal(ws.roomId, "turn");
-        } catch (e) {
+        } catch (err) {
             logger.error(`Internal Server Error: ${err.stack || err}`);
         }
     }
@@ -84,9 +79,9 @@ exports.setupConnection = async function setupConnection(
     ws.on("pong", heartbeat);
 
     ws.on("message", (data, isBinary) => {
-        const msg = isBinary ? data : data.toString();
+        const msg = isBinary ? data.toString : data;
         onmessage(msg, ws, wss, room);
     });
 
     ws.on("close", () => onclose(null, ws, wss, room, ROOMS));
-};
+}
