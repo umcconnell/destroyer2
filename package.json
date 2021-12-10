@@ -2,6 +2,7 @@
     "name": "destroyer2",
     "description": "real-time multiplayer battleship game",
     "version": "4.3.0",
+    "type": "module",
     "private": true,
     "scripts": {
         "start": "NODE_ENV=production node ./bin/www",
@@ -12,31 +13,29 @@
         "format": "prettier --check .",
         "format-write": "npx prettier --write ."
     },
-    "_moduleAliases": {
-        "@root": ".",
-        "@db": "db/",
-        "@helpers": "helpers/",
-        "@models": "models/",
-        "@frontend-server": "frontend-server/",
-        "@game-server": "game-server/"
+    "imports": {
+        "#root/*": "./*.mjs",
+        "#db/*": "./db/*.mjs",
+        "#helpers/*": "./helpers/*.mjs",
+        "#models/*": "./models/*.mjs",
+        "#frontend-server/*": "./frontend-server/*.mjs",
+        "#game-server/*": "./game-server/*.mjs"
     },
     "dependencies": {
-        "bluebird": "^3.7.2",
         "dotenv": "^10.0.0",
         "express": "~4.17.1",
-        "joi": "^17.4.2",
+        "joi": "^17.4.3",
         "jsonwebtoken": "^8.5.1",
-        "module-alias": "^2.2.2",
         "morgan": "~1.10.0",
-        "redis": "^3.1.2",
+        "redis": "^4.0.0",
         "winston": "^3.3.3",
-        "ws": "^8.2.3"
+        "ws": "^8.3.0"
     },
     "devDependencies": {
         "@vuepress/plugin-active-header-links": "^1.8.2",
         "@vuepress/plugin-back-to-top": "^1.8.2",
         "@vuepress/plugin-medium-zoom": "^1.8.2",
-        "prettier": "2.4.1",
+        "prettier": "2.5.0",
         "vuepress": "^1.8.2"
     }
 }
