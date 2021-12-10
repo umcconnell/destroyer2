@@ -1,18 +1,18 @@
-let WebSocket = require("ws");
-let logger = require("@helpers/logger");
+import WebSocket, { WebSocketServer } from "ws";
+import logger from "#helpers/logger";
 
-let Rooms = require("@models/rooms");
+import { getOpenRooms } from "#models/rooms";
 
-let { verifyConnection } = require("./controllers/verifyConnection");
-let {
+import { verifyConnection } from "#game-server/controllers/verifyConnection";
+import {
     setupConnection,
     addUserToRoom
-} = require("./controllers/setupConnection");
-let { closeRoom } = require("./controllers/closeRoom");
+} from "#game-server/controllers/setupConnection";
+import { closeRoom } from "#game-server/controllers/closeRoom";
 
-let { noop, abortHandshake } = require("@helpers/websocket");
-const { toBool } = require("@helpers/utils");
-let { sub } = require("@db/pubsub");
+import { noop, abortHandshake } from "#helpers/websocket";
+import { toBool } from "#helpers/utils";
+import { sub } from "#db/pubsub";
 
 // Convenient wrapper
 WebSocket.prototype._send = WebSocket.prototype.send;
@@ -20,16 +20,10 @@ WebSocket.prototype.send = function (msg) {
     return this._send(JSON.stringify(msg));
 };
 
-sub.subscribe("deleteroom");
-// Subscribe to expired rooms
-if (toBool(process.env.AGGRESSIVE_CLEANUP)) {
-    sub.psubscribe("__keyevent@*__:expired");
-}
-
 function main(server) {
     let ROOMS = {};
 
-    let wss = new WebSocket.Server({
+    let wss = new WebSocketServer({
         noServer: true,
         path: "/game",
         clientTracking: true
@@ -77,17 +71,19 @@ function main(server) {
 
     if (process.env.CLEANUP_INTERVAL) {
         const cleanup_interval = setInterval(() => {
-            Rooms.openRooms();
+            getOpenRooms();
         }, process.env.CLEANUP_INTERVAL * 1000 || 60000);
     }
 
-    sub.on("message", function (channel, roomId) {
-        if (channel === "deleteroom") closeRoom(null, null, roomId, wss, null);
+    sub.subscribe("deleteroom", (roomId) => {
+        logger.debug(`Got redis 'deleteroom' message for ${roomId}`);
+        closeRoom(null, null, roomId, wss, null);
     });
 
+    // Subscribe to expired rooms
     if (toBool(process.env.AGGRESSIVE_CLEANUP)) {
-        sub.on("pmessage", function (pattern, channel, roomId) {
-            if (pattern === "__keyevent@*__:expired")
+        sub.pSubscribe("__keyevent@*__:expired", (channel, roomId) => {
+            if (channel === "__keyevent@*__:expired")
                 //                    remove room:* prefix
                 closeRoom(null, null, roomId.substr(5), wss, null);
         });
@@ -96,4 +92,4 @@ function main(server) {
     return wss;
 }
 
-module.exports = main;
+export default main;
