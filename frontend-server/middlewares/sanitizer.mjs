@@ -1,9 +1,9 @@
-let {
+import {
     sanitizeHTMLString,
     desanitizeHTMLString
-} = require("@helpers/stringSanitization");
+} from "#helpers/stringSanitization";
 
-const middleware = (prop) => {
+export default function middleware(prop) {
     return (req, res, next) => {
         for (const key of Object.keys(req[prop])) {
             const value = req[prop][key];
@@ -13,6 +13,4 @@ const middleware = (prop) => {
 
         next();
     };
-};
-
-module.exports = middleware;
+}

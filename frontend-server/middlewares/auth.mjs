@@ -1,10 +1,10 @@
-let { verify } = require("@helpers/auth");
+import { verify } from "#helpers/auth";
 
 function reject(res) {
     res.status(401).json({ error: "unauthorized" });
 }
 
-const middleware = (req, res, next) => {
+export default function middleware(req, res, next) {
     let [type, token] = (req.get("Authorization") || "").split(" ");
 
     if (type && type == "Bearer" && token) {
@@ -17,6 +17,4 @@ const middleware = (req, res, next) => {
     } else {
         reject(res);
     }
-};
-
-module.exports = middleware;
+}
