@@ -1,25 +1,25 @@
-let Joi = require("joi");
+import Joi from "joi";
 
-exports.userAuth = Joi.object()
+export const userAuth = Joi.object()
     .keys({
         userId: Joi.string().uuid().required(),
         userName: Joi.string().max(20).required()
     })
     .pattern(/./, Joi.any());
 
-exports.userName = Joi.object()
+export const userName = Joi.object()
     .keys({
         userName: Joi.string().max(20).required()
     })
     .pattern(/./, Joi.any());
 
-exports.userId = Joi.object()
+export const userId = Joi.object()
     .keys({
         userId: Joi.string().uuid().required()
     })
     .pattern(/./, Joi.any());
 
-exports.roomDetails = Joi.object()
+export const roomDetails = Joi.object()
     .keys({
         roomName: Joi.string().max(20).required(),
         roomId: Joi.string().uuid().required(),
@@ -27,18 +27,18 @@ exports.roomDetails = Joi.object()
     })
     .pattern(/./, Joi.any());
 
-exports.roomName = Joi.object()
+export const roomName = Joi.object()
     .keys({
         roomName: Joi.string().max(20).required()
     })
     .pattern(/./, Joi.any());
 
-exports.roomId = Joi.object()
+export const roomId = Joi.object()
     .keys({
         roomId: Joi.string().uuid().required()
     })
     .pattern(/./, Joi.any());
 
-exports.roomSecret = Joi.object()
+export const roomSecret = Joi.object()
     .keys({ secret: Joi.bool() })
     .pattern(/./, Joi.any());

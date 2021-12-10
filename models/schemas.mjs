@@ -1,4 +1,4 @@
-exports.roomSchema = class {
+export class RoomSchema {
     constructor({ name, owner, ownerId, secret = false }) {
         this.name = name;
         this.owner = owner;
@@ -7,21 +7,21 @@ exports.roomSchema = class {
         this.players = "";
         this.secret = secret ? 1 : 0;
     }
-};
+}
 
-exports.ServerError = class ServerError extends Error {
+export class ServerError extends Error {
     constructor(status = 500, msg = "Internal Server Error") {
         super(msg);
         this.name = "ServerError";
         this.status = status;
     }
-};
+}
 
-exports.messageSchemas = (type, msg) => ({ type, msg });
+export const messageSchemas = (type, msg) => ({ type, msg });
 
-exports.roomInfo = class {
+export class RoomInfo {
     constructor(player) {
         this.players = [player];
         this.ready = false;
     }
-};
+}
