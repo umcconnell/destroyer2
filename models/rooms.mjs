@@ -21,13 +21,13 @@ function trackOpenRooms(id, remove = false) {
 }
 
 // Exists
-export function exists(id) {
+function exists(id) {
     return db.exists(roomKey(id)).then(toBool);
 }
 
 // CRUD
 // Create
-export function create(id, room) {
+function create(id, room) {
     return Promise.all([
         db.sendCommand([
             "HMSET",
@@ -41,42 +41,42 @@ export function create(id, room) {
 }
 
 // Read
-export function read(id) {
+function read(id) {
     return db
         .hGetAll(roomKey(id))
         .then((res) => (isEmptyObject(res) ? undefined : res));
 }
 
 // Update
-export function hasVal(id, prop) {
+function hasVal(id, prop) {
     return db.hExists(roomKey(id), prop).then(toBool);
 }
 
-export function getVal(id, prop) {
+function getVal(id, prop) {
     return db.hGet(roomKey(id), prop);
 }
 
-export function setVal(id, prop, val) {
+function setVal(id, prop, val) {
     // Returns true if a field was updated and false if a field was added
     return db.hSet(roomKey(id), prop, val).then(!toBool);
 }
 
-export function delVal(id, prop) {
+function delVal(id, prop) {
     return db.hDel(roomKey(id), prop).then(toBool);
 }
 
 // Delete
-export function remove(id) {
+function remove(id) {
     pub.publish("deleteroom", id);
     return Promise.all([db.del(roomKey(id)), trackOpenRooms(id, true)]);
 }
 
-export function untrack(id) {
+function untrack(id) {
     return trackOpenRooms(id, true);
 }
 
 // Open room
-export function open(id) {
+function open(id) {
     return Promise.all([
         db.hSet(roomKey(id), "open", "1"),
         db
@@ -96,7 +96,7 @@ export function open(id) {
 }
 
 // Close room
-export async function close(id) {
+async function close(id) {
     await Promise.all([
         db.hSet(roomKey(id), "open", "0"),
         trackOpenRooms(id, true)
@@ -105,7 +105,7 @@ export async function close(id) {
 }
 
 // Return open rooms
-export function getOpenRooms() {
+function getOpenRooms() {
     return db
         .sendCommand([
             "SORT",
@@ -140,6 +140,22 @@ export function getOpenRooms() {
         });
 }
 
-export function roomsLastModified() {
+function roomsLastModified() {
     return db.get("rooms:lastmodified");
 }
+
+export default {
+    exists,
+    create,
+    read,
+    hasVal,
+    getVal,
+    setVal,
+    delVal,
+    remove,
+    untrack,
+    open,
+    close,
+    getOpenRooms,
+    roomsLastModified
+};
