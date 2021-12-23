@@ -110,6 +110,20 @@ See the [docs](https://umcconnell.github.io/destroyer2/docs) for more
 information about the system architecture, API endpoints, game events and
 customization.
 
+To edit the docs locally, navigate to the `docs/` folder and run:
+
+```bash
+cd docs/
+npm run docs:dev
+```
+
+Make sure to first install all required build dependencies in the docs folder:
+
+```bash
+# In docs/
+npm install
+```
+
 ## Built With
 
 -   [Node.js](https://nodejs.org/) - The server backend

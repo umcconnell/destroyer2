@@ -78,7 +78,16 @@ Navigate to [http://localhost:8080](http://localhost:8080) to get started!
 
 ## Docs
 
-To improve the docs, run the Vuepress dev server:
+All docs are contained in the `docs/` folder. To improve the docs, first
+install all required dependencies in the folder:
+
+```bash
+cd docs/
+npm install
+```
+
+Then, run the Vuepress dev server. This command can also be run from the project
+root once all dependencies have been installed:
 
 ```bash
 npm run docs:dev
