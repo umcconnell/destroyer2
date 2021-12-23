@@ -8,8 +8,8 @@
         "start": "NODE_ENV=production node ./bin/www",
         "debug": "NODE_ENV=development node ./bin/www",
         "dev": "npm run debug",
-        "docs:dev": "vuepress dev docs",
-        "docs:build": "vuepress build docs",
+        "docs:dev": "cd docs/ && npm run docs:dev",
+        "docs:build": "cd docs/ && npm run docs:build",
         "format": "prettier --check .",
         "format-write": "npx prettier --write ."
     },
@@ -32,10 +32,6 @@
         "ws": "^8.3.0"
     },
     "devDependencies": {
-        "@vuepress/plugin-active-header-links": "^1.8.2",
-        "@vuepress/plugin-back-to-top": "^1.8.2",
-        "@vuepress/plugin-medium-zoom": "^1.8.2",
-        "prettier": "2.5.0",
-        "vuepress": "^1.8.2"
+        "prettier": "2.5.0"
     }
 }

@@ -1,0 +1,17 @@
+{
+    "name": "destroyer2-docs",
+    "description": "Destroyer2 documentation",
+    "private": true,
+    "scripts": {
+        "docs:dev": "vuepress dev .",
+        "docs:build": "vuepress build ."
+    },
+    "dependencies": {
+        "@vuepress/plugin-active-header-links": "^1.9.1",
+        "@vuepress/plugin-back-to-top": "^1.9.1",
+        "@vuepress/plugin-medium-zoom": "^1.9.1"
+    },
+    "devDependencies": {
+        "vuepress": "^1.9.1"
+    }
+}
