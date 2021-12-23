@@ -4,7 +4,7 @@
     "keywords": ["node", "redis", "battleship", "game"],
     "website": "https://umcconnell.github.io/destroyer2/",
     "repository": "https://github.com/umcconnell/destroyer2",
-    "logo": "https://raw.githubusercontent.com/umcconnell/destroyer2/master/docs/.vuepress/public/logo.svg",
+    "logo": "https://raw.githubusercontent.com/umcconnell/destroyer2/main/docs/.vuepress/public/logo.svg",
     "success_url": "/",
     "env": {
         "JWT_KEY": {

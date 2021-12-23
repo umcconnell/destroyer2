@@ -31,7 +31,7 @@ cd destroyer2
 
 <footer class="footer">
 <a
-  href="https://github.com/umcconnell/destroyer2/blob/master/LICENSE.md"
+  href="https://github.com/umcconnell/destroyer2/blob/main/LICENSE.md"
   target="_blank"
   rel="noopener noreferrer"
 >

@@ -19,7 +19,7 @@ Here's an overview of the values you can use in the `.env` file:
 | [`CLEANUP_INTERVAL`](#cleanup)     | `false`          | Length in seconds of cleanup interval   |
 
 Check out the
-[example .env](https://github.com/umcconnell/destroyer2/blob/master/.env.example)
+[example .env](https://github.com/umcconnell/destroyer2/blob/main/.env.example)
 file for a concrete example configuration.
 
 ## Web Server
