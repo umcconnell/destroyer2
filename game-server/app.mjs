@@ -1,7 +1,7 @@
 import WebSocket, { WebSocketServer } from "ws";
 import logger from "#helpers/logger";
 
-import { getOpenRooms } from "#models/rooms";
+import Rooms from "#models/rooms";
 
 import { verifyConnection } from "#game-server/controllers/verifyConnection";
 import {
@@ -71,7 +71,7 @@ function main(server) {
 
     if (process.env.CLEANUP_INTERVAL) {
         const cleanup_interval = setInterval(() => {
-            getOpenRooms();
+            Rooms.getOpenRooms();
         }, process.env.CLEANUP_INTERVAL * 1000 || 60000);
     }
 

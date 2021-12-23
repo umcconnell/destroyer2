@@ -2,7 +2,7 @@ import { findOccurrences, replaceAt } from "#helpers/utils";
 import { toIndex } from "#helpers/game";
 import logger from "#helpers/logger";
 
-import * as Rooms from "#models/rooms";
+import Rooms from "#models/rooms";
 import { messageSchemas } from "#models/schemas";
 import gameOver from "./gameOver.mjs";
 

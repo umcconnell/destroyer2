@@ -1,6 +1,6 @@
 import { uuid } from "#helpers/helpers";
 
-import * as Rooms from "#models/rooms";
+import Rooms from "#models/rooms";
 import { RoomSchema } from "#models/schemas";
 
 export async function openRooms(req, res, errorHandler) {

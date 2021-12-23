@@ -1,6 +1,6 @@
 import logger from "#helpers/logger";
 
-import * as Rooms from "#models/rooms";
+import Rooms from "#models/rooms";
 import { ServerError, messageSchemas } from "#models/schemas";
 
 async function closeWs(playerId, roomId) {

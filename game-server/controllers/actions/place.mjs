@@ -1,6 +1,6 @@
 import logger from "#helpers/logger";
 
-import * as Rooms from "#models/rooms";
+import Rooms from "#models/rooms";
 import { messageSchemas } from "#models/schemas";
 import { validGameField } from "#helpers/game";
 

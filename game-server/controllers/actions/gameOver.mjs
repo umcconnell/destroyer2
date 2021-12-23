@@ -1,4 +1,4 @@
-import * as Rooms from "#models/rooms";
+import Rooms from "#models/rooms";
 import { messageSchemas } from "#models/schemas";
 
 export default function gameOver(msg, ws, wss, room) {
