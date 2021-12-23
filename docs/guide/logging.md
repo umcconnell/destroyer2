@@ -10,9 +10,9 @@ inspection of program errors.
 
 ## Customizing
 
-You can customize the log formats in `/helpers/logger.js`. The `config` variable
-is worth mentioning here, as it contains the basic configuration for the file
-and console transports.
+You can customize the log formats in `/helpers/logger.mjs`. The `config`
+variable is worth mentioning here, as it contains the basic configuration for
+the file and console transports.
 
 For example, you could output the file logs in prettyprinted JSON with
 timestamps:
