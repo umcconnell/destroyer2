@@ -22,14 +22,14 @@
         "#game-server/*": "./game-server/*.mjs"
     },
     "dependencies": {
-        "@node-redis/client": "^1.0.1",
-        "dotenv": "^10.0.0",
+        "@node-redis/client": "^1.0.2",
+        "dotenv": "^14.3.2",
         "express": "~4.17.2",
-        "joi": "^17.5.0",
+        "joi": "^17.6.0",
         "jsonwebtoken": "^8.5.1",
         "morgan": "~1.10.0",
-        "winston": "^3.3.3",
-        "ws": "^8.4.0"
+        "winston": "^3.5.0",
+        "ws": "^8.4.2"
     },
     "devDependencies": {
         "prettier": "2.5.1"
