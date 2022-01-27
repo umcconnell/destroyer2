@@ -3,6 +3,7 @@ import logger from "#helpers/logger";
 import Rooms from "#models/rooms";
 import { messageSchemas } from "#models/schemas";
 import { countShips } from "#helpers/game";
+import sendTurn from "./turn.mjs";
 
 async function seaAlreadyPlaced(ws, room, dbRoom, other, seas) {
     let mySea = dbRoom[`sea-${ws.userId}`],
@@ -82,6 +83,9 @@ async function differentPlayer(ws, room, dbRoom, other, seas) {
 
         room.turn = other.userId;
         await Rooms.setVal(ws.roomId, "turn", other.userId);
+
+        // Resend all turns to avoid UI errors
+        room.players.forEach((player) => sendTurn(null, player, null, room));
     }
 
     room.players.forEach((player) => (player.placed = false));
