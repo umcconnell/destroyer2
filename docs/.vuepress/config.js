@@ -22,13 +22,6 @@ module.exports = {
             { text: "Docs", link: "/docs/" },
             { text: "Screenshots", link: "/screenshots/" }
         ],
-        algolia:
-            process.env.NODE_ENV === "development"
-                ? undefined
-                : {
-                      apiKey: "b36af9018488068b9c383fc728d0b9a4",
-                      indexName: "destroyer2"
-                  },
         smoothScroll: true,
 
         sidebar: {
