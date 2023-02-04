@@ -58,7 +58,7 @@ function getVal(id, prop) {
 
 function setVal(id, prop, val) {
     // Returns true if a field was updated and false if a field was added
-    return db.hSet(roomKey(id), prop, val).then(!toBool);
+    return db.hSet(roomKey(id), prop, val).then((v) => !toBool(v));
 }
 
 function delVal(id, prop) {
