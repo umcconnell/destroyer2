@@ -1,5 +1,5 @@
 import { spawn } from "child_process";
-import { createClient } from "@node-redis/client";
+import { createClient } from "@redis/client";
 
 import logger from "#helpers/logger";
 import { toBool } from "#helpers/utils";
