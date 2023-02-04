@@ -6,7 +6,7 @@ import { toBool } from "#helpers/utils";
 
 import reconnectStrategy from "./reconnectStrategy.mjs";
 
-const DB_URL = process.env.REDIS_PASS || process.env.DB_PASS;
+const DB_URL = process.env.DB_URL;
 const DB_PWD = process.env.REDIS_PASS || process.env.DB_PASS;
 
 let client = createClient({

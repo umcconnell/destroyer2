@@ -17,7 +17,11 @@ app.use(morgan("dev", { stream: logger.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-if (toBool(process.env.SERVE_STATIC || true)) {
+if (
+    toBool(process.env.STATIC_SERVE) ||
+    toBool(process.env.SERVE_STATIC) ||
+    true
+) {
     app.use(express.static(path.join(__dirname, "..", "public")));
 }
 

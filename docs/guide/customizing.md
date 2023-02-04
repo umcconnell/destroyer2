@@ -9,7 +9,7 @@ Here's an overview of the values you can use in the `.env` file:
 | ---------------------------------- | ---------------- | --------------------------------------- |
 | [`PORT`](#web-server)              | `8080`           | Web Server Port                         |
 | [`HTTP_SERVER_ERROR`](#web-server) | `500`            | HTTP error for generic server errors    |
-| [`STATIC_SERVE`](#web-server)      | `false`          | Whether to serve static files with node |
+| [`SERVE_STATIC`](#web-server)      | `true`           | Whether to serve static files with node |
 | [`JWT_KEY`](#jwt)                  |                  | JSON Web Token encryption key           |
 | [`DB_URL`](#database)              | `127.0.0.1:6379` | Database URL                            |
 | [`DB_PASS`](#database)             |                  | Database password                       |
@@ -27,7 +27,7 @@ file for a concrete example configuration.
 -   `PORT` - The port to serve the project on. Default is `8080`.
 -   `HTTP_SERVER_ERROR` - The error code to print out when encountering a
     generic internal server error. Default is `500`.
--   `STATIC_SERVE` - Whether or not to serve static files using node. This can
+-   `SERVE_STATIC` - Whether or not to serve static files using node. This can
     be useful when using a reverse proxy and/or a different webserver such as
     Nginx™ to serve the frontend (`public/`). Default is `false`
 
