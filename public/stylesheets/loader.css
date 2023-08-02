@@ -15,7 +15,8 @@
     height: var(--loader-size);
     border-radius: 50%;
     background: 
-        /* Circles */ repeating-radial-gradient(
+        /* Circles */
+        repeating-radial-gradient(
             transparent,
             transparent 20%,
             var(--fg-color) 20%,

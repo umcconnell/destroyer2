@@ -45,7 +45,9 @@
 }
 
 .sea .sea__field.ship {
-    box-shadow: 0 0 0 1px #ccc, inset 0 0 0 2px white;
+    box-shadow:
+        0 0 0 1px #ccc,
+        inset 0 0 0 2px white;
     background-color: #ddd;
 }
 .sea .sea__field.ship::after {

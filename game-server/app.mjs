@@ -70,9 +70,12 @@ function main(server) {
     }, 30000);
 
     if (process.env.CLEANUP_INTERVAL) {
-        const cleanup_interval = setInterval(() => {
-            Rooms.getOpenRooms();
-        }, process.env.CLEANUP_INTERVAL * 1000 || 60000);
+        const cleanup_interval = setInterval(
+            () => {
+                Rooms.getOpenRooms();
+            },
+            process.env.CLEANUP_INTERVAL * 1000 || 60000
+        );
     }
 
     sub.subscribe("deleteroom", (roomId) => {

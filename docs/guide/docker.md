@@ -24,13 +24,13 @@ Then, run:
 
 You may use the following commands:
 
-| Command       | Description                                          |
-| ------------- | ---------------------------------------------------- |
-| help          | Show available commands                              |
+| Command       | Description                                             |
+| ------------- | ------------------------------------------------------- |
+| help          | Show available commands                                 |
 | simple        | Simple Docker™ setup with Node.js™ and Redis™        |
 | reverse-proxy | Reverse-proxy setup with Nginx™, Node.js™ and Redis™ |
-| clean         | Clean-up all unused Docker™ images and volumes       |
-| stop          | Stop all running Docker™ containers                  |
+| clean         | Clean-up all unused Docker™ images and volumes         |
+| stop          | Stop all running Docker™ containers                    |
 
 ## Reverse-proxy
 

@@ -42,57 +42,53 @@ function html(templateObject, ...substs) {
     return result;
 }
 
-const loader = ({ ships = false, id = false, classes = false }) =>
-    html`
-        <div
-            class="loader ${ships ? "ships" : ""} ${classes ? classes : ""}"
-            ${id ? `id="${id}"` : ""}
-        >
-            ${ships
-                ? new Array(ships)
-                      .fill()
-                      .map((_) => `<span class="loader__ship"></span>`)
-                : ""}
-        </div>
-    `;
+const loader = ({ ships = false, id = false, classes = false }) => html`
+    <div
+        class="loader ${ships ? "ships" : ""} ${classes ? classes : ""}"
+        ${id ? `id="${id}"` : ""}
+    >
+        ${ships
+            ? new Array(ships)
+                  .fill()
+                  .map((_) => `<span class="loader__ship"></span>`)
+            : ""}
+    </div>
+`;
 
-const snackbar = ({ type, icon = type, id = type, classes = false }) =>
-    html`
-        <div
-            class="snackbar snackbar--${type} ${classes ? classes : ""}"
-            ${id ? `id="${id}"` : ""}
-        >
-            <span class="snackbar__icon">
-                ${icon ? (icon.startsWith("<") ? icon : icons[icon]) : ""}
-            </span>
-            <div class="snackbar__content"></div>
-        </div>
-    `;
+const snackbar = ({ type, icon = type, id = type, classes = false }) => html`
+    <div
+        class="snackbar snackbar--${type} ${classes ? classes : ""}"
+        ${id ? `id="${id}"` : ""}
+    >
+        <span class="snackbar__icon">
+            ${icon ? (icon.startsWith("<") ? icon : icons[icon]) : ""}
+        </span>
+        <div class="snackbar__content"></div>
+    </div>
+`;
 
-const roomCardDelete = ({ id = false, classes = false, room }) =>
-    html`
-        <button
-            ${id ? `id="${id}"` : ""}
-            class="btn--none btn--icon top right ${classes ? classes : ""}"
-            data-room-id="${room.id}"
-        >
-            <span class="visually-hidden"> Delete my room </span>
-            ${trash}
-        </button>
-    `;
+const roomCardDelete = ({ id = false, classes = false, room }) => html`
+    <button
+        ${id ? `id="${id}"` : ""}
+        class="btn--none btn--icon top right ${classes ? classes : ""}"
+        data-room-id="${room.id}"
+    >
+        <span class="visually-hidden"> Delete my room </span>
+        ${trash}
+    </button>
+`;
 
-const roomCard = ({ id = false, classes = false, myRoom, room }) =>
-    html`
-        <a
-            href="/game.html?r=${room.id}"
-            class="room-card ${classes ? classes : ""}"
-            ${id ? `id="${id}"` : ""}
-        >
-            ${myRoom ? roomCardDelete({ room }) : ""}
-            <h1 class="room-card__title">${room.name}</h1>
-            <h3 class="room-card__subtitle">by ${room.owner}</h3>
-        </a>
-    `;
+const roomCard = ({ id = false, classes = false, myRoom, room }) => html`
+    <a
+        href="/game.html?r=${room.id}"
+        class="room-card ${classes ? classes : ""}"
+        ${id ? `id="${id}"` : ""}
+    >
+        ${myRoom ? roomCardDelete({ room }) : ""}
+        <h1 class="room-card__title">${room.name}</h1>
+        <h3 class="room-card__subtitle">by ${room.owner}</h3>
+    </a>
+`;
 
 const noRooms = () =>
     html`
@@ -102,70 +98,64 @@ const noRooms = () =>
     </p>
     `;
 
-const sea = ({ id = false, classes = false }) =>
-    html`
-        <div class="sea ${classes ? classes : ""}" ${id ? `id="${id}"` : ""}>
-            ${
-                // Top row number labels + empty label in top left
-                new Array(11)
-                    .fill()
-                    .map(
-                        (_, colInd) =>
-                            `<span class="sea__label">${
-                                colInd === 0 ? "" : colInd
-                            }</span>`
-                    )
-                    .join("") +
-                // Sea + left letter labels
-                new Array(10)
-                    .fill()
-                    .map(
-                        (row, rowInd) =>
-                            `<span class="sea__label">${fieldLetters[rowInd]}</span>` +
-                            new Array(10)
-                                .fill()
-                                .map(
-                                    (col, colInd) =>
-                                        `<span
+const sea = ({ id = false, classes = false }) => html`
+    <div class="sea ${classes ? classes : ""}" ${id ? `id="${id}"` : ""}>
+        ${
+            // Top row number labels + empty label in top left
+            new Array(11)
+                .fill()
+                .map(
+                    (_, colInd) =>
+                        `<span class="sea__label">${
+                            colInd === 0 ? "" : colInd
+                        }</span>`
+                )
+                .join("") +
+            // Sea + left letter labels
+            new Array(10)
+                .fill()
+                .map(
+                    (row, rowInd) =>
+                        `<span class="sea__label">${fieldLetters[rowInd]}</span>` +
+                        new Array(10)
+                            .fill()
+                            .map(
+                                (col, colInd) =>
+                                    `<span
                                                 class="sea__field"
                                                 data-field="${
                                                     fieldLetters[rowInd]
                                                 }${colInd + 1}"></span>`
-                                )
-                                .join("")
-                    )
-                    .join("")
-            }
-        </div>
-    `;
+                            )
+                            .join("")
+                )
+                .join("")
+        }
+    </div>
+`;
 
-const modal = ({ id = false, classes = false, description, content }) =>
-    html`
-        <div
-            class="modal ${classes ? classes : ""}"
-            ${id ? `id="${id}"` : ""}
-            aria-label="${description}"
-        >
-            <div class="modal__content">
-                <button class="modal__close modal__close-icon">&times;</button>
-                ${content}
-            </div>
+const modal = ({ id = false, classes = false, description, content }) => html`
+    <div
+        class="modal ${classes ? classes : ""}"
+        ${id ? `id="${id}"` : ""}
+        aria-label="${description}"
+    >
+        <div class="modal__content">
+            <button class="modal__close modal__close-icon">&times;</button>
+            ${content}
         </div>
-    `;
+    </div>
+`;
 
-const gameOverlay = ({ id = false, classes = false, content = "" }) =>
-    html`
-        <div
-            ${id ? `id="${id}"` : ""}
-            class="overlay ${classes ? classes : ""}"
-        >
-            <p class="overlay__content">${content}</p>
-            <button class="btn" onclick="document.location.reload()">
-                Restart
-            </button>
-            <p>or <a href="./rooms.html">Return Home</a></p>
-        </div>
-    `;
+const gameOverlay = ({ id = false, classes = false, content = "" }) => html`
+    <div ${id ? `id="${id}"` : ""} class="overlay ${classes ? classes : ""}">
+        <p class="overlay__content">${content}</p>
+        <button class="btn" onclick="document.location.reload()">
+            Restart
+        </button>
+        <p>or <a href="./rooms.html">Return Home</a></p>
+    </div>
+`;
 
 export {
     loader,
