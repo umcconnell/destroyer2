@@ -28,7 +28,7 @@
         "joi": "^17.9.2",
         "jsonwebtoken": "^9.0.0",
         "morgan": "~1.10.0",
-        "winston": "^3.9.0",
+        "winston": "^3.10.0",
         "ws": "^8.13.0"
     },
     "devDependencies": {
