@@ -32,6 +32,6 @@
         "ws": "^8.16.0"
     },
     "devDependencies": {
-        "prettier": "3.2.4"
+        "prettier": "3.2.5"
     }
 }
