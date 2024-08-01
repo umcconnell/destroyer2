@@ -29,7 +29,7 @@
         "jsonwebtoken": "^9.0.2",
         "morgan": "~1.10.0",
         "winston": "^3.13.1",
-        "ws": "^8.17.1"
+        "ws": "^8.18.0"
     },
     "devDependencies": {
         "prettier": "3.3.3"
