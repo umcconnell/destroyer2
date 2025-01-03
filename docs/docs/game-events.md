@@ -37,13 +37,13 @@ Following events are emitted:
 
 Generic error event.
 
--   **Type:** <br>
-    `error`
--   **Message:** <br>
-    `<String>`
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `error`
+- **Message:** <br>
+  `<String>`
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -56,13 +56,13 @@ Generic error event.
 
 Notifies a user another player has (re)joined the room.
 
--   **Type:** <br>
-    `join`
--   **Message:** <br>
-    `<String>`
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `join`
+- **Message:** <br>
+  `<String>`
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -75,13 +75,13 @@ Notifies a user another player has (re)joined the room.
 
 Notifies a user another player has left the room.
 
--   **Type:** <br>
-    `leave`
--   **Message:** <br>
-    `<String>`
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `leave`
+- **Message:** <br>
+  `<String>`
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -94,23 +94,23 @@ Notifies a user another player has left the room.
 
 Place a user's game field/"sea".
 
--   **Type:** <br>
-    `place`
--   **Message:** <br>
-    `<Game Field String>` (see: [Field Representation](./field-representation.md))
--   **Emitted By:**<br>
-    `user`
--   **Success Response** <br>
+- **Type:** <br>
+  `place`
+- **Message:** <br>
+  `<Game Field String>` (see: [Field Representation](./field-representation.md))
+- **Emitted By:**<br>
+  `user`
+- **Success Response** <br>
 
-    -   [placed](#placed)
+    - [placed](#placed)
 
     OR
 
-    -   [ready](#ready)
+    - [ready](#ready)
 
--   **Error Response:** <br>
-    -   [error](#error)
--   **Sample Message:**
+- **Error Response:** <br>
+    - [error](#error)
+- **Sample Message:**
 
     ```json
     {
@@ -123,13 +123,13 @@ Place a user's game field/"sea".
 
 Indicates user has successfully placed his ships.
 
--   **Type:** <br>
-    `placed`
--   **Message:** <br>
-    `<String>`
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `placed`
+- **Message:** <br>
+  `<String>`
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -145,20 +145,20 @@ player has placed his or her ships (and possibly already played), one or two
 have left, and a player rejoined. The UI should hide the ship-placement
 interface and display the game interface.
 
--   **Type:** <br>
-    `alreadyPlaced`
--   **Message:** <br>
-    `<Game Field String[;Game Field String]>`
-    (see: [Field Representation](./field-representation.md))
+- **Type:** <br>
+  `alreadyPlaced`
+- **Message:** <br>
+  `<Game Field String[;Game Field String]>`
+  (see: [Field Representation](./field-representation.md))
 
     The first game field string is the user's game field. If the opponent has
     already placed his ships, the second game field string represents the
     opponent's game field. The opponent's game field string is seperated by a
     `;` from the player's game field string.
 
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:** <br>
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:** <br>
 
     ```json
     {
@@ -174,17 +174,17 @@ Sent if two players had placed their ships (and possibly already played), one or
 two left, and a player rejoined. Otherwise the UI is expected to keep count
 of the [sunk](#sunk) events recieved and to display a counter per player.
 
--   **Type:** <br>
-    `count`
--   **Message:** <br>
-    `<JSON string: {me: <Number>, enemy: <Number>}>`
+- **Type:** <br>
+  `count`
+- **Message:** <br>
+  `<JSON string: {me: <Number>, enemy: <Number>}>`
 
     The message JSON object has the properties `me` and `enemy` indicating how
     many ships the users have remaining, respectively.
 
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:** <br>
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:** <br>
 
     ```json
     {
@@ -200,18 +200,18 @@ of the [sunk](#sunk) events recieved and to display a counter per player.
 
 Indicates that the room is ready and the client should show the game interface.
 
--   **Type:** <br>
-    `ready`
--   **Message:** <br>
-    `<JSON string: {msg: <String>, enemy: <String>}>`
+- **Type:** <br>
+  `ready`
+- **Message:** <br>
+  `<JSON string: {msg: <String>, enemy: <String>}>`
 
     The message JSON object has the property `msg` representing a status
     message that can be displayed to the user, and the property `enemy`
     indicating the opponent's/enemy's name for the UI to personalize the game.
 
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -227,13 +227,13 @@ Indicates that the room is ready and the client should show the game interface.
 
 Indicates whether it is a player's turn.
 
--   **Type:** <br>
-    `turn`
--   **Message:** <br>
-    `<Boolean>`
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `turn`
+- **Message:** <br>
+  `<Boolean>`
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -246,25 +246,25 @@ Indicates whether it is a player's turn.
 
 Fire at enemy's game field. Out-of-turn fires are ignored.
 
--   **Type:** <br>
-    `ready`
--   **Message:** <br>
-    `<String field coordinates: [A-J][1-10]>`
--   **Emitted By:** <br>
-    `user`
--   **Success Response:**
+- **Type:** <br>
+  `ready`
+- **Message:** <br>
+  `<String field coordinates: [A-J][1-10]>`
+- **Emitted By:** <br>
+  `user`
+- **Success Response:**
 
-    -   [hit](#hit) with `you = false`
-
-    OR
-
-    -   [sunk](#sunk) with `you = false`
+    - [hit](#hit) with `you = false`
 
     OR
 
-    -   [miss](#miss) with `you = false`
+    - [sunk](#sunk) with `you = false`
 
--   **Sample Message:**
+    OR
+
+    - [miss](#miss) with `you = false`
+
+- **Sample Message:**
 
     ```json
     {
@@ -277,13 +277,13 @@ Fire at enemy's game field. Out-of-turn fires are ignored.
 
 Indicates a player was hit.
 
--   **Type:** <br>
-    `hit`
--   **Message:** <br>
-    `<JSON string: object>` (see [fire object](#fire-object))
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `hit`
+- **Message:** <br>
+  `<JSON string: object>` (see [fire object](#fire-object))
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -299,13 +299,13 @@ Indicates a player was hit.
 
 Indicates a player's ship was hit and sunk.
 
--   **Type:** <br>
-    `hit`
--   **Message:** <br>
-    `<JSON string: object>` (see [fire object](#fire-object))
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `hit`
+- **Message:** <br>
+  `<JSON string: object>` (see [fire object](#fire-object))
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -321,13 +321,13 @@ Indicates a player's ship was hit and sunk.
 
 Indicates a player's ship was missed.
 
--   **Type:** <br>
-    `hit`
--   **Message:** <br>
-    `<JSON string: object>` (see [fire object](#fire-object))
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `hit`
+- **Message:** <br>
+  `<JSON string: object>` (see [fire object](#fire-object))
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -344,13 +344,13 @@ Indicates a player's ship was missed.
 Indicates a game is over. Resets the room state (ship placement) but players
 are kept in the room. The UI should invite the user to reload/restart the game.
 
--   **Type:** <br>
-    `gameOver`
--   **Message:** <br>
-    `<String>`
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `gameOver`
+- **Message:** <br>
+  `<String>`
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -364,13 +364,13 @@ are kept in the room. The UI should invite the user to reload/restart the game.
 Indicates the owner closed the room and the user(s) shoud be redirected back
 home.
 
--   **Type:** <br>
-    `kick`
--   **Message:** <br>
-    `<String>`
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `kick`
+- **Message:** <br>
+  `<String>`
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -385,13 +385,13 @@ Emitted when two players were playing, one player left, and a different player
 joined (only emitted to waiting player). The UI should notify the waiting user
 and reload the page.
 
--   **Type:** <br>
-    `kick`
--   **Message:** <br>
-    `<String>`
--   **Emitted By:** <br>
-    `server`
--   **Sample Message:**
+- **Type:** <br>
+  `kick`
+- **Message:** <br>
+  `<String>`
+- **Emitted By:** <br>
+  `server`
+- **Sample Message:**
 
     ```json
     {
@@ -407,6 +407,6 @@ user's shot/fire.
 
 The hit object has following properties:
 
--   `you`: `<Boolean>` - Indicates whether one of your ships was hit/sunk/missed
-    (true if enemy fired, false if you fired)
--   `coords`: `<Coordinates [A-J][1-10]>` - Represents the coordinates of the shot
+- `you`: `<Boolean>` - Indicates whether one of your ships was hit/sunk/missed
+  (true if enemy fired, false if you fired)
+- `coords`: `<Coordinates [A-J][1-10]>` - Represents the coordinates of the shot

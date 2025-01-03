@@ -31,17 +31,17 @@ consumes a little more ressources.
 
 Aggressive cleanup offers two modes to actively remove expired rooms:
 
--   A **regular cleanup** that calls the [`openrooms`](./api.md#open-rooms)
-    endpoint at regular intervals without cache to activate passive cleanup.
-    This mode can be enabled with the `CLEANUP_INTERVAL` key in the `.env` file,
-    specifying the interval in seconds, in which the endpoint should be called.
+- A **regular cleanup** that calls the [`openrooms`](./api.md#open-rooms)
+  endpoint at regular intervals without cache to activate passive cleanup.
+  This mode can be enabled with the `CLEANUP_INTERVAL` key in the `.env` file,
+  specifying the interval in seconds, in which the endpoint should be called.
 
 OR
 
--   A **notification listener mode** that activates Redis
-    [keyspace-event](https://redis.io/topics/notifications) listeners to clean
-    up expired rooms as soon as they are closed. This mode can be activated by
-    setting the `AGGRESSIVE_CLEANUP` value in the `.env` to `true`.
+- A **notification listener mode** that activates Redis
+  [keyspace-event](https://redis.io/topics/notifications) listeners to clean
+  up expired rooms as soon as they are closed. This mode can be activated by
+  setting the `AGGRESSIVE_CLEANUP` value in the `.env` to `true`.
 
     ::: warning
     Keyspace-event listeners are only available since Redis 2.8.0 and might not

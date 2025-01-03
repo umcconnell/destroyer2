@@ -23,40 +23,40 @@ Following endpoints are exposed:
 
 Return json data about open / available rooms.
 
--   **URL**
+- **URL**
 
     `/api/openrooms`
 
--   **Method:**
+- **Method:**
 
     `GET`
 
--   **URL Params**
+- **URL Params**
 
     None
 
--   **Data Params**
+- **Data Params**
 
     **Optional:**
 
-    -   `if-modified-since=[UTC String]` <br>
-        (see: [mdn.io/If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since))
+    - `if-modified-since=[UTC String]` <br>
+      (see: [mdn.io/If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since))
 
--   **Success Response:**
+- **Success Response:**
 
-    -   **Code:** 200 <br>
-        **Content:** `[{id: <UUID>, name: <String>, owner: <String>}, ...]`
+    - **Code:** 200 <br>
+      **Content:** `[{id: <UUID>, name: <String>, owner: <String>}, ...]`
 
     OR
 
-    -   **Code:** 304 (Content not Modified)
+    - **Code:** 304 (Content not Modified)
 
--   **Error Response:**
+- **Error Response:**
 
-    -   **Code:** 500 <br>
-        **Content:** `{ error : "Internal Server Error" }`
+    - **Code:** 500 <br>
+      **Content:** `{ error : "Internal Server Error" }`
 
--   **Sample Call:**
+- **Sample Call:**
 
     ```javascript
     fetch("/api/openrooms", {
@@ -73,40 +73,40 @@ Log a user in and return a <abbr title="JSON Web Token">JWT</abbr> containing
 the username und uuid. The <abbr title="JSON Web Token">JWT</abbr> is
 **valid for one day**. See the [auth docs](./auth.md) for more information.
 
--   **URL**
+- **URL**
 
     `/api/login`
 
--   **Method:**
+- **Method:**
 
     `POST`
 
--   **URL Params**
+- **URL Params**
 
     None
 
--   **Data Params**
+- **Data Params**
 
     **Required:**
 
-    -   `userName=<String maxlength 20>`
+    - `userName=<String maxlength 20>`
 
--   **Success Response:**
+- **Success Response:**
 
-    -   **Code:** 200 <br>
-        **Content:** `{ token : <JWT token string> }`
+    - **Code:** 200 <br>
+      **Content:** `{ token : <JWT token string> }`
 
--   **Error Response:**
+- **Error Response:**
 
-    -   **Code:** 400 <br>
-        **Content:** `{ error : <Validation error message> }`
+    - **Code:** 400 <br>
+      **Content:** `{ error : <Validation error message> }`
 
     OR
 
-    -   **Code:** 500 <br>
-        **Content:** `{ error : "Internal Server Error" }`
+    - **Code:** 500 <br>
+      **Content:** `{ error : "Internal Server Error" }`
 
--   **Sample Call:**
+- **Sample Call:**
 
     ```javascript
     fetch("/api/login", {
@@ -126,49 +126,49 @@ the username und uuid. The <abbr title="JSON Web Token">JWT</abbr> is
 Create a new room and return a uuid for the room. This endpoints
 **requires auth**.
 
--   **URL**
+- **URL**
 
     `/api/newroom`
 
--   **Method:**
+- **Method:**
 
     `POST`
 
--   **URL Params**
+- **URL Params**
 
     None
 
--   **Data Params**
+- **Data Params**
 
     **Required:**
 
-    -   `roomName=<String maxlength 20>`
+    - `roomName=<String maxlength 20>`
 
     **Optional:**
 
-    -   `secret=<Boolean default:false>`
+    - `secret=<Boolean default:false>`
 
--   **Success Response:**
+- **Success Response:**
 
-    -   **Code:** 200 <br>
-        **Content:** `{ roomId: <UUID> }`
+    - **Code:** 200 <br>
+      **Content:** `{ roomId: <UUID> }`
 
--   **Error Response:**
+- **Error Response:**
 
-    -   **Code:** 400 <br>
-        **Content:** `{ error : <Validation error message> }`
-
-    OR
-
-    -   **Code:** 401 <br>
-        **Content:** `{ error : "unauthorized" }`
+    - **Code:** 400 <br>
+      **Content:** `{ error : <Validation error message> }`
 
     OR
 
-    -   **Code:** 500 <br>
-        **Content:** `{error: "Internal Server Error"}`
+    - **Code:** 401 <br>
+      **Content:** `{ error : "unauthorized" }`
 
--   **Sample Call:**
+    OR
+
+    - **Code:** 500 <br>
+      **Content:** `{error: "Internal Server Error"}`
+
+- **Sample Call:**
 
     ```javascript
     fetch("/api/newroom", {
@@ -190,55 +190,55 @@ Create a new room and return a uuid for the room. This endpoints
 Delete a room and kick out any players still in the room. This endpoints
 **requires auth**.
 
--   **URL**
+- **URL**
 
     `/api/deleteroom`
 
--   **Method:**
+- **Method:**
 
     `DELETE`
 
--   **URL Params**
+- **URL Params**
 
     None
 
--   **Data Params**
+- **Data Params**
 
     **Required:**
 
-    -   `roomId=<UUID>`
+    - `roomId=<UUID>`
 
--   **Success Response:**
+- **Success Response:**
 
-    -   **Code:** 200 <br>
-        **Content:** `{ message: "successfully deleted room" }`
+    - **Code:** 200 <br>
+      **Content:** `{ message: "successfully deleted room" }`
 
--   **Error Response:**
+- **Error Response:**
 
-    -   **Code:** 400 <br>
-        **Content:** `{ error : <Validation error message> }`
-
-    OR
-
-    -   **Code:** 401 <br>
-        **Content:** `{ error : "unauthorized" }`
+    - **Code:** 400 <br>
+      **Content:** `{ error : <Validation error message> }`
 
     OR
 
-    -   **Code:** 403 <br>
-        **Content:** `{ error: "you are not the owner of this room" }`
+    - **Code:** 401 <br>
+      **Content:** `{ error : "unauthorized" }`
 
     OR
 
-    -   **Code:** 404 <br>
-        **Content:** `{ error: "room doesn't exist" }`
+    - **Code:** 403 <br>
+      **Content:** `{ error: "you are not the owner of this room" }`
 
     OR
 
-    -   **Code:** 500 <br>
-        **Content** `{error: "Internal Server Error"}`
+    - **Code:** 404 <br>
+      **Content:** `{ error: "room doesn't exist" }`
 
--   **Sample Call:**
+    OR
+
+    - **Code:** 500 <br>
+      **Content** `{error: "Internal Server Error"}`
+
+- **Sample Call:**
 
     ```javascript
     fetch("/api/deleteroom", {

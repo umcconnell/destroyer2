@@ -17,18 +17,18 @@
 
 ## Table of Contents
 
--   [Getting Started](#getting-started)
-    -   [Prerequisites](#prerequisites)
-    -   [Installing](#installing)
-    -   [Customizing](#customizing)
--   [Deployment](#deployment)
--   [Docs](#docs)
--   [Built With](#built-with)
--   [Contributing](#contributing)
--   [Versioning](#versioning)
--   [Authors](#authors)
--   [License](#license)
--   [Acknowledgments](#acknowledgments)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installing](#installing)
+    - [Customizing](#customizing)
+- [Deployment](#deployment)
+- [Docs](#docs)
+- [Built With](#built-with)
+- [Contributing](#contributing)
+- [Versioning](#versioning)
+- [Authors](#authors)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
 ## Getting Started
 
@@ -126,12 +126,12 @@ npm install
 
 ## Built With
 
--   [Node.js](https://nodejs.org/) - The server backend
--   [express](https://expressjs.com/) - The web server
--   [Redis](https://redis.io/) - The database
--   [node_redis](https://github.com/NodeRedis/node_redis) - The Redis
-    client for Node.js
--   [ws](https://github.com/websockets/ws) - The WebSocket server
+- [Node.js](https://nodejs.org/) - The server backend
+- [express](https://expressjs.com/) - The web server
+- [Redis](https://redis.io/) - The database
+- [node_redis](https://github.com/NodeRedis/node_redis) - The Redis
+  client for Node.js
+- [ws](https://github.com/websockets/ws) - The WebSocket server
 
 ## Contributing
 
@@ -158,24 +158,24 @@ This project is licensed under the MIT License - see the
 
 ## Acknowledgments
 
--   [Node.js](https://nodejs.org/) - The server backend
--   [express](https://expressjs.com/) - The web server
--   [@hapi/joi](https://hapi.dev/module/joi/) - Object validator for API
--   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - User auth
--   [Redis](https://redis.io/) - The database
--   [node_redis](https://github.com/NodeRedis/node_redis) - The Redis client for
-    Node.js
--   [bluebird](http://bluebirdjs.com) - Promise library
--   [ws](https://github.com/websockets/ws) - The WebSocket server
--   [winston](https://github.com/winstonjs/winston) - The logging library
--   [morgan](https://github.com/expressjs/morgan) - The HTTP request logger
--   [dotenv](https://github.com/motdotla/dotenv) - The .env file parser
--   [module-alias](https://github.com/ilearnio/module-alias) - Custom module
-    aliases
--   [feather](https://github.com/feathericons/feather) - The icons
--   [Warship icon by zidney on the NounProject (resized, minified and changed line thickness)](https://thenounproject.com/term/warship/1597472/) - The logo
--   Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth) for the
-    README and CONTRIBUTING template
--   [vuepress](https://vuepress.vuejs.org/) - The documentation generator
--   [Algolia DocSearch](https://docsearch.algolia.com/) - The documentation
-    search provider
+- [Node.js](https://nodejs.org/) - The server backend
+- [express](https://expressjs.com/) - The web server
+- [@hapi/joi](https://hapi.dev/module/joi/) - Object validator for API
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - User auth
+- [Redis](https://redis.io/) - The database
+- [node_redis](https://github.com/NodeRedis/node_redis) - The Redis client for
+  Node.js
+- [bluebird](http://bluebirdjs.com) - Promise library
+- [ws](https://github.com/websockets/ws) - The WebSocket server
+- [winston](https://github.com/winstonjs/winston) - The logging library
+- [morgan](https://github.com/expressjs/morgan) - The HTTP request logger
+- [dotenv](https://github.com/motdotla/dotenv) - The .env file parser
+- [module-alias](https://github.com/ilearnio/module-alias) - Custom module
+  aliases
+- [feather](https://github.com/feathericons/feather) - The icons
+- [Warship icon by zidney on the NounProject (resized, minified and changed line thickness)](https://thenounproject.com/term/warship/1597472/) - The logo
+- Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth) for the
+  README and CONTRIBUTING template
+- [vuepress](https://vuepress.vuejs.org/) - The documentation generator
+- [Algolia DocSearch](https://docsearch.algolia.com/) - The documentation
+  search provider
