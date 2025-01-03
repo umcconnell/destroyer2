@@ -53,7 +53,7 @@ See the [Auth](../docs/auth.md) docs for more information.
     When using a password, you must add it to the `.env` file **and** to the
     Redis configuration file. To set a password on the database, put this line
     into your `redis.conf` config file:  
-    `requirepass "<Your Super Secret Password>"`.
+     `requirepass "<Your Super Secret Password>"`.
     :::
 
 - `CONNECTION_RETRY` - Number of times to retry establishing a connection to
