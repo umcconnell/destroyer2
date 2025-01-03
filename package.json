@@ -23,7 +23,7 @@
     },
     "dependencies": {
         "@redis/client": "^1.6.0",
-        "dotenv": "^16.4.5",
+        "dotenv": "^16.4.7",
         "express": "~4.21.2",
         "joi": "^17.13.3",
         "jsonwebtoken": "^9.0.2",
