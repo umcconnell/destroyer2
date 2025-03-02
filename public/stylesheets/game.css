@@ -94,7 +94,8 @@
 
 .sea .sea__field.miss {
     --thickness: 4px;
-    background-image: linear-gradient(
+    background-image:
+        linear-gradient(
             to bottom right,
             transparent calc(50% - calc(var(--thickness) / 2)),
             black calc(50% - calc(var(--thickness) / 2)),
@@ -187,7 +188,8 @@
 
 @keyframes blinkMiss {
     from {
-        background-image: linear-gradient(
+        background-image:
+            linear-gradient(
                 to bottom right,
                 transparent calc(50% - calc(var(--thickness) / 2)),
                 red calc(50% - calc(var(--thickness) / 2)),
