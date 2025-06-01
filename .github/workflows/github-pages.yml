@@ -17,13 +17,12 @@ jobs:
                   node-version: lts/*
 
             - name: Cache dependencies
-              uses: actions/cache@v1
+              uses: actions/cache@v4
               with:
                   path: ~/.npm
                   key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
                   restore-keys: |
                       ${{ runner.os }}-node-
-
             - run: npm ci
               working-directory: ./docs
             - run: npm run docs:build
