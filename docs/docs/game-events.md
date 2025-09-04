@@ -101,11 +101,9 @@ Place a user's game field/"sea".
 - **Emitted By:**<br>
   `user`
 - **Success Response** <br>
-
     - [placed](#placed)
 
     OR
-
     - [ready](#ready)
 
 - **Error Response:** <br>
@@ -253,15 +251,12 @@ Fire at enemy's game field. Out-of-turn fires are ignored.
 - **Emitted By:** <br>
   `user`
 - **Success Response:**
-
     - [hit](#hit) with `you = false`
 
     OR
-
     - [sunk](#sunk) with `you = false`
 
     OR
-
     - [miss](#miss) with `you = false`
 
 - **Sample Message:**
