@@ -22,7 +22,7 @@
         "#game-server/*": "./game-server/*.mjs"
     },
     "dependencies": {
-        "@redis/client": "^1.6.0",
+        "@redis/client": "^5.8.2",
         "dotenv": "^17.2.1",
         "express": "~4.21.2",
         "joi": "^18.0.1",
